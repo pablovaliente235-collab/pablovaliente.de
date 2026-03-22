@@ -1,0 +1,1795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>Film — Pablo Valiente, Filmmaker &amp; DoP</title>
+  <meta name="description" content="Narrative film work by Pablo Valiente — Filmmaker and Director of Photography based in Germany. Short films, personal projects and cinematic storytelling." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://pablovaliente.me/film" />
+  <link rel="alternate" hreflang="de"        href="https://pablovaliente.me/film" />
+  <link rel="alternate" hreflang="en"        href="https://pablovaliente.me/film" />
+  <link rel="alternate" hreflang="es"        href="https://pablovaliente.me/film" />
+  <link rel="alternate" hreflang="x-default" href="https://pablovaliente.me/film" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Pablo Valiente González",
+    "alternateName": "Pablo Valiente",
+    "url": "https://pablovaliente.me",
+    "jobTitle": ["Filmmaker", "Director of Photography", "Colorist"],
+    "email": "pablovaliente235@gmail.com",
+    "sameAs": [
+      "https://vimeo.com/pablovaliente",
+      "https://www.linkedin.com/in/valiente-pablo",
+      "https://www.instagram.com/pvaliente_/",
+      "https://behance.net/pvaliente"
+    ]
+  }
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type"         content="website" />
+  <meta property="og:url"          content="https://pablovaliente.me/film" />
+  <meta property="og:title"        content="Film — Pablo Valiente, Filmmaker &amp; DoP" />
+  <meta property="og:description"  content="Narrative film work by Pablo Valiente — Filmmaker and DoP based in Germany. Short films, personal projects and cinematic storytelling." />
+  <meta property="og:image"        content="https://vumbnail.com/1169718635.jpg" />
+  <meta property="og:image:width"  content="640" />
+  <meta property="og:image:height" content="360" />
+  <meta property="og:image:alt"    content="Pablo Valiente – Film portfolio" />
+  <meta property="og:locale"       content="de_DE" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Film — Pablo Valiente, Filmmaker &amp; DoP" />
+  <meta name="twitter:description" content="Narrative film work by Pablo Valiente — Filmmaker and DoP based in Germany. Short films, personal projects and cinematic storytelling." />
+  <meta name="twitter:image"       content="https://vumbnail.com/1169718635.jpg" />
+  <meta name="twitter:image:alt"   content="Pablo Valiente – Film portfolio" />
+
+  <script src="https://player.vimeo.com/api/player.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet" /></noscript>
+
+  <style>
+    :root {
+      --bg:      #EDEAE4;
+      --black:   #0C0C0B;
+      --white:   #FFFFFF;
+      --muted:   #999690;
+      --gold:    #A8895A;
+      --font:    'Syne', sans-serif;
+      --ease:    cubic-bezier(0.16, 1, 0.3, 1);
+      --radius:  22px;
+      --nav-h:   84px;
+      --pad:     56px;   
+      --gap:     20px;   
+      --card-w:  min(58vw, 820px); 
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; height: 100%; }
+    html { overscroll-behavior: none; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      cursor: none;
+      overflow: hidden;
+      overscroll-behavior: none;
+    }
+    body.viewer-open { overflow: hidden; }
+
+    /* Contenedor de scroll interno — aísla el scroll del body */
+    #scroll-wrap {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior-y: none;
+      -webkit-overflow-scrolling: touch;
+    } 
+
+    /* ══════════════════════════════
+       CURSOR — INVENCIBLE
+    ══════════════════════════════ */
+    #cur-arrow {
+      position: fixed; z-index: 2147483647;
+      pointer-events: none;
+      transform: translate(-2px, -2px);
+      transition: opacity .2s;
+      will-change: left, top;
+      opacity: 0;
+    }
+    #cur-arrow svg { display: block; }
+    #cur-arrow.is-ready { opacity: 1; }
+
+    #cur-open {
+      position: fixed; z-index: 2147483647; /* Máximo z-index posible */
+      width: 68px; height: 68px; border-radius: 50%;
+      background: var(--black); pointer-events: none;
+      transform: translate(-50%,-50%) scale(0);
+      transition: transform .3s var(--ease);
+      display: flex; align-items: center; justify-content: center;
+    }
+    #cur-open span {
+      font-size: 8px; font-weight: 800;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--white);
+    }
+    
+    body.on-card #cur-arrow { opacity: 0; }
+    body.on-card #cur-open  { transform: translate(-50%,-50%) scale(1); }
+
+    body.on-interactive #cur-arrow { opacity: 0; }
+    body.on-interactive #cur-open { 
+      transform: translate(-50%, -50%) scale(0.2); 
+      background: var(--black);
+    }
+    body.on-interactive #cur-open span { display: none; }
+
+    body.viewer-open #cur-arrow svg polygon { fill: var(--white); stroke: rgba(0,0,0,0.3); }
+    body.viewer-open #cur-open { transform: translate(-50%,-50%) scale(0) !important; }
+    body.viewer-open.on-interactive #cur-open { background: var(--white); }
+
+    #cur-arrow { transform: translate(0px, 0px); }
+
+    /* ══════════════════════════════
+       NAV
+    ══════════════════════════════ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 800;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 44px; height: var(--nav-h);
+      background: var(--bg);
+      border-bottom: 1px solid rgba(12,12,11,0.07);
+    }
+    .nav-name {
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--black); text-decoration: none;
+    }
+    .nav-links { display: flex; align-items: center; gap: 20px; list-style: none; }
+    .nav-links a {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; transition: color .2s;
+    }
+    .nav-links a:hover, .nav-links a.is-active { color: var(--black); }
+    .nav-links .cta {
+      color: var(--black) !important;
+      border: 1px solid rgba(12,12,11,0.2);
+      padding: 9px 22px; border-radius: 999px;
+      transition: border-color .2s;
+    }
+    .nav-links .cta:hover { border-color: var(--black); }
+
+    /* Elementos mobile — ocultos por defecto */
+    .nav-hamburger { display: none; }
+    .mobile-menu   { visibility: hidden; pointer-events: none; opacity: 0; }
+
+    @media (max-width: 1366px) {
+      .nav-links { display: none; }
+
+      .nav-hamburger {
+        display: flex;
+        align-items: center; justify-content: center;
+        width: 44px; height: 44px;
+        background: none; border: none;
+        cursor: pointer; padding: 8px;
+        pointer-events: auto;
+        color: var(--black);
+        position: relative; z-index: 9100;
+      }
+      .nav-hamburger__icon { width: 20px; height: 20px; display: block; }
+
+      .mobile-menu {
+        position: fixed;
+        top: var(--nav-h); left: 0; right: 0;
+        z-index: 9000;
+        background: var(--bg);
+        border-bottom: 1px solid rgba(12,12,11,0.1);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        display: flex; flex-direction: column; align-items: stretch;
+        padding: 8px 24px 16px;
+        visibility: hidden; opacity: 0; pointer-events: none;
+        transform: translateY(-6px);
+        transition: opacity .25s var(--ease), transform .25s var(--ease), visibility 0s linear .25s;
+      }
+      .mobile-menu.is-open {
+        visibility: visible; opacity: 1; pointer-events: auto;
+        transform: translateY(0);
+        transition: opacity .25s var(--ease), transform .25s var(--ease), visibility 0s linear 0s;
+      }
+      .mobile-menu a {
+        font-size: 13px; font-weight: 500;
+        letter-spacing: 0.22em; text-transform: uppercase;
+        color: var(--muted); text-decoration: none;
+        padding: 12px 16px; width: 100%; border-radius: 8px;
+        transition: color .2s, background .2s; display: block;
+      }
+      .mobile-menu a:hover, .mobile-menu a:active { color: var(--black); background: rgba(12,12,11,0.05); }
+      .mobile-menu a.is-active { color: var(--black); }
+      .mobile-menu .cta {
+        color: var(--black) !important;
+        border: 1px solid rgba(12,12,11,0.2);
+        border-radius: 999px; margin-top: 4px; text-align: center;
+      }
+      .mobile-menu .cta:hover { border-color: var(--black); }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      #cur-arrow, #cur-open { display: none !important; }
+      body { cursor: auto; }
+
+      /* Textos hero — mismos ajustes que index */
+      .film-hero__cat  { font-size: 9px; margin-bottom: 2px; }
+      .film-hero__title {
+        font-size: clamp(.6rem, 2.8vw, .85rem);
+        font-weight: 800; letter-spacing: 0.08em; margin-bottom: 2px;
+      }
+      .film-hero__sub  { font-size: 9px; }
+
+      /* Textos secciones */
+      .film-section__label { font-size: 6px; margin-bottom: 4px; }
+      .film-section__title {
+        font-size: 0.75rem;
+        font-weight: 800; letter-spacing: 0.08em; margin-bottom: 16px;
+      }
+
+      /* Reproductor — textos */
+      .pv-title-bar__cat   { font-size: 9px; margin-bottom: 2px; }
+      .pv-title-bar__title {
+        font-size: clamp(.6rem, 2.8vw, .85rem);
+        font-weight: 800; letter-spacing: 0.08em;
+      }
+
+      /* Footer responsive */
+      .site-footer {
+        flex-direction: column; align-items: flex-start;
+        height: auto; padding: 20px;  gap: 12px;
+      }
+
+      /* project-close */
+      .project-close { top: 12px; right: 12px; padding: 9px 14px; font-size: 9px; }
+    }
+
+    @media (max-width: 480px) {
+      .film-frames-grid { grid-template-columns: 1fr; }
+      .film-hero__title { font-size: clamp(.6rem, 3vw, .85rem); }
+      .site-footer__links { gap: 16px; }
+    }
+
+    /* Ocultar grain en el visor */
+    body.viewer-open .grain { display: none; }
+
+    /* ══════════════════════════════
+       MAIN
+    ══════════════════════════════ */
+    main { padding-top: var(--nav-h); }
+    .page-col { padding: 0 var(--pad); }
+
+    /* ══════════════════════════════
+       SECCIÓN SLIDER (hero)
+    ══════════════════════════════ */
+    .film-hero {
+      padding-top: 52px;
+      padding-bottom: 0;
+    }
+
+    .slider-wrapper { position: relative; }
+
+    .slider-viewport {
+      width: calc(100% + var(--pad) * 2);
+      margin-left: calc(var(--pad) * -1);
+      overflow: hidden;
+      padding: 8px 0;
+      cursor: none;
+    }
+
+    .slider-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%); z-index: 20;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(237,234,228,0.82); border: 1px solid rgba(12,12,11,0.12);
+      display: flex; align-items: center; justify-content: center;
+      cursor: none; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      transition: background .2s, transform .25s var(--ease), opacity .2s;
+    }
+    .slider-arrow:hover { background: rgba(237,234,228,1); transform: translateY(-50%) scale(1.1); }
+    .slider-arrow:active { transform: translateY(-50%) scale(0.93); }
+    .slider-arrow svg {
+      width: 15px; height: 15px; stroke: var(--black); stroke-width: 1.8;
+      fill: none; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .slider-arrow--prev { left: 16px; }
+    .slider-arrow--next { right: 16px; }
+
+    .film-track { display: flex; align-items: center; will-change: transform; }
+
+    .film-card-wrap {
+      flex-shrink: 0; width: var(--card-w); margin-right: var(--gap);
+      transform: scale(0.88); transition: transform .75s var(--ease);
+      transform-origin: center center; perspective: 1000px; -webkit-perspective: 1000px;
+    }
+    .film-card-wrap:last-child { margin-right: 0; }
+    .film-card-wrap.is-active  { transform: scale(1); }
+
+    .film-card {
+      position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: var(--radius);
+      overflow: hidden; background: #1a1510; transform: translateZ(0); -webkit-transform: translateZ(0);
+      -webkit-mask-image: -webkit-radial-gradient(white, black); backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    }
+
+    .film-card__media {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; border: 0; pointer-events: none;
+      transform: scale(1.04); transition: transform 1.4s var(--ease);
+    }
+    .film-card-wrap.is-active .film-card__media { transform: scale(1); }
+
+    .film-card__overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(to bottom, rgba(0,0,0,0) 45%, rgba(0,0,0,0.6) 100%);
+      opacity: 0; transition: opacity .5s;
+    }
+    .film-card-wrap.is-active .film-card__overlay { opacity: 1; }
+
+    .film-card__progress {
+      position: absolute; bottom: 0; left: 0; z-index: 3; height: 2px; width: 0%;
+      background: rgba(255,255,255,0.55); border-radius: 0 2px 2px 0;
+    }
+
+    .film-card__placeholder {
+      position: absolute; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 10px;
+    }
+    .film-card__placeholder p {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.15);
+    }
+    .film-card__placeholder code {
+      font-size: 9px; font-family: monospace; color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.04);
+      padding: 5px 10px; border-radius: 4px;
+    }
+
+    .film-hero__info {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      padding: 20px 0 40px; max-width: var(--card-w); margin: 0 auto;
+    }
+    .film-hero__text { flex: 1; }
+    .film-hero__cat {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.38em; text-transform: uppercase;
+      color: var(--gold); display: block; margin-bottom: 2px; transition: opacity .3s;
+    }
+    .film-hero__title {
+      font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em; line-height: .95;
+      text-transform: uppercase; color: var(--black); margin-bottom: 2px; display: block; transition: opacity .3s;
+    }
+    .film-hero__sub {
+      font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); display: block; transition: opacity .3s;
+    }
+    .film-hero__text-changing.fade { opacity: 0; }
+
+    .film-hero__controls {
+      display: flex; flex-direction: column; align-items: flex-end; gap: 12px;
+      flex-shrink: 0; padding-left: 32px; padding-top: 2px;
+    }
+    .film-hero__count {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.15em; color: rgba(12,12,11,0.25);
+    }
+    .film-hero__count strong { color: var(--black); font-size: 12px; }
+
+    .film-hero__dots { display: flex; gap: 6px; align-items: center; }
+    .film-dot {
+      width: 18px; height: 2px; background: rgba(12,12,11,0.15); border-radius: 2px;
+      transition: width .4s var(--ease), background .3s; cursor: none;
+    }
+    .film-dot.is-active { width: 36px; background: var(--black); }
+
+    .film-card-wrap:not(.is-active):hover .film-card__overlay {
+      opacity: 0.3;
+      transition: opacity .3s;
+    }
+
+    .film-divider { height: 1px; background: rgba(12,12,11,0.08); }
+
+    /* ══════════════════════════════
+       SECCIONES INFERIORES
+    ══════════════════════════════ */
+    .film-section { padding-top: 100px; padding-bottom: 100px; }
+    .film-section + .film-section { padding-top: 0; }
+
+    .film-section__label {
+      font-size: 6px; font-weight: 700; letter-spacing: 0.4em; text-transform: uppercase;
+      color: rgba(12,12,11,0.25); margin-bottom: 4px; display: block;
+    }
+    .film-section__title {
+      font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--black); margin-bottom: 16px;
+    }
+
+    .film-video-box {
+      position: relative; width: 100%; aspect-ratio: 16/9;
+      background: #ccc9c1; border-radius: var(--radius); overflow: hidden;
+    }
+    .film-video-box video, .film-video-box iframe {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0;
+    }
+    .film-video-box__placeholder {
+      position: absolute; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 10px;
+    }
+    .film-video-box__placeholder p {
+      font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(12,12,11,0.2);
+    }
+    .film-video-box__placeholder code {
+      font-size: 9px; font-family: monospace; color: rgba(12,12,11,0.15); background: rgba(12,12,11,0.05);
+      padding: 6px 12px; border-radius: 4px;
+    }
+
+    .film-frames-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px 80px; margin-top: 60px; max-width: 100%;
+    }
+    .film-frame {
+      position: relative; aspect-ratio: 16/9; background: #ccc9c1; border-radius: 14px; overflow: hidden; cursor: none;
+    }
+    .film-frame img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      transform: scale(1); transition: transform .8s var(--ease);
+    }
+    .film-frame:hover img { transform: scale(1.06); }
+    .film-frame__placeholder {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    }
+    .film-frame__placeholder span {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(12,12,11,0.2);
+    }
+
+    .film-footer { height: 40px; }
+
+    /* ══════════════════════════════
+       SITE FOOTER
+    ══════════════════════════════ */
+    .site-footer {
+      display: flex; align-items: center; justify-content: center; gap: 40px;
+      padding: 0 var(--pad); height: 60px;
+      border-top: 1px solid rgba(12,12,11,0.08);
+      margin-top: 0;
+    }
+    .site-footer__copy {
+      font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .site-footer__links {
+      display: flex; align-items: center; gap: 28px;
+    }
+    .site-footer__link {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      transition: color .2s;
+    }
+    .site-footer__link:hover { color: var(--black); }
+
+    /* ══════════════════════════════════
+       PROJECT VIEWER — REPRODUCTOR FULLSCREEN
+    ══════════════════════════════════ */
+    .project-view {
+      position: fixed; inset: 0; z-index: 900;
+      background: var(--black);
+      opacity: 0; pointer-events: none;
+      transition: opacity .5s var(--ease);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .project-view.is-open { opacity: 1; pointer-events: all; }
+
+    .project-close {
+      position: fixed; top: 28px; right: 40px; z-index: 970;
+      display: flex; align-items: center; gap: 10px;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(255,255,255,0.7); background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.1); padding: 10px 20px; border-radius: 999px; cursor: none;
+      transition: color .2s, border-color .2s; opacity: 0; pointer-events: none;
+    }
+    .project-close.visible {
+      opacity: 1; pointer-events: auto;
+      transition: color .2s, border-color .2s, opacity .4s var(--ease) .1s;
+    }
+    .project-close:hover { color: var(--white); border-color: rgba(255,255,255,0.35); }
+    .project-close svg { width: 12px; height: 12px; stroke: currentColor; stroke-width: 1.5; fill: none; stroke-linecap: round; }
+
+    .pv-fullscreen-media {
+      position: relative; width: 100%; height: 100vh;
+    }
+    .pv-fullscreen-media iframe {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: contain; border: 0; pointer-events: none;
+    }
+    .pv-fullscreen__placeholder {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 12px;
+    }
+    .pv-fullscreen__placeholder p {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.18);
+    }
+
+    /* ── Custom Player Controls ── */
+    .pv-controls {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 960;
+      padding: 0 44px 36px;
+      background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 100%);
+      opacity: 0; pointer-events: none;
+      transition: opacity .35s var(--ease);
+    }
+    .pv-controls.visible { opacity: 1; pointer-events: auto; }
+    .pv-progress {
+      width: 100%; height: 2px; background: rgba(255,255,255,0.15);
+      border-radius: 2px; cursor: none; margin-bottom: 20px; position: relative;
+    }
+    .pv-progress__fill {
+      height: 100%; width: 0%; background: var(--white);
+      border-radius: 2px; transition: width .25s linear; pointer-events: none;
+    }
+    .pv-progress__buffer {
+      position: absolute; top: 0; left: 0; height: 100%;
+      background: rgba(255,255,255,0.1); border-radius: 2px; pointer-events: none;
+    }
+    .pv-progress:hover .pv-progress__fill { background: var(--gold); }
+    .pv-controls__row { display: flex; align-items: center; justify-content: space-between; }
+    .pv-controls__left, .pv-controls__right { display: flex; align-items: center; gap: 20px; }
+    .pv-btn {
+      background: none; border: none; padding: 0; cursor: none;
+      color: rgba(255,255,255,0.75);
+      display: flex; align-items: center; justify-content: center;
+      transition: color .2s, transform .2s var(--ease);
+    }
+    .pv-btn:hover { color: var(--white); transform: scale(1.12); }
+    .pv-btn svg { display: block; }
+    .pv-btn--play svg { width: 18px; height: 18px; }
+    .pv-btn--vol  svg { width: 16px; height: 16px; }
+    .pv-btn--loop svg { width: 14px; height: 14px; }
+    .pv-btn--skip svg { width: 16px; height: 16px; }
+    .pv-btn--fs   svg { width: 15px; height: 15px; }
+    .pv-btn.is-active { color: var(--gold); }
+    .pv-time {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(255,255,255,0.45); user-select: none;
+    }
+    .pv-time span { color: rgba(255,255,255,0.2); }
+    .pv-vol-wrap { display: flex; align-items: center; gap: 8px; }
+    .pv-vol-slider {
+      width: 60px; height: 2px; background: rgba(255,255,255,0.15);
+      border-radius: 2px; cursor: none; position: relative;
+    }
+    .pv-vol-slider__fill {
+      height: 100%; background: var(--white); border-radius: 2px;
+      pointer-events: none; transition: width .1s;
+    }
+    .pv-vol-slider:hover .pv-vol-slider__fill { background: var(--gold); }
+    .pv-title-bar {
+      position: absolute; top: 0; left: 0; right: 0; z-index: 960;
+      padding: 36px 44px 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 100%);
+      opacity: 0; pointer-events: none; transition: opacity .35s var(--ease);
+    }
+    .pv-title-bar.visible { opacity: 1; }
+    .pv-title-bar__cat {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.38em;
+      text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 2px;
+    }
+    .pv-title-bar__title {
+      font-size: 0.75rem; font-weight: 800;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--white);
+      display: block; margin-bottom: 2px;
+    }
+    .pv-title-bar__sub {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.4); display: block;
+    }
+
+    /* ══════════════════════════════
+       GRAIN
+    ══════════════════════════════ */
+    .grain {
+      position: fixed; inset: 0; z-index: 9990; pointer-events: none; opacity: 0.033;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 120px; animation: gr .35s steps(1) infinite;
+    }
+    @keyframes gr {
+      0%  { transform: translate(0,0); }   25% { transform: translate(-3%,2%); }
+      50% { transform: translate(2%,-3%); } 75% { transform: translate(-2%,3%); }
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       RESPONSIVE — añadidos al final, sin tocar el CSS desktop
+    ════════════════════════════════════════════════════════════ */
+
+    /* ─── TABLET LANDSCAPE & intermedias (max-width: 1024px) ─── */
+    @media (max-width: 1024px) {
+
+      /* ── Cursor personalizado desactivado en touch ── */
+      #cur-arrow,
+      #cur-open { display: none !important; }
+      body { cursor: auto; }
+      body.on-card #cur-arrow,
+      body.on-card #cur-open,
+      body.on-interactive #cur-arrow,
+      body.on-interactive #cur-open { display: none !important; }
+
+      /* ── Cursor nativo en elementos interactivos ── */
+      .slider-arrow,
+      .film-dot,
+      .film-card,
+      .film-frame,
+      .project-close,
+      .pv-btn { cursor: pointer; }
+
+      /* ── Variables: ajustar pad y card-w ── */
+      :root {
+        --pad:    40px;
+        --card-w: min(72vw, 820px);
+      }
+
+      /* ── Slider arrows: reencuadrar dentro del borde visual de la card ── */
+      .slider-arrow { cursor: pointer; }
+      .slider-arrow--prev { left: calc(50% - var(--card-w) / 2 + 12px); }
+      .slider-arrow--next { right: calc(50% - var(--card-w) / 2 + 12px); }
+
+      /* ── Dots: igual que desktop, touch target ampliado sin inflar visualmente ── */
+      .film-dot {
+        box-sizing: content-box;
+        width: 18px !important; height: 2px;
+        background: rgba(12,12,11,0.15);
+        padding: 10px 0; cursor: pointer;
+        background-clip: content-box;
+      }
+      .film-dot.is-active { width: 36px !important; background: var(--black); background-clip: content-box; }
+      .film-hero__count { display: none; }
+
+      /* ── Hero info: más compacto ── */
+      .film-hero__info { padding: 16px 0 32px; }
+
+      /* ── Secciones: padding reducido ── */
+      .film-section { padding-top: 52px; padding-bottom: 52px; }
+      .film-section__title { font-size: clamp(.6rem, 2.8vw, .85rem); }
+
+      /* ── Project viewer: controles escalados ── */
+      .pv-controls { padding: 0 32px 28px; }
+      .pv-title-bar { padding: 24px 32px 0; }
+      .project-close {
+        top: 20px; right: 24px;
+        padding: 10px 18px;
+        cursor: pointer;
+      }
+    }
+
+    /* ─── TABLET PORTRAIT (max-width: 768px) ─── */
+    @media (max-width: 768px) {
+
+      /* ── Variables ── */
+      :root {
+        --nav-h:  68px;
+        --pad:    24px;
+        --card-w: 88vw;
+      }
+
+      /* ── Cursor ── */
+      #cur-arrow,
+      #cur-open { display: none !important; }
+      body { cursor: auto; }
+
+      /* ── Nav ── */
+      nav { padding: 0 20px; }
+      .nav-name { font-size: 11px; }
+
+      /* ── Slider viewport: el calc() se auto-corrige con --pad reducido ── */
+      .slider-viewport { cursor: default; }
+
+      /* ── Hero info: colapsar a columna ── */
+      .film-hero__info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+        padding: 16px 0 28px;
+      }
+      .film-hero__controls {
+        flex-direction: row;
+        align-items: center;
+        padding-left: 0;
+        padding-top: 0;
+        gap: 16px;
+      }
+      .film-hero__count { font-size: 10px; }
+
+      /* ── Tipografía ── */
+      .film-hero__cat   { font-size: 9px; margin-bottom: 2px; }
+      .film-hero__title {
+        font-size: clamp(.6rem, 2.8vw, .85rem);
+        font-weight: 800; letter-spacing: 0.08em; margin-bottom: 2px;
+      }
+      .film-hero__sub   { font-size: 9px; }
+
+      /* ── Secciones ── */
+      .film-section { padding-top: 40px; padding-bottom: 40px; }
+      .film-section__label { font-size: 6px; margin-bottom: 4px; }
+      .film-section__title {
+        font-size: clamp(.6rem, 2.8vw, .85rem);
+        font-weight: 800; letter-spacing: 0.08em; margin-bottom: 16px;
+      }
+
+      /* ── Frames grid: 2 columnas en tablet ── */
+      .film-frames-grid { gap: 10px; margin-top: 20px; }
+
+      /* ── Project viewer ── */
+      .project-close {
+        top: 12px; right: 12px;
+        padding: 9px 14px;
+        font-size: 9px;
+        cursor: pointer;
+      }
+      .pv-controls { padding: 0 20px 24px; }
+      .pv-title-bar { padding: 20px 20px 0; }
+      /* Igualar título y subtítulo del visor a index.html */
+      .pv-title-bar__cat {
+        font-size: 9px; font-weight: 700;
+        letter-spacing: 0.38em; margin-bottom: 2px;
+      }
+      .pv-title-bar__title {
+        font-size: 0.75rem; font-weight: 800;
+        letter-spacing: 0.08em; line-height: .92;
+      }
+      .pv-vol-wrap { gap: 6px; }
+      .pv-vol-slider { width: 48px; }
+      .pv-controls__left,
+      .pv-controls__right { gap: 14px; }
+      .pv-btn--play,
+      .pv-btn--vol,
+      .pv-btn--skip,
+      .pv-btn--loop,
+      .pv-btn--fs {
+        min-width: 44px; min-height: 44px;
+        display: flex; align-items: center; justify-content: center;
+        cursor: pointer;
+      }
+
+      /* ── Site footer: colapsar a columna ── */
+      .site-footer {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        padding: 20px var(--pad);
+        gap: 10px;
+      }
+    }
+
+    /* ─── MOBILE (max-width: 480px) ─── */
+    @media (max-width: 480px) {
+
+      /* ── Variables ── */
+      :root {
+        --nav-h:  60px;
+        --pad:    16px;
+        --card-w: 92vw;
+      }
+
+      /* ── Nav ── */
+      nav { padding: 0 16px; }
+
+      /* ── Hero info ── */
+      .film-hero__info { padding: 14px 0 24px; gap: 10px; }
+      .film-hero__title { font-size: clamp(.6rem, 3vw, .85rem); }
+
+      /* ── Secciones ── */
+      .film-section { padding-top: 28px; padding-bottom: 28px; }
+      .film-section__title { font-size: 0.75rem !important; margin-bottom: 14px; }
+
+      /* ── Frames: 1 columna en mobile ── */
+      .film-frames-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin-top: 14px;
+      }
+
+      /* ── Site footer ── */
+      .site-footer { padding: 16px var(--pad); gap: 8px; }
+      .site-footer__links { gap: 16px; }
+      .site-footer__copy  { font-size: 8px; }
+
+      /* ── Film footer ── */
+      .film-footer { height: 24px; }
+
+      /* ── Project viewer compacto ── */
+      .project-close {
+        top: 10px; right: 10px;
+        padding: 8px 12px;
+      }
+      .pv-controls { padding: 0 16px 20px; }
+      .pv-title-bar { padding: 16px 16px 0; }
+      .pv-vol-wrap { display: none; } /* ocultar vol slider en mobile, mute sigue visible */
+      .pv-controls__left,
+      .pv-controls__right { gap: 10px; }
+      .pv-time { font-size: 8px; }
+
+      /* ── Slider arrows: touch targets ── */
+      .slider-arrow {
+        width: 40px; height: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="grain" aria-hidden="true"></div>
+
+  <div id="cur-arrow">
+    <svg width="11" height="11" viewBox="0 0 11 11" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="0,0 0,11 11,0" fill="#0C0C0B" stroke="#EDEAE4" stroke-width="1.2" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <div id="cur-open"><span>Open</span></div>
+
+  <div id="scroll-wrap">
+
+  <nav>
+    <a href="index.html" class="nav-name">Pablo Valiente</a>
+    <ul class="nav-links">
+      <li><a href="film.html" class="is-active">Film</a></li>
+      <li><a href="commercial.html">Commercial</a></li>
+      <li><a href="https://behance.net/pvaliente" target="_blank" rel="noopener noreferrer">Photography ↗</a></li>
+      <li><a href="contact.html" class="cta">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+      <svg class="nav-hamburger__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+        <line x1="3" y1="6"  x2="21" y2="6" />
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation menu">
+    <a href="film.html" class="is-active">Film</a>
+    <a href="commercial.html">Commercial</a>
+    <a href="https://behance.net/pvaliente" target="_blank" rel="noopener noreferrer">Photography ↗</a>
+    <a href="contact.html" class="cta">Contact</a>
+  </div>
+
+  <main>
+    <div class="page-col">
+
+      <div class="film-hero">
+
+        <div class="slider-wrapper">
+          <button class="slider-arrow slider-arrow--prev" id="btnPrev" aria-label="Proyecto anterior">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="slider-arrow slider-arrow--next" id="btnNext" aria-label="Proyecto siguiente">
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+
+          <div class="slider-viewport" id="filmViewport">
+          <div class="film-track" id="filmTrack">
+
+            <!-- PROJECT 1: Zufällige Begegnung -->
+            <div class="film-card-wrap"
+              data-cat="Film"
+              data-title="Zufällige Begegnung"
+              data-sub="Personal Project"
+              data-vimeo="1169500086"
+              data-cover-vimeo="1169718635"
+              data-color-vimeo="1169955037"
+              data-frames="assets/film/project-1/Frames/frame-01.jpg,assets/film/project-1/Frames/frame-02.jpg,assets/film/project-1/Frames/frame-03.jpg,assets/film/project-1/Frames/frame-04.jpg,assets/film/project-1/Frames/frame-05.jpg,assets/film/project-1/Frames/frame-06.jpg,assets/film/project-1/Frames/frame-07.jpg,assets/film/project-1/Frames/frame-08.jpg,assets/film/project-1/Frames/frame-09.jpg,assets/film/project-1/Frames/frame-10.jpg,assets/film/project-1/Frames/frame-11.jpg,assets/film/project-1/Frames/frame-12.jpg">
+              <div class="film-card" style="background:#1a1510;">
+                <div class="film-card__overlay"></div>
+                <div class="film-card__progress" id="prog0"></div>
+              </div>
+            </div>
+
+            <!-- PROJECT 2: Nicht schon wieder -->
+            <div class="film-card-wrap"
+              data-cat="Film"
+              data-title="Nicht schon wieder"
+              data-sub="Personal Project"
+              data-vimeo="1169380260"
+              data-cover-vimeo="1169718681"
+              data-color-vimeo="1169955236"
+              data-frames="assets/film/project-2/Frames/frame-01.jpg,assets/film/project-2/Frames/frame-02.jpg,assets/film/project-2/Frames/frame-03.jpg,assets/film/project-2/Frames/frame-04.jpg,assets/film/project-2/Frames/frame-05.jpg,assets/film/project-2/Frames/frame-06.jpg,assets/film/project-2/Frames/frame-07.jpg,assets/film/project-2/Frames/frame-08.jpg,assets/film/project-2/Frames/frame-09.jpg,assets/film/project-2/Frames/frame-10.jpg,assets/film/project-2/Frames/frame-11.jpg,assets/film/project-2/Frames/frame-12.jpg,assets/film/project-2/Frames/frame-13.jpg,assets/film/project-2/Frames/frame-14.jpg,assets/film/project-2/Frames/frame-15.jpg,assets/film/project-2/Frames/frame-16.jpg,assets/film/project-2/Frames/frame-17.jpg,assets/film/project-2/Frames/frame-18.jpg">
+              <div class="film-card" style="background:#100d18;">
+                <div class="film-card__overlay"></div>
+                <div class="film-card__progress" id="prog1"></div>
+              </div>
+            </div>
+
+            <!-- PROJECT 3: Perdido en una Perdiz — Color Grading -->
+            <div class="film-card-wrap"
+              data-cat="Film"
+              data-title="Perdido en una Perdiz"
+              data-sub="Color Grading"
+              data-vimeo="1169716541"
+              data-cover-vimeo="1169755360"
+              data-color-vimeo="1170251945"
+              data-frames="assets/film/project-3/Frames/frame-01.jpg,assets/film/project-3/Frames/frame-02.jpg,assets/film/project-3/Frames/frame-03.jpg,assets/film/project-3/Frames/frame-04.jpg,assets/film/project-3/Frames/frame-05.jpg,assets/film/project-3/Frames/frame-06.jpg,assets/film/project-3/Frames/frame-07.jpg,assets/film/project-3/Frames/frame-08.jpg,assets/film/project-3/Frames/frame-09.jpg,assets/film/project-3/Frames/frame-10.jpg,assets/film/project-3/Frames/frame-11.jpg,assets/film/project-3/Frames/frame-12.jpg,assets/film/project-3/Frames/frame-13.jpg,assets/film/project-3/Frames/frame-14.jpg,assets/film/project-3/Frames/frame-15.jpg,assets/film/project-3/Frames/frame-16.jpg,assets/film/project-3/Frames/frame-17.jpg,assets/film/project-3/Frames/frame-18.jpg">
+              <div class="film-card" style="background:#0f1510;">
+                <div class="film-card__overlay"></div>
+                <div class="film-card__progress" id="prog2"></div>
+              </div>
+            </div>
+
+          </div></div></div><div class="film-hero__info">
+          <div class="film-hero__text">
+            <span class="film-hero__cat   film-hero__text-changing" id="filmCat"></span>
+            <span class="film-hero__title film-hero__text-changing" id="filmTitle"></span>
+            <span class="film-hero__sub   film-hero__text-changing" id="filmSub"></span>
+          </div>
+          <div class="film-hero__controls">
+            <p class="film-hero__count">
+              <strong id="filmCountCur">01</strong> / <span id="filmCountTotal">05</span>
+            </p>
+            <div class="film-hero__dots" id="filmDots"></div>
+          </div>
+        </div>
+
+      </div><div class="film-divider"></div>
+
+      <div class="film-section">
+        <span class="film-section__label">02 — Color Breakdown</span>
+        <h2 class="film-section__title">Color &amp; Grade</h2>
+        <div class="film-video-box" id="pageColorBox">
+          <div class="film-video-box__placeholder">
+            <p>Color grading reel</p>
+            <code>Agrega 'data-color-video' a la tarjeta</code>
+          </div>
+        </div>
+      </div>
+
+      <div class="film-section" style="padding-top:0;">
+        <span class="film-section__label">03 — Selected Frames</span>
+        <h2 class="film-section__title">Stills</h2>
+        <div class="film-frames-grid" id="pageFramesGrid">
+          <div class="film-frame"><div class="film-frame__placeholder"><span>Frame 01</span></div></div>
+          <div class="film-frame"><div class="film-frame__placeholder"><span>Frame 02</span></div></div>
+          <div class="film-frame"><div class="film-frame__placeholder"><span>Frame 03</span></div></div>
+          <div class="film-frame"><div class="film-frame__placeholder"><span>Frame 04</span></div></div>
+          <div class="film-frame"><div class="film-frame__placeholder"><span>Frame 05</span></div></div>
+          <div class="film-frame"><div class="film-frame__placeholder"><span>Frame 06</span></div></div>
+          <div class="film-frame"><div class="film-frame__placeholder"><span>Frame 07</span></div></div>
+          <div class="film-frame"><div class="film-frame__placeholder"><span>Frame 08</span></div></div>
+          <div class="film-frame"><div class="film-frame__placeholder"><span>Frame 09</span></div></div>
+          <div class="film-frame"><div class="film-frame__placeholder"><span>Frame 10</span></div></div>
+          <div class="film-frame"><div class="film-frame__placeholder"><span>Frame 11</span></div></div>
+          <div class="film-frame"><div class="film-frame__placeholder"><span>Frame 12</span></div></div>
+          <div class="film-frame"><div class="film-frame__placeholder"><span>Frame 13</span></div></div>
+          <div class="film-frame"><div class="film-frame__placeholder"><span>Frame 14</span></div></div>
+          <div class="film-frame"><div class="film-frame__placeholder"><span>Frame 15</span></div></div>
+          <div class="film-frame"><div class="film-frame__placeholder"><span>Frame 16</span></div></div>
+          <div class="film-frame"><div class="film-frame__placeholder"><span>Frame 17</span></div></div>
+          <div class="film-frame"><div class="film-frame__placeholder"><span>Frame 18</span></div></div>
+        </div>
+      </div>
+
+      <div class="film-footer"></div>
+
+    </div>
+
+    <!-- ══ FOOTER ══ -->
+    <footer class="site-footer">
+      <span class="site-footer__copy">© <span id="footerYear"></span> Pablo Valiente. All rights reserved.</span>
+      <div class="site-footer__links">
+        <a href="https://www.instagram.com/pvaliente_/" target="_blank" rel="noopener" class="site-footer__link">Instagram</a>
+        <a href="https://www.linkedin.com/in/valiente-pablo" target="_blank" rel="noopener" class="site-footer__link">LinkedIn</a>
+        <a href="https://behance.net/pvaliente" target="_blank" rel="noopener" class="site-footer__link">Behance</a>
+      </div>
+    </footer>
+
+  </main>
+
+  </div><!-- /#scroll-wrap -->
+
+  <button class="project-close" id="btnClose" aria-label="Close project">
+    <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    Close
+  </button>
+
+  <div class="project-view" id="projectView" role="dialog" aria-modal="true" aria-label="Pantalla Completa">
+    <div class="pv-fullscreen-media" id="pvFullscreenMedia">
+      <div class="pv-fullscreen__placeholder" id="pvFullscreenPlaceholder">
+        <p>Añade media a la tarjeta</p>
+      </div>
+    </div>
+
+    <!-- Title bar -->
+    <div class="pv-title-bar" id="pvTitleBar">
+      <span class="pv-title-bar__cat"  id="pvBarCat"></span>
+      <span class="pv-title-bar__title" id="pvBarTitle"></span>
+      <span class="pv-title-bar__sub"  id="pvBarSub"></span>
+    </div>
+
+    <!-- Custom controls -->
+    <div class="pv-controls" id="pvControls">
+      <div class="pv-progress" id="pvProgress">
+        <div class="pv-progress__buffer" id="pvBuffer"></div>
+        <div class="pv-progress__fill"   id="pvFill"></div>
+      </div>
+      <div class="pv-controls__row">
+        <div class="pv-controls__left">
+          <button class="pv-btn pv-btn--skip" id="pvBtnBack" aria-label="Retroceder 10s">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 .49-3.45"/><text x="7.5" y="14.5" font-size="5.5" font-family="sans-serif" font-weight="700" fill="currentColor" stroke="none">10</text></svg>
+          </button>
+          <button class="pv-btn pv-btn--play" id="pvBtnPlay" aria-label="Play / Pause">
+            <svg id="pvIconPlay"  viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="5,3 19,12 5,21"/></svg>
+            <svg id="pvIconPause" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+          </button>
+          <button class="pv-btn pv-btn--skip" id="pvBtnFwd" aria-label="Adelantar 10s">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-.49-3.45"/><text x="7.5" y="14.5" font-size="5.5" font-family="sans-serif" font-weight="700" fill="currentColor" stroke="none">10</text></svg>
+          </button>
+          <div class="pv-vol-wrap">
+            <button class="pv-btn pv-btn--vol" id="pvBtnVol" aria-label="Mute">
+              <svg id="pvIconVol"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+              <svg id="pvIconMute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="display:none"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+            </button>
+            <div class="pv-vol-slider" id="pvVolSlider">
+              <div class="pv-vol-slider__fill" id="pvVolFill" style="width:100%"></div>
+            </div>
+          </div>
+          <span class="pv-time"><span id="pvTimeCur">0:00</span> <span>/ </span><span id="pvTimeDur">0:00</span></span>
+        </div>
+        <div class="pv-controls__right">
+          <button class="pv-btn pv-btn--loop is-active" id="pvBtnLoop" aria-label="Loop">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+          </button>
+          <button class="pv-btn pv-btn--fs" id="pvBtnFs" aria-label="Pantalla completa">
+            <svg id="pvIconFs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+            <svg id="pvIconFsExit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:none"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="10" y1="14" x2="3" y2="21"/><line x1="21" y1="3" x2="14" y2="10"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://player.vimeo.com/api/player.js"></script><script>
+  'use strict';
+
+  /* ══ Footer year ══ */
+  document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+  /* ══ Cursor ══ */
+  const curArrow = document.getElementById('cur-arrow');
+  const curOpen  = document.getElementById('cur-open');
+  let mx = 0, my = 0;
+  
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    curArrow.style.left = mx + 'px'; curArrow.style.top = my + 'px';
+    curOpen.style.left  = mx + 'px'; curOpen.style.top  = my + 'px';
+    curArrow.classList.add('is-ready');
+  });
+
+  document.querySelectorAll('a, button, .film-dot, .slider-arrow').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('on-interactive'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('on-interactive'));
+  });
+
+  /* ══════════════════════════════════════════════════════
+     FILM SLIDER HORIZONTAL & PAGINA DINÁMICA
+  ══════════════════════════════════════════════════════ */
+  const viewport   = document.getElementById('filmViewport');
+  const track      = document.getElementById('filmTrack');
+  const dotsWrap   = document.getElementById('filmDots');
+  const filmCat    = document.getElementById('filmCat');
+  const filmTitle  = document.getElementById('filmTitle');
+  const filmSub    = document.getElementById('filmSub');
+  const countCur   = document.getElementById('filmCountCur');
+  const countTotal = document.getElementById('filmCountTotal');
+
+  const pageColorBox   = document.getElementById('pageColorBox');
+  const pageFramesGrid = document.getElementById('pageFramesGrid');
+
+  const GAP = 20;
+
+  const realCards = Array.from(track.querySelectorAll('.film-card-wrap'));
+  const N = realCards.length;
+  countTotal.textContent = String(N).padStart(2, '0');
+
+  /* ── Infinite clone: prepend + append one full set ── */
+  realCards.forEach(c => {
+    const ce = c.cloneNode(true); ce.classList.add('clone');
+    ce.querySelector('[id^="prog"]')?.removeAttribute('id');
+    track.appendChild(ce);
+  });
+  [...realCards].reverse().forEach(c => {
+    const cs = c.cloneNode(true); cs.classList.add('clone');
+    cs.querySelector('[id^="prog"]')?.removeAttribute('id');
+    track.insertBefore(cs, track.firstChild);
+  });
+
+  const allCards = Array.from(track.querySelectorAll('.film-card-wrap'));
+  const OFFSET   = N;
+  let vCurrent   = OFFSET;
+  let isAnim     = false;
+  let viewerIsOpen = false;
+
+  /* ── Dots ── */
+  realCards.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'film-dot' + (i === 0 ? ' is-active' : '');
+    d.addEventListener('click', () => goTo(OFFSET + i));
+    d.addEventListener('mouseenter', () => document.body.classList.add('on-interactive'));
+    d.addEventListener('mouseleave', () => document.body.classList.remove('on-interactive'));
+    dotsWrap.appendChild(d);
+  });
+  const dots = Array.from(dotsWrap.querySelectorAll('.film-dot'));
+
+  function realIdx(v) { return ((v - OFFSET) % N + N) % N; }
+
+  function getTranslateX(v) {
+    const vpW = viewport.offsetWidth;
+    let off = 0;
+    for (let i = 0; i < v; i++) off += allCards[i].offsetWidth + GAP;
+    const cardW  = allCards[v].offsetWidth;
+    const center = vpW / 2 - cardW / 2;
+    return -(off - center);
+  }
+
+  /* ════════════════════════════════════════════════
+     COVER VIDEO — preload on all cards, show/hide
+  ════════════════════════════════════════════════ */
+
+  /* Step 1 — inject ALL cover iframes upfront (hidden).
+     They start buffering immediately. */
+  function preloadAllCovers() {
+    /* Solo iframes en tarjetas REALES — usando Vimeo SDK para control preciso */
+    realCards.forEach(cardWrap => {
+      const vimeoId = cardWrap.dataset.coverVimeo;
+      const filmCard = cardWrap.querySelector('.film-card');
+      if (!vimeoId || filmCard.querySelector('.cover-iframe')) return;
+      const ifr = document.createElement('iframe');
+      ifr.className = 'cover-iframe';
+      ifr.src = `https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=0&loop=1&muted=1&autopause=0`;
+      ifr.allow = 'autoplay; fullscreen';
+      ifr.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none;opacity:0;transition:opacity .55s ease;z-index:0;';
+      const overlay = filmCard.querySelector('.film-card__overlay');
+      filmCard.insertBefore(ifr, overlay);
+      /* SDK player — esperar loaded antes de reproducir */
+      const player = new Vimeo.Player(ifr);
+      filmCard._vPlayer = player;
+      player.on('loaded', () => {
+        if (cardWrap.classList.contains('is-active')) {
+          player.play().then(() => { ifr.style.opacity = '1'; });
+        }
+      });
+    });
+  }
+
+  /* Step 2 — fetch Vimeo thumbnails via oEmbed and inject as <img> on every card */
+  async function loadThumbnails() {
+    const uniqueIds = [...new Set(
+      allCards.map(c => c.dataset.coverVimeo).filter(Boolean)
+    )];
+    for (const id of uniqueIds) {
+      let thumbUrl = null;
+      try {
+        const res = await fetch(`https://vimeo.com/api/oembed.json?url=https://vimeo.com/${id}&width=1280`);
+        const data = await res.json();
+        thumbUrl = data.thumbnail_url;
+      } catch(e) { /* no thumbnail available */ }
+      if (!thumbUrl) continue;
+
+      allCards
+        .filter(c => c.dataset.coverVimeo === id)
+        .forEach(cardWrap => {
+          const filmCard = cardWrap.querySelector('.film-card');
+          if (filmCard.querySelector('.card-thumb')) return;
+          const img = document.createElement('img');
+          img.className = 'card-thumb';
+          img.src = thumbUrl;
+          img.alt = '';
+          img.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;pointer-events:none;opacity:1;transition:opacity .55s ease;z-index:0;';
+          filmCard.insertBefore(img, filmCard.firstChild);
+        });
+    }
+  }
+
+  function getRealCard(cardWrap) {
+    const id = cardWrap.dataset.coverVimeo;
+    return realCards.find(c => c.dataset.coverVimeo === id) || cardWrap;
+  }
+
+  function isProjectActive(coverVimeoId) {
+    return allCards.some(c => c.dataset.coverVimeo === coverVimeoId && c.classList.contains('is-active'));
+  }
+
+  function setCoverState(cardWrap, isActive) {
+    const source = getRealCard(cardWrap);
+    const filmCard = source.querySelector('.film-card');
+    const player = filmCard?._vPlayer;
+    const ifr    = source.querySelector('.cover-iframe');
+    const thumb  = cardWrap.querySelector('.card-thumb');
+
+    if (isActive) {
+      if (player) player.play().then(() => { if (ifr) ifr.style.opacity = '1'; }).catch(() => {});
+      else if (ifr) ifr.style.opacity = '1';
+      if (thumb) thumb.style.opacity = '0';
+    } else {
+      const stillActive = isProjectActive(cardWrap.dataset.coverVimeo);
+      if (!stillActive) {
+        if (player) player.pause().catch(() => {});
+        if (ifr) ifr.style.opacity = '0';
+      }
+      if (thumb) thumb.style.opacity = '1';
+    }
+  }
+
+  function updateActive(v) {
+    allCards.forEach(c => {
+      const wasActive = c.classList.contains('is-active');
+      c.classList.remove('is-active');
+      c.querySelector('.film-card')?.classList.remove('is-active');
+      if (wasActive) setCoverState(c, false);
+    });
+    allCards[v].classList.add('is-active');
+    allCards[v].querySelector('.film-card')?.classList.add('is-active');
+    setCoverState(allCards[v], true);
+  }
+
+  function updateInfo(ri) {
+    [filmCat, filmTitle, filmSub].forEach(m => m.classList.add('fade'));
+    setTimeout(() => {
+      filmCat.textContent   = realCards[ri].dataset.cat   || '';
+      filmTitle.textContent = realCards[ri].dataset.title || '';
+      filmSub.textContent   = realCards[ri].dataset.sub   || '';
+      countCur.textContent  = String(ri + 1).padStart(2, '0');
+      [filmCat, filmTitle, filmSub].forEach(m => m.classList.remove('fade'));
+    }, 260);
+  }
+
+  function updateDots(ri) {
+    dots.forEach((d, i) => d.classList.toggle('is-active', i === ri));
+  }
+
+  function updatePageContent(ri) {
+    const card = realCards[ri];
+
+    /* Color grading — usar iframe precargado del cache */
+    const colorPlaceholder = pageColorBox.querySelector('.film-video-box__placeholder');
+    const colorId = card.dataset.colorVimeo;
+    pageColorBox.querySelectorAll('video, iframe').forEach(el => {
+      /* Devolver al contenedor de precarga para que siga buffereando */
+      colorPreloadContainer.appendChild(el);
+    });
+    if (colorId && colorIframeCache[colorId]) {
+      pageColorBox.appendChild(colorIframeCache[colorId]);
+      if (colorPlaceholder) colorPlaceholder.style.display = 'none';
+    } else {
+      if (colorPlaceholder) colorPlaceholder.style.display = 'flex';
+    }
+
+    // ── Frames grid — auto-detecta frames, token cancela carga anterior ──
+    pageFramesGrid.innerHTML = '';
+    const firstUrl   = card.dataset.frames ? card.dataset.frames.split(',')[0].trim() : '';
+    const folderPath = firstUrl ? firstUrl.replace(/frame-\d+\.jpg$/, '') : '';
+    const maxFrames  = 60;
+    const loadToken  = Symbol();
+    pageFramesGrid._loadToken = loadToken;
+
+    if (folderPath) {
+      function tryFrame(i) {
+        if (i > maxFrames) return;
+        if (pageFramesGrid._loadToken !== loadToken) return;
+        const num = i.toString().padStart(2, '0');
+        const img = new Image();
+        img.src = `${folderPath}frame-${num}.jpg`;
+        img.onload = () => {
+          if (pageFramesGrid._loadToken !== loadToken) return;
+          const cell = document.createElement('div');
+          cell.className = 'film-frame';
+          img.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';
+          cell.appendChild(img);
+          pageFramesGrid.appendChild(cell);
+          tryFrame(i + 1);
+        };
+        img.onerror = () => {
+          if (pageFramesGrid._loadToken !== loadToken) return;
+          if (pageFramesGrid.children.length === 0) {
+            pageFramesGrid.innerHTML = '<p style="color:rgba(12,12,11,0.2);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;">Stills coming soon</p>';
+          }
+        };
+        img.alt = `Frame ${num}`;
+      }
+      tryFrame(1);
+    } else {
+      pageFramesGrid.innerHTML = '<p style="color:rgba(12,12,11,0.2);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;">Stills coming soon</p>';
+    }
+  }
+
+  let animSafetyTimer = null;
+
+  let pendingPageContent = null;
+
+  function goTo(v, animated = true) {
+    if (isAnim && animated) return;
+    isAnim = animated;
+
+    clearTimeout(animSafetyTimer);
+    if (animated) {
+      animSafetyTimer = setTimeout(() => {
+        isAnim = false;
+        if (pendingPageContent !== null) {
+          updatePageContent(pendingPageContent);
+          pendingPageContent = null;
+        }
+      }, 900);
+    }
+
+    updateActive(v);
+    const ri = realIdx(v);
+    updateInfo(ri);
+    updateDots(ri);
+
+    if (animated) {
+      track.style.transition = 'transform .75s cubic-bezier(0.16,1,0.3,1)';
+      track.style.transform  = `translateX(${getTranslateX(v)}px)`;
+      pendingPageContent = ri;
+    } else {
+      track.style.transition = 'none';
+      requestAnimationFrame(() => {
+        track.style.transform = `translateX(${getTranslateX(v)}px)`;
+      });
+      updatePageContent(ri);
+    }
+    vCurrent = v;
+  }
+
+  track.addEventListener('transitionend', e => {
+    if (e.target !== track || e.propertyName !== 'transform') return;
+    isAnim = false;
+    clearTimeout(animSafetyTimer);
+
+    /* Actualizar contenido inferior ahora que la animación terminó */
+    if (pendingPageContent !== null) {
+      updatePageContent(pendingPageContent);
+      pendingPageContent = null;
+    }
+
+    const doJump = (target) => {
+      /* 1. Desactivar TODAS las transitions instantáneamente */
+      allCards.forEach(c => c.style.transition = 'none');
+      track.style.transition = 'none';
+
+      requestAnimationFrame(() => {
+        /* 2. Mover el track a la posición real */
+        track.style.transform = `translateX(${getTranslateX(target)}px)`;
+
+        /* 3. Transferir is-active del clon a la tarjeta real sin animar */
+        allCards.forEach(c => {
+          c.classList.remove('is-active');
+          c.querySelector('.film-card')?.classList.remove('is-active');
+        });
+        allCards[target].classList.add('is-active');
+        allCards[target].querySelector('.film-card')?.classList.add('is-active');
+
+        /* Sincronizar cover video: mostrar iframe de la tarjeta real */
+        const realCard = getRealCard(allCards[target]);
+        const ifr = realCard.querySelector('.cover-iframe');
+        if (ifr) ifr.style.opacity = '1';
+
+        vCurrent = target;
+
+        /* 4. Re-habilitar transitions en el frame siguiente */
+        requestAnimationFrame(() => {
+          allCards.forEach(c => c.style.transition = '');
+        });
+      });
+    };
+
+    if (vCurrent < OFFSET)           doJump(vCurrent + N);
+    else if (vCurrent >= OFFSET + N) doJump(vCurrent - N);
+  });
+
+  /* ── Hover cursor ── */
+  document.addEventListener('mousemove', () => {
+    if (viewerIsOpen) { document.body.classList.remove('on-card'); return; }
+
+    const active = allCards[vCurrent];
+    if (!active) return;
+    const activeRect = active.querySelector('.film-card').getBoundingClientRect();
+    const onActive = mx >= activeRect.left && mx <= activeRect.right &&
+                     my >= activeRect.top  && my <= activeRect.bottom;
+
+    let onSide = false;
+    allCards.forEach((c, i) => {
+      if (i === vCurrent) return;
+      const r = c.querySelector('.film-card')?.getBoundingClientRect();
+      if (r && mx >= r.left && mx <= r.right && my >= r.top && my <= r.bottom) onSide = true;
+    });
+
+    if (onActive) {
+      curOpen.querySelector('span').textContent = 'Open';
+      document.body.classList.add('on-card');
+    } else if (onSide) {
+      curOpen.querySelector('span').textContent = '→';
+      document.body.classList.add('on-card');
+    } else {
+      document.body.classList.remove('on-card');
+    }
+  });
+
+  /* ── Click: active card → open video; side card → navigate ── */
+  viewport.addEventListener('click', e => {
+    if (viewerIsOpen) return;
+    if (e.target.closest('.slider-arrow')) return;
+    const clickedWrap = e.target.closest('.film-card-wrap');
+    if (!clickedWrap) return;
+    const clickedIdx = allCards.indexOf(clickedWrap);
+    if (clickedIdx === -1) return;
+    if (clickedIdx === vCurrent) {
+      openFullscreenVideo(realIdx(vCurrent));
+    } else {
+      goTo(clickedIdx < vCurrent ? vCurrent - 1 : vCurrent + 1);
+    }
+  });
+
+  /* ── Arrow buttons ── */
+  document.getElementById('btnPrev').addEventListener('click', () => goTo(vCurrent - 1));
+  document.getElementById('btnNext').addEventListener('click', () => goTo(vCurrent + 1));
+
+  /* ── Keyboard arrows ── */
+  document.addEventListener('keydown', e => {
+    if (viewerIsOpen) return;
+    if (e.key === 'ArrowLeft')  goTo(vCurrent - 1);
+    if (e.key === 'ArrowRight') goTo(vCurrent + 1);
+  });
+
+  /* ── Trackpad two-finger horizontal swipe (solo desktop, no en touch/Android) ── */
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    let wheelAccum2  = 0;
+    let wheelReady   = true;
+
+    viewport.addEventListener('wheel', e => {
+      if (viewerIsOpen) return;
+      if (Math.abs(e.deltaX) <= Math.abs(e.deltaY) * 0.5) return;
+      e.preventDefault();
+      wheelAccum2 += e.deltaX;
+      if (Math.abs(e.deltaX) < 2) {
+        wheelReady  = true;
+        wheelAccum2 = 0;
+        return;
+      }
+      if (wheelReady && Math.abs(wheelAccum2) > 30) {
+        wheelReady  = false;
+        wheelAccum2 = 0;
+        goTo(vCurrent + (e.deltaX > 0 ? 1 : -1));
+      }
+    }, { passive: false });
+  }
+
+
+  /* ══════════════════════════════════
+     REPRODUCTOR FULLSCREEN — CUSTOM
+  ══════════════════════════════════ */
+  const projectView             = document.getElementById('projectView');
+  const btnClose                = document.getElementById('btnClose');
+  const pvFullscreenMedia       = document.getElementById('pvFullscreenMedia');
+  const pvFullscreenPlaceholder = document.getElementById('pvFullscreenPlaceholder');
+  const pvControls              = document.getElementById('pvControls');
+  const pvTitleBar              = document.getElementById('pvTitleBar');
+  const pvProgress              = document.getElementById('pvProgress');
+  const pvFill                  = document.getElementById('pvFill');
+  const pvBuffer                = document.getElementById('pvBuffer');
+  const pvBtnPlay               = document.getElementById('pvBtnPlay');
+  const pvIconPlay              = document.getElementById('pvIconPlay');
+  const pvIconPause             = document.getElementById('pvIconPause');
+  const pvBtnVol                = document.getElementById('pvBtnVol');
+  const pvIconVol               = document.getElementById('pvIconVol');
+  const pvIconMute              = document.getElementById('pvIconMute');
+  const pvVolSlider             = document.getElementById('pvVolSlider');
+  const pvVolFill               = document.getElementById('pvVolFill');
+  const pvBtnLoop               = document.getElementById('pvBtnLoop');
+  const pvBtnBack               = document.getElementById('pvBtnBack');
+  const pvBtnFwd                = document.getElementById('pvBtnFwd');
+  const pvBtnFs                 = document.getElementById('pvBtnFs');
+  const pvIconFs                = document.getElementById('pvIconFs');
+  const pvIconFsExit            = document.getElementById('pvIconFsExit');
+  const pvTimeCur               = document.getElementById('pvTimeCur');
+  const pvTimeDur               = document.getElementById('pvTimeDur');
+  const pvBarCat                = document.getElementById('pvBarCat');
+  const pvBarTitle              = document.getElementById('pvBarTitle');
+  const pvBarSub                = document.getElementById('pvBarSub');
+
+  let vimeoPlayer  = null;
+  let isLooping    = true;
+  let isPlaying    = false;
+  let isMuted      = false;
+  let volLevel     = 1;
+  let hideTimer    = null;
+  let progressRaf  = null;
+  let isDragging   = false;
+
+  function fmtTime(s) {
+    s = Math.floor(s || 0);
+    const m = Math.floor(s / 60);
+    return m + ':' + String(s % 60).padStart(2, '0');
+  }
+
+  function setPlayIcon(playing) {
+    isPlaying = playing;
+    pvIconPlay.style.display  = playing ? 'none' : 'block';
+    pvIconPause.style.display = playing ? 'block' : 'none';
+  }
+
+  function setMuteIcon(muted) {
+    isMuted = muted;
+    pvIconVol.style.display  = muted ? 'none' : 'block';
+    pvIconMute.style.display = muted ? 'block' : 'none';
+  }
+
+  function showControls() {
+    pvControls.classList.add('visible');
+    pvTitleBar.classList.add('visible');
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(() => {
+      if (isPlaying) {
+        pvControls.classList.remove('visible');
+        pvTitleBar.classList.remove('visible');
+      }
+    }, 3000);
+  }
+
+  function startProgressLoop() {
+    cancelAnimationFrame(progressRaf);
+    async function tick() {
+      if (!vimeoPlayer || !viewerIsOpen) return;
+      try {
+        const [cur, dur] = await Promise.all([vimeoPlayer.getCurrentTime(), vimeoPlayer.getDuration()]);
+        if (!isDragging && dur > 0) pvFill.style.width = (cur / dur * 100) + '%';
+        pvTimeCur.textContent = fmtTime(cur);
+        pvTimeDur.textContent = fmtTime(dur);
+      } catch(e) {}
+      progressRaf = requestAnimationFrame(tick);
+    }
+    progressRaf = requestAnimationFrame(tick);
+  }
+
+  function seekTo(e) {
+    if (!vimeoPlayer) return;
+    const rect = pvProgress.getBoundingClientRect();
+    const pct  = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    pvFill.style.width = (pct * 100) + '%';
+    vimeoPlayer.getDuration().then(dur => vimeoPlayer.setCurrentTime(dur * pct));
+  }
+
+  pvProgress.addEventListener('click', seekTo);
+  pvProgress.addEventListener('mousedown', e => {
+    isDragging = true;
+    seekTo(e);
+    const onMove = ev => seekTo(ev);
+    const onUp   = () => { isDragging = false; window.removeEventListener('mousemove', onMove); window.removeEventListener('mouseup', onUp); };
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mouseup', onUp);
+  });
+
+  pvBtnPlay.addEventListener('click', () => {
+    if (!vimeoPlayer) return;
+    isPlaying ? vimeoPlayer.pause() : vimeoPlayer.play();
+  });
+
+  pvBtnBack.addEventListener('click', () => {
+    if (!vimeoPlayer) return;
+    vimeoPlayer.getCurrentTime().then(t => vimeoPlayer.setCurrentTime(Math.max(0, t - 10)));
+  });
+  pvBtnFwd.addEventListener('click', () => {
+    if (!vimeoPlayer) return;
+    Promise.all([vimeoPlayer.getCurrentTime(), vimeoPlayer.getDuration()])
+      .then(([t, d]) => vimeoPlayer.setCurrentTime(Math.min(d, t + 10)));
+  });
+
+  pvBtnFs.addEventListener('click', () => {
+    if (!document.fullscreenElement) {
+      projectView.requestFullscreen?.() || projectView.webkitRequestFullscreen?.();
+    } else {
+      document.exitFullscreen?.() || document.webkitExitFullscreen?.();
+    }
+  });
+  document.addEventListener('fullscreenchange', () => {
+    const isFs = !!document.fullscreenElement;
+    pvIconFs.style.display     = isFs ? 'none'  : 'block';
+    pvIconFsExit.style.display = isFs ? 'block' : 'none';
+  });
+
+  pvBtnVol.addEventListener('click', () => {
+    if (!vimeoPlayer) return;
+    isMuted ? vimeoPlayer.setMuted(false).then(() => { setMuteIcon(false); pvVolFill.style.width = (volLevel * 100) + '%'; })
+            : vimeoPlayer.setMuted(true).then(() =>  { setMuteIcon(true);  pvVolFill.style.width = '0%'; });
+  });
+
+  pvVolSlider.addEventListener('click', e => {
+    if (!vimeoPlayer) return;
+    const rect = pvVolSlider.getBoundingClientRect();
+    volLevel = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    pvVolFill.style.width = (volLevel * 100) + '%';
+    vimeoPlayer.setVolume(volLevel);
+    if (volLevel > 0) { vimeoPlayer.setMuted(false); setMuteIcon(false); }
+  });
+
+  pvBtnLoop.addEventListener('click', () => {
+    isLooping = !isLooping;
+    pvBtnLoop.classList.toggle('is-active', isLooping);
+    if (vimeoPlayer) vimeoPlayer.setLoop(isLooping);
+  });
+
+  projectView.addEventListener('mousemove', showControls);
+  projectView.addEventListener('click', e => {
+    if (e.target === pvFullscreenMedia || e.target.tagName === 'IFRAME') {
+      isPlaying ? vimeoPlayer?.pause() : vimeoPlayer?.play();
+    }
+  });
+
+  function openFullscreenVideo(ri) {
+    const card    = realCards[ri];
+    const vimeoId = card.dataset.vimeo;
+    pvBarCat.textContent   = card.dataset.cat   || '';
+    pvBarTitle.textContent = card.dataset.title  || '';
+    pvBarSub.textContent   = card.dataset.sub    || '';
+
+    pvFullscreenMedia.querySelectorAll('iframe').forEach(el => el.remove());
+    pvFullscreenPlaceholder.style.display = vimeoId ? 'none' : 'flex';
+    pvFill.style.width = '0%';
+    pvTimeCur.textContent = '0:00';
+    pvTimeDur.textContent = '0:00';
+
+    if (vimeoId) {
+      const ifr = document.createElement('iframe');
+      ifr.src = `https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&loop=0&muted=0&dnt=1`;
+      ifr.allow = 'autoplay; fullscreen';
+      ifr.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none;opacity:0;transition:opacity .5s ease;';
+      pvFullscreenMedia.appendChild(ifr);
+
+      vimeoPlayer = new Vimeo.Player(ifr);
+      vimeoPlayer.setLoop(isLooping);
+      vimeoPlayer.setVolume(volLevel);
+      vimeoPlayer.setMuted(false);
+
+      vimeoPlayer.on('play',  () => { ifr.style.opacity='1'; setPlayIcon(true);  startProgressLoop(); showControls(); });
+      vimeoPlayer.on('pause', () => { setPlayIcon(false); showControls(); });
+      vimeoPlayer.on('ended', () => { if (!isLooping) setPlayIcon(false); });
+      vimeoPlayer.on('loaded', () => {
+        vimeoPlayer.getDuration().then(d => pvTimeDur.textContent = fmtTime(d));
+      });
+    }
+
+    viewerIsOpen = true;
+    document.body.classList.add('viewer-open', 'in-project');
+    document.body.classList.remove('on-card');
+    projectView.classList.add('is-open');
+    btnClose.classList.add('visible');
+    showControls();
+  }
+
+  function closeFullscreenVideo() {
+    cancelAnimationFrame(progressRaf);
+    clearTimeout(hideTimer);
+    if (vimeoPlayer) { vimeoPlayer.unload(); vimeoPlayer = null; }
+    viewerIsOpen = false;
+    document.body.classList.remove('viewer-open', 'in-project');
+    projectView.classList.remove('is-open');
+    btnClose.classList.remove('visible');
+    pvControls.classList.remove('visible');
+    pvTitleBar.classList.remove('visible');
+    setTimeout(() => {
+      pvFullscreenMedia.querySelectorAll('iframe').forEach(el => el.remove());
+      pvFullscreenPlaceholder.style.display = 'flex';
+    }, 500);
+  }
+
+  btnClose.addEventListener('click', closeFullscreenVideo);
+  document.addEventListener('keydown', e => {
+    if (!viewerIsOpen) return;
+    if (e.key === 'Escape') closeFullscreenVideo();
+    if (e.key === ' ') { e.preventDefault(); isPlaying ? vimeoPlayer?.pause() : vimeoPlayer?.play(); }
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); vimeoPlayer?.getCurrentTime().then(t => vimeoPlayer.setCurrentTime(Math.max(0, t - 10))); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); Promise.all([vimeoPlayer?.getCurrentTime(), vimeoPlayer?.getDuration()]).then(([t,d]) => vimeoPlayer?.setCurrentTime(Math.min(d, t + 10))); }
+    if (e.key === 'f' || e.key === 'F') { pvBtnFs.click(); }
+    if (e.key === 'm' || e.key === 'M') { pvBtnVol.click(); }
+  });
+
+  /* ── Preload color grading iframes (ocultos en DOM, buffereando desde el inicio) ── */
+  const colorIframeCache = {};
+  const colorPreloadContainer = document.createElement('div');
+  colorPreloadContainer.style.cssText = 'position:fixed;width:640px;height:360px;opacity:0;pointer-events:none;left:-9999px;top:-9999px;z-index:-1;';
+  document.body.appendChild(colorPreloadContainer);
+
+  function preloadColorIframes() {
+    realCards.forEach(card => {
+      const colorId = card.dataset.colorVimeo;
+      if (!colorId || colorIframeCache[colorId]) return;
+      const ifr = document.createElement('iframe');
+      ifr.src = `https://player.vimeo.com/video/${colorId}?autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&controls=0&background=1`;
+      ifr.allow = 'autoplay; fullscreen';
+      ifr.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none;';
+      ifr.setAttribute('aria-hidden', 'true');
+      colorIframeCache[colorId] = ifr;
+      colorPreloadContainer.appendChild(ifr); /* En DOM = el browser lo descarga */
+    });
+  }
+
+  /* ── Inicio: slide-in entrance animation ── */
+  window.addEventListener('load', () => {
+    preloadAllCovers();
+    preloadColorIframes();
+    loadThumbnails();
+    goTo(OFFSET - 1, false);
+    requestAnimationFrame(() => requestAnimationFrame(() => goTo(OFFSET, true)));
+  });
+  window.addEventListener('resize', () => goTo(vCurrent, false));
+
+  /* ── Hamburguesa ── */
+  const navHamburger = document.getElementById('navHamburger');
+  const mobileMenu   = document.getElementById('mobileMenu');
+
+  function openMenu() {
+    mobileMenu.classList.add('is-open');
+    navHamburger.setAttribute('aria-expanded', 'true');
+  }
+  function closeMenu() {
+    mobileMenu.classList.remove('is-open');
+    navHamburger.setAttribute('aria-expanded', 'false');
+  }
+
+  navHamburger.addEventListener('click', e => {
+    e.stopPropagation();
+    mobileMenu.classList.contains('is-open') ? closeMenu() : openMenu();
+  });
+
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+  document.addEventListener('click', e => {
+    if (!mobileMenu.classList.contains('is-open')) return;
+    if (!navHamburger.contains(e.target) && !mobileMenu.contains(e.target)) closeMenu();
+  });
+
+  /* ══════════════════════════════════
+     MOBILE ADDITIONS
+  ══════════════════════════════════ */
+
+  /* ── Swipe horizontal en el slider ── */
+  let touchStartX = 0, touchStartY = 0;
+
+  viewport.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  viewport.addEventListener('touchend', e => {
+    if (viewerIsOpen) return;
+    const dx = touchStartX - e.changedTouches[0].clientX;
+    const dy = touchStartY - e.changedTouches[0].clientY;
+    /* Solo swipe horizontal puro — ignorar si hay componente vertical significativa */
+    if (Math.abs(dx) > 30 && Math.abs(dx) > Math.abs(dy) * 2.5) {
+      goTo(dx > 0 ? vCurrent + 1 : vCurrent - 1);
+    }
+  }, { passive: true });
+
+  /* ── Tap en tarjeta activa para abrir proyecto en mobile/tablet ── */
+  viewport.addEventListener('click', e => {
+    if (window.innerWidth > 1024) return;
+    if (viewerIsOpen) return;
+    if (e.target.closest('.slider-arrow')) return;
+    const clickedWrap = e.target.closest('.film-card-wrap');
+    if (!clickedWrap) return;
+    const clickedIdx = allCards.indexOf(clickedWrap);
+    if (clickedIdx === -1) return;
+    if (clickedIdx === vCurrent) {
+      openFullscreenVideo(realIdx(vCurrent));
+    } else {
+      goTo(clickedIdx < vCurrent ? vCurrent - 1 : vCurrent + 1);
+    }
+  });
+  </script>
+</body>
+</html>

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PABLO VALIENTE | Director &amp; Photographer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "inverse-surface": "#e5e2e0",
+                "tertiary": "#b4c8e8",
+                "surface-bright": "#3a3938",
+                "outline": "#9a8f82",
+                "error": "#ffb4ab",
+                "secondary-fixed": "#e5e2dc",
+                "on-tertiary-fixed": "#061c35",
+                "surface-tint": "#e4c18d",
+                "primary-container": "#ab8c5d",
+                "on-surface": "#e5e2e0",
+                "on-primary-fixed": "#281800",
+                "on-tertiary-fixed-variant": "#354862",
+                "primary": "#e4c18d",
+                "secondary-container": "#474743",
+                "tertiary-fixed-dim": "#b4c8e8",
+                "secondary-fixed-dim": "#c9c6c1",
+                "on-secondary-fixed": "#1c1c18",
+                "surface-dim": "#131312",
+                "surface-variant": "#353533",
+                "surface-container-highest": "#353533",
+                "surface": "#131312",
+                "on-primary-fixed-variant": "#5b431a",
+                "on-secondary": "#31302d",
+                "inverse-primary": "#755a2f",
+                "surface-container": "#20201e",
+                "on-error": "#690005",
+                "on-surface-variant": "#d1c5b6",
+                "on-tertiary-container": "#172a44",
+                "surface-container-low": "#1c1c1a",
+                "primary-fixed-dim": "#e4c18d",
+                "inverse-on-surface": "#31302f",
+                "on-primary-container": "#3a2601",
+                "primary-fixed": "#ffdeae",
+                "on-secondary-container": "#b7b5af",
+                "on-tertiary": "#1e314b",
+                "error-container": "#93000a",
+                "on-primary": "#422c06",
+                "outline-variant": "#4e453b",
+                "tertiary-fixed": "#d4e3ff",
+                "background": "#131312",
+                "surface-container-high": "#2a2a29",
+                "on-error-container": "#ffdad6",
+                "on-secondary-fixed-variant": "#474743",
+                "surface-container-lowest": "#0e0e0d",
+                "on-background": "#e5e20",
+                "secondary": "#c9c6c1",
+                "tertiary-container": "#7f92b0"
+              },
+              fontFamily: {
+                "headline": ["Syne", "sans-serif"],
+                "body": ["Syne", "sans-serif"],
+                "label": ["Syne", "sans-serif"],
+                "syne": ["Syne", "sans-serif"]
+              },
+              borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+            cursor: none;
+            overflow-x: hidden;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            font-family: 'Syne', sans-serif;
+            background-color: #131312;
+        }
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        .film-grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+        }
+
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: #e4c18d;
+            z-index: 100;
+            width: 0%;
+        }
+
+        .custom-cursor {
+            width: 12px;
+            height: 12px;
+            background: #e4c18d;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            transition: width 0.3s, height 0.3s, background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor-hover-active .custom-cursor {
+            width: 80px;
+            height: 80px;
+            background: rgba(228, 193, 141, 0.9);
+        }
+
+        .cursor-text {
+            display: none;
+            font-family: 'Syne', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: #131312;
+        }
+
+        .cursor-hover-active .cursor-text {
+            display: block;
+        }
+
+        .asymmetric-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 1000px;
+            overflow: hidden;
+            min-height: 500px;
+        }
+
+        .slider-card {
+            position: absolute;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0;
+            pointer-events: none;
+            transform-origin: center center;
+            border-radius: 4px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .slider-card.active {
+            opacity: 1;
+            transform: translateZ(0) scale(1);
+            z-index: 3;
+            pointer-events: auto;
+        }
+
+        .slider-card.prev {
+            opacity: 0.3;
+            transform: translateZ(-200px) translateY(-25%) scale(0.85);
+            z-index: 2;
+        }
+
+        .slider-card.next {
+            opacity: 0.3;
+            transform: translateZ(-200px) translateY(25%) scale(0.85);
+            z-index: 2;
+        }
+
+        .vimeo-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .vimeo-wrapper iframe {
+            width: 100vw;
+            height: 56.25vw;
+            min-height: 100vh;
+            min-width: 177.77vh;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .fade-text {
+            transition: opacity 0.5s ease-in-out;
+        }
+        .fade-text.fade-out {
+            opacity: 0;
+        }
+
+        /* Horizontal Slider Refinements */
+        .horizontal-slider-wrapper {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+        }
+        .horizontal-slider-content {
+            display: flex;
+            transition: transform 1s cubic-bezier(0.8, 0, 0.2, 1);
+            height: 100%;
+        }
+        .horizontal-slide {
+            min-width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .horizontal-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            color: #EDEAE4;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 20;
+            transition: all 0.4s ease;
+            opacity: 0.4;
+        }
+        .nav-arrow:hover {
+            opacity: 1;
+            scale: 1.1;
+            color: #e4c18d;
+        }
+        .nav-arrow.prev { left: 4px; }
+        .nav-arrow.next { right: 4px; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary selection:text-on-primary font-syne">
+<div class="film-grain"></div>
+<div class="scroll-progress" id="progressBar"></div>
+<div class="custom-cursor" id="cursor">
+<span class="cursor-text">OPEN</span>
+</div>
+<header class="fixed top-0 left-0 w-full flex justify-between items-center px-12 py-6 bg-[#131312]/70 backdrop-blur-xl z-50">
+<div class="font-syne font-bold tracking-tighter text-xl text-[#EDEAE4]">
+            PABLO VALIENTE
+        </div>
+<nav class="hidden md:flex gap-12 items-center">
+<a class="font-syne uppercase tracking-[0.2em] text-[10px] font-bold leading-tight text-[#EDEAE4]/60 hover:text-[#e4c18d] transition-colors duration-600 cursor-none hover:scale-105" href="#">FILM</a>
+<a class="font-syne uppercase tracking-[0.2em] text-[10px] font-bold leading-tight text-[#EDEAE4]/60 hover:text-[#EDEAE4] transition-colors duration-600 cursor-none hover:scale-105" href="#">COMMERCIAL</a>
+<a class="font-syne uppercase tracking-[0.2em] text-[10px] font-bold leading-tight text-[#e4c18d] border-b border-[#e4c18d]/40 pb-1 cursor-none transition-transform duration-600 hover:scale-105" href="#">PHOTOGRAPHY</a>
+<a class="font-syne uppercase tracking-[0.2em] text-[10px] font-bold leading-tight text-[#EDEAE4]/60 hover:text-[#EDEAE4] transition-colors duration-600 cursor-none hover:scale-105" href="#">CONTACT</a>
+</nav>
+<div class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</div>
+</header>
+<main class="relative pt-32">
+<!-- Hero Section -->
+<section class="min-h-screen flex flex-col justify-center px-12 mb-32">
+<div class="max-w-6xl">
+<span class="font-syne uppercase tracking-[0.25rem] text-[10px] text-primary mb-6 block">DIRECTOR &amp; PHOTOGRAPHER</span>
+<h1 class="font-syne text-[clamp(3rem,10vw,8rem)] font-extrabold leading-[0.85] tracking-tighter mb-12 text-[#EDEAE4]">
+                    CAPTURING THE<br/>SILENT NARRATIVE.
+                </h1>
+<div class="flex justify-end mt-12">
+<p class="max-w-md font-syne text-on-surface-variant text-lg leading-relaxed text-right">
+                        Based in Madrid, crafting cinematic experiences through high-end commercial film and editorial photography. Every frame is a curated exhibition.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Project 01: FILM with Stacked Slider -->
+<section class="px-12 mb-40 group interactive-target" id="filmSection">
+<div class="asymmetric-grid gap-y-8 items-center">
+<div class="col-span-12 md:col-span-8 relative">
+<div class="slider-container" id="filmSlider">
+<div class="slider-card active" data-sub="An experimental short exploring the weight of fleeting moments in urban environments." data-title="Zufällige&lt;br/&gt;Begegnung">
+<div class="vimeo-wrapper">
+<iframe allow="autoplay; fullscreen" allowfullscreen="" frameborder="0" src="https://player.vimeo.com/video/1018973680?background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;autopause=0"></iframe>
+</div>
+</div>
+<div class="slider-card next" data-sub="A visual essay on the architecture of sound within the city streets." data-title="Urban&lt;br/&gt;Echoes">
+<div class="vimeo-wrapper">
+<iframe allow="autoplay; fullscreen" allowfullscreen="" frameborder="0" src="https://player.vimeo.com/video/1018973680?background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;autopause=0"></iframe>
+</div>
+</div>
+<div class="slider-card hidden-down" data-sub="Exploring the rhythmic patterns of coastal life during the off-season." data-title="Silent&lt;br/&gt;Tides">
+<div class="vimeo-wrapper">
+<iframe allow="autoplay; fullscreen" allowfullscreen="" frameborder="0" src="https://player.vimeo.com/video/1018973680?background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;autopause=0"></iframe>
+</div>
+</div>
+<div class="slider-card prev" data-sub="A noir-inspired journey through the neon-lit alleyways of Tokyo." data-title="After&lt;br/&gt;Hours">
+<div class="vimeo-wrapper">
+<iframe allow="autoplay; fullscreen" allowfullscreen="" frameborder="0" src="https://player.vimeo.com/video/1018973680?background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;autopause=0"></iframe>
+</div>
+</div>
+</div>
+</div>
+<div class="col-span-12 md:col-span-4 md:pl-16">
+<div class="font-syne text-[10px] tracking-[0.2rem] text-primary/60 mb-4">01 — FILM</div>
+<h2 class="slider-title font-syne text-5xl font-bold text-[#EDEAE4] mb-6 leading-none fade-text">Zufällige<br/>Begegnung</h2>
+<p class="slider-sub font-syne text-sm text-on-surface-variant mb-8 max-w-xs fade-text">
+                        An experimental short exploring the weight of fleeting moments in urban environments.
+                    </p>
+<a class="inline-block border-b border-primary/40 pb-2 font-syne text-[10px] tracking-widest text-primary hover:text-[#EDEAE4] transition-colors" href="#">VIEW PROJECT</a>
+</div>
+</div>
+</section>
+<!-- Project 02: COMMERCIAL with Stacked Slider -->
+<section class="px-12 mb-40 group interactive-target" id="commercialSection">
+<div class="asymmetric-grid gap-y-8 items-center">
+<div class="col-span-12 md:col-span-4 md:order-1 order-2 md:pr-16 text-right">
+<div class="font-syne text-[10px] tracking-[0.2rem] text-primary/60 mb-4">02 — COMMERCIAL</div>
+<h2 class="slider-title font-syne text-5xl font-bold text-[#EDEAE4] mb-6 leading-none fade-text">Bellamar<br/>Hotel</h2>
+<p class="slider-sub font-syne text-sm text-on-surface-variant mb-8 ml-auto max-w-xs fade-text">
+                        Visual identity and cinematic campaign for the Mediterranean's most exclusive retreat.
+                    </p>
+<a class="inline-block border-b border-primary/40 pb-2 font-syne text-[10px] tracking-widest text-primary hover:text-[#EDEAE4] transition-colors" href="#">VIEW PROJECT</a>
+</div>
+<div class="col-span-12 md:col-span-8 md:order-2 order-1 relative">
+<div class="slider-container" id="commercialSlider">
+<div class="slider-card active" data-sub="Visual identity and cinematic campaign for the Mediterranean's most exclusive retreat." data-title="Bellamar&lt;br/&gt;Hotel">
+<div class="vimeo-wrapper">
+<iframe allow="autoplay; fullscreen" allowfullscreen="" frameborder="0" src="https://player.vimeo.com/video/1018973680?background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;autopause=0"></iframe>
+</div>
+</div>
+<div class="slider-card next" data-sub="A sensory exploration of scent and memory for the luxury parfumerie." data-title="Aura&lt;br/&gt;Fragrance">
+<div class="vimeo-wrapper">
+<iframe allow="autoplay; fullscreen" allowfullscreen="" frameborder="0" src="https://player.vimeo.com/video/1018973680?background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;autopause=0"></iframe>
+</div>
+</div>
+<div class="slider-card hidden-down" data-sub="The intersection of precision engineering and raw speed on the track." data-title="Veloce&lt;br/&gt;Automotive">
+<div class="vimeo-wrapper">
+<iframe allow="autoplay; fullscreen" allowfullscreen="" frameborder="0" src="https://player.vimeo.com/video/1018973680?background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;autopause=0"></iframe>
+</div>
+</div>
+<div class="slider-card prev" data-sub="Editorial series showcasing the avant-garde winter collection." data-title="Ethereal&lt;br/&gt;Vogue">
+<div class="vimeo-wrapper">
+<iframe allow="autoplay; fullscreen" allowfullscreen="" frameborder="0" src="https://player.vimeo.com/video/1018973680?background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;autopause=0"></iframe>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Project 03: PHOTOGRAPHY Horizontal Slider -->
+<section class="px-12 mb-40 group interactive-target" id="photographySection">
+<div class="mb-16 border-l border-primary/20 pl-8">
+<div class="font-syne text-[10px] tracking-[0.3rem] text-primary mb-4">03 — PHOTOGRAPHY</div>
+<h2 class="font-syne text-[clamp(2.5rem,5vw,4.5rem)] font-bold text-[#EDEAE4] leading-[0.9] uppercase photography-title fade-text tracking-tighter">Monasterio de San Miguel</h2>
+<p class="font-syne text-xs tracking-wider uppercase text-on-surface-variant/60 mt-4 photography-sub fade-text">Documenting the sacred silence and timeless architecture of central Spain.</p>
+</div>
+<div class="relative horizontal-slider-wrapper">
+<button class="nav-arrow prev cursor-none" id="photoPrev">
+<span class="material-symbols-outlined font-thin text-3xl">west</span>
+</button>
+<button class="nav-arrow next cursor-none" id="photoNext">
+<span class="material-symbols-outlined font-thin text-3xl">east</span>
+</button>
+<div class="horizontal-slider-content" id="photoSlider">
+<div class="horizontal-slide" data-sub="Documenting the sacred silence and timeless architecture of central Spain." data-title="Monasterio de San Miguel">
+<img alt="Monasterio de San Miguel" class="grayscale hover:grayscale-0 transition-all duration-[1200ms] ease-in-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDexEVi5wfx3J6eOpUesgsoVfCeSDcslI2u3YOgv5tepfPH4J433zSwXcvq1qu4tISY1ws-2rVq2vvcVn7e-fWmPcFcFY4YwjXO3PnPlbOxRDzfzmZvz2uwM0TC-p0K3SFrm5SJC8iaeH6UpxXvnDtidELcxOvOc5VeVf-aoi8CEq1gahPqjh5PnHQr3UV0O0WFVbPDfPR6Ch31s8xOgNy-9lKQP-c-JLdPYRYmjloeBVj_fWi9DiQL2IBRP6idv4stQZFWer5mkzSw"/>
+</div>
+<div class="horizontal-slide" data-sub="Editorial lifestyle photography for the Mediterranean's premier destination." data-title="Bellamar Hotel">
+<img alt="Bellamar Hotel" class="grayscale hover:grayscale-0 transition-all duration-[1200ms] ease-in-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9CL_8t2B4p-qvVsejYP3c0jRwuDWGqMAYntP7iOU_bLw3c9UJnN5appIjcVKsgTv-Fnjdgh66krbSLVaxZreNyM0DbKlp-j9MN0cpMHyFQ-dengE3weeTffafHwYzzfbTN0TApdhXYdjJZ_DtRbiSjtFMwQ8ZnFcGeafI2jR7gjLIffCwqNdQyW8UDtfaG42b247WexPezetPuOeVW6Ekmg64MNncqYopADwPPlr4KSwIsGKx7_-eXzDZJ9RXRa4sXYIZ2baHzgY7"/>
+</div>
+<div class="horizontal-slide" data-sub="A visual exploration of the Atlantic coast during the winter solstice." data-title="Silent Tides">
+<img alt="Silent Tides" class="grayscale hover:grayscale-0 transition-all duration-[1200ms] ease-in-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyWTqmJ9w4Sqrva6Oma2erolzPCeErN2ExNlbOfANk207psAX5pVLX08wSuyQxg94kupGQasvBpLG0uhOGrOwMIY-GLnZUHMCj-z7JRt7Odz0wNdMP-h1PL3HlZnH1K0X8ehxaeNOwTCbtYwjH-lRWpNp0_Yxbt11aUIevLtkGJdvHRQYNoidtBgA4jEpat-JIXUlhdD7inVDY9d9hQe0jQdRpgU93bnzNildgct3vndPEIDR-iHg8i-YH7N_fMpSWPX-iNGcMAQkj"/>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-40 px-12 text-center border-t border-outline-variant/15">
+<h2 class="font-syne text-6xl md:text-8xl font-bold text-[#EDEAE4] mb-12 tracking-tighter">LET'S CREATE.</h2>
+<button class="bg-primary text-on-primary font-syne text-xs tracking-[0.3em] px-16 py-6 transition-all duration-600 hover:bg-[#EDEAE4] hover:text-surface active:scale-95 cursor-none">
+                GET IN TOUCH
+            </button>
+</section>
+</main>
+<footer class="max-w-7xl mx-auto flex flex-col items-center gap-8 px-8 pb-12 pt-24 bg-transparent">
+<div class="flex gap-12">
+<a class="font-syne uppercase tracking-[0.15rem] text-[9px] text-[#EDEAE4]/40 hover:text-[#EDEAE4] hover:underline decoration-[#e4c18d]/40 underline-offset-4 transition-all duration-800 ease-in-out cursor-none" href="#">INSTAGRAM</a>
+<a class="font-syne uppercase tracking-[0.15rem] text-[9px] text-[#EDEAE4]/40 hover:text-[#EDEAE4] hover:underline decoration-[#e4c18d]/40 underline-offset-4 transition-all duration-800 ease-in-out cursor-none" href="#">LINKEDIN</a>
+<a class="font-syne uppercase tracking-[0.15rem] text-[9px] text-[#EDEAE4]/40 hover:text-[#EDEAE4] hover:underline decoration-[#e4c18d]/40 underline-offset-4 transition-all duration-800 ease-in-out cursor-none" href="#">BEHANCE</a>
+</div>
+<div class="font-syne uppercase tracking-[0.15rem] text-[9px] text-[#EDEAE4]/40 mt-8">
+            ©2024 PABLO VALIENTE. ALL RIGHTS RESERVED.
+        </div>
+</footer>
+<script>
+        const cursor = document.getElementById('cursor');
+        const progressBar = document.getElementById('progressBar');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        const interactiveTargets = document.querySelectorAll('.interactive-target, a, button, .slider-container, .nav-arrow');
+        interactiveTargets.forEach(target => {
+            target.addEventListener('mouseenter', () => {
+                document.body.classList.add('cursor-hover-active');
+            });
+            target.addEventListener('mouseleave', () => {
+                document.body.classList.remove('cursor-hover-active');
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (window.scrollY / windowHeight) * 100;
+            progressBar.style.width = progress + '%';
+        });
+
+        // Vertical Slider Logic Class
+        class VerticalStackedSlider {
+            constructor(containerId, sectionId) {
+                this.container = document.getElementById(containerId);
+                this.section = document.getElementById(sectionId);
+                if (!this.container || !this.section) return;
+                
+                this.cards = Array.from(this.container.querySelectorAll('.slider-card'));
+                this.titleEl = this.section.querySelector('.slider-title');
+                this.subEl = this.section.querySelector('.slider-sub');
+                
+                this.currentIndex = 0;
+                this.isAnimating = false;
+                this.init();
+            }
+
+            init() {
+                this.updateClasses();
+                
+                this.container.addEventListener('wheel', (e) => {
+                    e.preventDefault();
+                    if (this.isAnimating) return;
+                    
+                    if (e.deltaY > 5) {
+                        this.next();
+                    } else if (e.deltaY < -5) {
+                        this.prev();
+                    }
+                }, { passive: false });
+
+                this.container.addEventListener('click', () => {
+                    if (!this.isAnimating) this.next();
+                });
+            }
+
+            updateText() {
+                const activeCard = this.cards[this.currentIndex];
+                const title = activeCard.getAttribute('data-title');
+                const sub = activeCard.getAttribute('data-sub');
+
+                if (this.titleEl && this.subEl) {
+                    this.titleEl.classList.add('fade-out');
+                    this.subEl.classList.add('fade-out');
+
+                    setTimeout(() => {
+                        this.titleEl.innerHTML = title;
+                        this.subEl.innerHTML = sub;
+                        this.titleEl.classList.remove('fade-out');
+                        this.subEl.classList.remove('fade-out');
+                    }, 300);
+                }
+            }
+
+            updateClasses() {
+                this.isAnimating = true;
+                const total = this.cards.length;
+
+                this.cards.forEach((card, index) => {
+                    card.className = 'slider-card';
+                    
+                    if (index === this.currentIndex) {
+                        card.classList.add('active');
+                    } else if (index === (this.currentIndex - 1 + total) % total) {
+                        card.classList.add('prev');
+                    } else if (index === (this.currentIndex + 1) % total) {
+                        card.classList.add('next');
+                    } else if (index < this.currentIndex || (this.currentIndex === 0 && index === total - 1 && total > 2)) {
+                        card.classList.add('hidden-up');
+                    } else {
+                        card.classList.add('hidden-down');
+                    }
+                });
+
+                this.updateText();
+
+                setTimeout(() => {
+                    this.isAnimating = false;
+                }, 800);
+            }
+
+            next() {
+                this.currentIndex = (this.currentIndex + 1) % this.cards.length;
+                this.updateClasses();
+            }
+
+            prev() {
+                this.currentIndex = (this.currentIndex - 1 + this.cards.length) % this.cards.length;
+                this.updateClasses();
+            }
+        }
+
+        // Horizontal Slider Logic
+        class HorizontalSlider {
+            constructor() {
+                this.slider = document.getElementById('photoSlider');
+                this.slides = document.querySelectorAll('.horizontal-slide');
+                this.prevBtn = document.getElementById('photoPrev');
+                this.nextBtn = document.getElementById('photoNext');
+                this.titleEl = document.querySelector('.photography-title');
+                this.subEl = document.querySelector('.photography-sub');
+                
+                this.currentIndex = 0;
+                this.isAnimating = false;
+                
+                this.init();
+            }
+            
+            init() {
+                this.prevBtn.addEventListener('click', () => this.goTo(this.currentIndex - 1));
+                this.nextBtn.addEventListener('click', () => this.goTo(this.currentIndex + 1));
+                this.updateText();
+            }
+            
+            goTo(index) {
+                if (this.isAnimating) return;
+                
+                const total = this.slides.length;
+                this.currentIndex = (index + total) % total;
+                
+                this.isAnimating = true;
+                this.slider.style.transform = `translateX(-${this.currentIndex * 100}%)`;
+                
+                this.updateText();
+                
+                setTimeout(() => {
+                    this.isAnimating = false;
+                }, 800);
+            }
+            
+            updateText() {
+                const currentSlide = this.slides[this.currentIndex];
+                const title = currentSlide.getAttribute('data-title');
+                const sub = currentSlide.getAttribute('data-sub');
+                
+                this.titleEl.classList.add('fade-out');
+                this.subEl.classList.add('fade-out');
+                
+                setTimeout(() => {
+                    this.titleEl.innerText = title;
+                    this.subEl.innerText = sub;
+                    this.titleEl.classList.remove('fade-out');
+                    this.subEl.classList.remove('fade-out');
+                }, 400);
+            }
+        }
+
+        // Initialize Sliders
+        new VerticalStackedSlider('filmSlider', 'filmSection');
+        new VerticalStackedSlider('commercialSlider', 'commercialSection');
+        new HorizontalSlider();
+    </script>
+</body></html>
