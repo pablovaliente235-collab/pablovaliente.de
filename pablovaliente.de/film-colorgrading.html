@@ -190,7 +190,7 @@
     <main class="px-4 md:px-6 lg:px-20 max-w-screen-2xl mx-auto pt-44 lg:pt-32 pb-2">
 
         <section class="relative overflow-hidden mb-6 lg:mb-20">
-            <div class="flex space-x-4 md:space-x-8 lg:space-x-12 overflow-x-auto kinetic-scroll snap-x snap-mandatory scroll-smooth pb-4" id="slider" style="outline:none;">
+            <div class="flex space-x-4 md:space-x-8 lg:space-x-12 overflow-x-auto overscroll-x-none kinetic-scroll snap-x snap-mandatory scroll-smooth pb-4" id="slider" style="outline:none;">
                 <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center flex-shrink-0">
                     <div class="vimeo-slide-wrap">
                         <iframe src="https://player.vimeo.com/video/1169716541?autoplay=1&loop=1&muted=1&background=1&autopause=0&controls=0&title=0&byline=0&portrait=0&dnt=1"
@@ -335,14 +335,10 @@
             if (e.key === 'ArrowLeft')  slider.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
         });
 
-        let touchStartX = 0;
-        slider.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; isDragging = false; }, { passive: true });
+        // MODIFICADO: Eliminado el "scrollBy" programático al soltar para que no pelee con el auto-ajuste (snap) nativo de CSS.
+        slider.addEventListener('touchstart', () => { isDragging = false; }, { passive: true });
         slider.addEventListener('touchmove', () => { isDragging = true; }, { passive: true });
-        slider.addEventListener('touchend',   e => {
-            const dx = touchStartX - e.changedTouches[0].screenX;
-            if (Math.abs(dx) > 50) slider.scrollBy({ left: dx > 0 ? getScrollAmount() : -getScrollAmount(), behavior: 'smooth' });
-            setTimeout(() => { isDragging = false; }, 50);
-        }, { passive: true });
+        slider.addEventListener('touchend', () => { setTimeout(() => { isDragging = false; }, 50); }, { passive: true });
 
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const closeMenuBtn  = document.getElementById('close-menu-btn');
