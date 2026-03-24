@@ -145,18 +145,17 @@
 
   /* ══════════════════════════════════
      MOBILE / TABLET  ≤ 1024px
-     Exact replica of original index.html mobile additions
   ══════════════════════════════════ */
   @media (max-width: 1024px) {
     #cur-arrow, #cur-open { display: none !important; }
-    body { cursor: auto; }
+    body { cursor: auto; overflow-x: hidden; } /* Previene scroll horizontal */
     .card { cursor: pointer; }
     :root { --card-w: 82vw; }
 
     .slider-col {
-      width: 82vw;
+      width: 100vw; /* Cambiado de 82vw para corregir desborde lateral */
       height: 100vh;
-      overflow: visible;
+      overflow: hidden;
       clip-path: none;
       display: flex;
       align-items: center;
@@ -168,61 +167,65 @@
     .slider-track {
       position: relative;
       width: 100%;
+      height: 100%;
+      display: block;
       transform: none !important;
       transition: none !important;
       transform-style: preserve-3d;
     }
 
-    /* Default — hidden, pushed down */
+    /* Default — centrado verticalmente por defecto */
     .card-wrap {
       position: absolute;
       top: 50%; left: 0; right: 0;
-      margin-bottom: 0;
+      margin: 0 auto;
       pointer-events: none;
-      transform: translateY(-50%) translateY(60px) scale(0.78) rotateX(18deg);
+      /* Ajuste de translateY para mantener eje central */
+      transform: translateY(-50%) translateY(80px) scale(0.7) rotateX(15deg);
       opacity: 0;
       transition: transform .7s var(--ease), opacity .55s var(--ease);
       will-change: transform, opacity;
-      transform-origin: center bottom;
+      transform-origin: center center;
+      z-index: 1;
     }
     .card-wrap .card { height: auto; aspect-ratio: 16 / 9; }
 
-    /* Active card */
+    /* Active card — Ahora absoluta y centrada verticalmente */
     .card-wrap.is-active {
-      position: relative; top: auto;
-      transform: translateY(0) scale(1) rotateX(0deg);
-      opacity: 1; pointer-events: auto; z-index: 10;
-      transform-origin: center center;
+      position: absolute; 
+      top: 50%;
+      transform: translateY(-50%) scale(1) rotateX(0deg);
+      opacity: 1; 
+      pointer-events: auto; 
+      z-index: 50; /* Mayor que las secundarias */
     }
 
     /* Previous — peeks from above */
     .card-wrap.is-prev {
-      transform: translateY(-50%) translateY(-42%) scale(0.82) rotateX(-22deg);
-      opacity: 0.55; z-index: 5; pointer-events: none;
-      transform-origin: center top;
+      transform: translateY(-50%) translateY(-45%) scale(0.8) rotateX(-20deg);
+      opacity: 0.55; 
+      z-index: 10;
+      pointer-events: none;
     }
 
     /* Next — peeks from below */
     .card-wrap.is-next {
-      transform: translateY(-50%) translateY(42%) scale(0.82) rotateX(22deg);
-      opacity: 0.55; z-index: 5; pointer-events: none;
-      transform-origin: center bottom;
+      transform: translateY(-50%) translateY(45%) scale(0.8) rotateX(20deg);
+      opacity: 0.55; 
+      z-index: 10;
+      pointer-events: none;
     }
   }
 
   @media (max-width: 768px) {
     :root { --card-w: 88vw; }
-    .card-wrap         { transform: translateY(-50%) translateY(60px) scale(0.78) rotateX(18deg); opacity: 0; }
-    .card-wrap.is-prev { transform: translateY(-50%) translateY(-42%) scale(0.82) rotateX(-22deg); opacity: 0.55; }
-    .card-wrap.is-next { transform: translateY(-50%) translateY(42%)  scale(0.82) rotateX(22deg);  opacity: 0.55; }
-    .card-wrap.is-active { transform: translateY(0) scale(1) rotateX(0deg); opacity: 1; }
+    /* Reafirmación de posicionamiento para tablets */
+    .card-wrap.is-active { transform: translateY(-50%) scale(1) rotateX(0deg); }
+    .card-wrap.is-prev   { transform: translateY(-50%) translateY(-45%) scale(0.8) rotateX(-20deg); }
+    .card-wrap.is-next   { transform: translateY(-50%) translateY(45%) scale(0.8) rotateX(20deg); }
   }
   @media (max-width: 480px) {
     :root { --card-w: 92vw; }
-    .card-wrap         { transform: translateY(-50%) translateY(60px) scale(0.78) rotateX(18deg); margin-bottom: 0; }
-    .card-wrap.is-prev { transform: translateY(-50%) translateY(-42%) scale(0.82) rotateX(-22deg); }
-    .card-wrap.is-next { transform: translateY(-50%) translateY(42%)  scale(0.82) rotateX(22deg); }
-    .card-wrap.is-active { transform: translateY(0) scale(1) rotateX(0deg); }
   }
 
   /* ── Mobile menu overlay ── */
@@ -244,7 +247,6 @@
 </div>
 <div id="cur-open" aria-hidden="true"><span>Open</span></div>
 
-<!-- HEADER -->
 <header class="fixed top-0 w-full z-[600] bg-white" id="unified-header">
   <nav class="w-full flex items-center py-6 md:py-8 justify-between px-4 md:px-6 lg:px-10">
     <a href="index.html" class="font-['Syne'] text-[11px] font-bold tracking-[0.25em] text-black uppercase hover:opacity-70 transition-opacity">PABLO VALIENTE</a>
@@ -271,13 +273,11 @@
   </div>
 </header>
 
-<!-- SLIDER -->
 <main>
 <div class="stage">
   <div class="slider-col" id="sliderCol" role="region" aria-label="Portfolio">
     <div class="slider-track" id="track">
 
-      <!-- Card 1 — Zufällige Begegnung -->
       <div class="card-wrap" data-cover="1169718635" data-href="film.html">
         <div class="card" style="background:#1a1208">
           <img class="card__media vimeo-thumb" data-vimeo-id="1169718635" alt="Zufällige Begegnung" fetchpriority="high"/>
@@ -286,7 +286,6 @@
         </div>
       </div>
 
-      <!-- Card 2 — Perdido en una Perdiz (color grading reel) -->
       <div class="card-wrap" data-cover="1170251945" data-href="film-colorgrading.html">
         <div class="card" style="background:#1a1510">
           <img class="card__media vimeo-thumb" data-vimeo-id="1170251945" alt="Perdido en una Perdiz"/>
@@ -295,7 +294,6 @@
         </div>
       </div>
 
-      <!-- Card 3 — Bellamar Hotel -->
       <div class="card-wrap" data-cover="1169718441" data-href="commercial.html">
         <div class="card" style="background:#10160f">
           <img class="card__media vimeo-thumb" data-vimeo-id="1169718441" alt="Bellamar Hotel"/>
@@ -304,7 +302,6 @@
         </div>
       </div>
 
-      <!-- Card 4 — Monasterio (photo carousel) -->
       <div class="card-wrap" data-cover="" data-href="photography-monasterio.html">
         <div class="card" style="background:#120f0c">
           <div class="card__carousel" id="carouselMonasterio">
@@ -358,7 +355,6 @@ const INTERVAL = 5000;
 const realCards = Array.from(track.querySelectorAll('.card-wrap'));
 const N = realCards.length;
 
-/* Clone for infinite loop — same pattern as original */
 realCards.forEach(c => {
   const ce = c.cloneNode(true); ce.classList.add('clone');
   ce.querySelector('[id]')?.removeAttribute('id');
@@ -493,7 +489,6 @@ function goTo(v, animated = true) {
   resetTimer();
   track.style.transition = animated ? 'transform .75s cubic-bezier(.16,1,.3,1)' : 'none';
   track.style.transform  = `translateX(${getTranslateX(v)}px)`;
-  /* isAnim cleared by transitionend */
 }
 
 track.addEventListener('transitionend', e => {
@@ -508,7 +503,7 @@ function resetTimer() {
   timer = setInterval(() => goTo(vCurrent + 1), INTERVAL);
 }
 
-/* ─── Mobile 3D stack — overrides goTo ──────────── */
+/* ─── Mobile 3D stack ─── */
 function updateMobileStack(v) {
   allCards.forEach((c, idx) => {
     c.classList.remove('is-prev', 'is-next');
@@ -542,7 +537,6 @@ function navigate() {
   if (href) window.location.href = href;
 }
 
-/* Click: on card → navigate; off card → prev/next */
 document.addEventListener('click', e => {
   if (e.target.closest('header, button')) return;
   const rect = allCards[vCurrent].querySelector('.card').getBoundingClientRect();
@@ -552,7 +546,6 @@ document.addEventListener('click', e => {
   else goTo(e.clientY < window.innerHeight / 2 ? vCurrent - 1 : vCurrent + 1);
 });
 
-/* Mobile tap on active card */
 col.addEventListener('click', e => {
   if (!isMobileSlider()) return;
   if (allCards[vCurrent]?.contains(e.target)) navigate();
@@ -595,18 +588,16 @@ col.addEventListener('touchend', e => {
   }
 }, { passive: true });
 
-/* Mobile unlock for Vimeo iframes */
 col.addEventListener('touchstart', () => {
   if (_mobileUnlocked) return;
   _mobileUnlocked = true;
   _activateCover(realCards[realIdx(vCurrent)]);
 }, { once: true, passive: true });
 
-/* Init */
 window.addEventListener('load',   () => { goTo(OFFSET, false); resetTimer(); });
 window.addEventListener('resize', () => goTo(vCurrent, false));
 
-/* ─── Photo carousel (Monasterio) ───────────────── */
+/* ─── Photo carousel ─── */
 requestAnimationFrame(() => {
   document.querySelectorAll('.card__carousel').forEach(carousel => {
     const frames = Array.from(carousel.querySelectorAll('.card__carousel-frame'));
@@ -623,5 +614,3 @@ requestAnimationFrame(() => {
 </script>
 </body>
 </html>
-index.html
-index.html
