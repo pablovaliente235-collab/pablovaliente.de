@@ -282,6 +282,7 @@
             return itemWidth + gap;
         };
 
+        // Controles de flechas (AQUÍ ES DONDE SE USA EL SCROLL POR JAVASCRIPT)
         nextBtn.addEventListener('click', () => {
             slider.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
         });
@@ -316,31 +317,11 @@
             });
         });
 
-        // Swipe Support
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        slider.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-
-        slider.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleGesture();
-        }, { passive: true });
-
-        function handleGesture() {
-            const threshold = 50;
-            if (touchStartX - touchEndX > threshold) {
-                slider.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
-            } else if (touchEndX - touchStartX > threshold) {
-                slider.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
-            }
-        }
+        // *SE ELIMINÓ EL EVENTO TOUCHSTART/TOUCHEND PARA EVITAR DOBLE SCROLL*
 
         slider.style.outline = 'none';
 
-        // Project Bar Auto-scroll
+        // Project Bar Auto-scroll — center active item within the scrollable nav container
         (function() {
             const navScroll = document.querySelector('.nav-scroll');
             const activeLink = navScroll ? navScroll.querySelector('a.text-black') : null;
@@ -361,7 +342,6 @@
             
             while (true) {
                 const frameNum = i.toString().padStart(2, '0');
-                // IMPORTANTE: Ruta absoluta (/) y en minúsculas (frame) para Cloudflare Pages
                 const src = `/assets/photography/${project}/frames/frame-${frameNum}.webp`;
                 
                 const exists = await new Promise(resolve => {
