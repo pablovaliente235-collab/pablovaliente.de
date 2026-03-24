@@ -33,7 +33,7 @@
         .kinetic-scroll { -ms-overflow-style: none; scrollbar-width: none; }
         .vimeo-slide-wrap {
             position: relative; width: 100%; aspect-ratio: 16 / 9;
-            overflow: hidden; background: #0f0f0f;
+            overflow: hidden; background: #0f0f0f; cursor: pointer;
         }
         .vimeo-slide-wrap iframe {
             position: absolute; top: 50%; left: 50%;
@@ -58,7 +58,6 @@
             .group:hover img { transform:none!important; }
             a:hover, button:hover { color:inherit!important; border-color:inherit!important; }
         }
-        /* Ajuste para que el último elemento ocupe las dos columnas si hay un número impar */
         @media (min-width: 768px) {
             #photography-grid .grid-item:last-child:nth-child(odd) { grid-column:span 2; }
         }
@@ -97,9 +96,9 @@
         </nav>
     </header>
 
-    <main class="px-4 md:px-6 lg:px-20 max-w-screen-2xl mx-auto pt-44 lg:pt-32 pb-6">
+    <main class="px-4 md:px-6 lg:px-20 max-w-screen-2xl mx-auto pt-44 lg:pt-32 pb-2">
 
-        <section class="relative overflow-hidden mb-16 lg:mb-24">
+        <section class="relative overflow-hidden mb-6 lg:mb-20">
             <div class="flex space-x-4 md:space-x-8 lg:space-x-12 overflow-x-auto kinetic-scroll snap-x snap-mandatory scroll-smooth pb-4" id="slider" style="outline:none;">
                 <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center flex-shrink-0">
                     <div class="vimeo-slide-wrap">
@@ -127,18 +126,19 @@
         </section>
 
         <section 
-            class="p-4 md:p-6 lg:p-12 shadow-sm mb-6 bg-[#f3f3f4]" 
+            class="p-2 md:p-6 lg:p-12 shadow-sm mb-2 bg-[#f3f3f4]" 
             id="frames-section"
             data-project-path="assets/film/project-2/frames"
             data-frame-ext="webp"
-            data-alt-prefix="Nicht schon wieder">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8" id="photography-grid">
-                </div>
+            data-alt-prefix="Nicht schon wieder"
+            data-max-frames="30">
+            <div class="grid grid-cols-2 gap-1 md:gap-4 lg:gap-8" id="photography-grid">
+            </div>
         </section>
 
     </main>
 
-    <footer class="w-full flex flex-col items-center justify-center py-16 px-4 md:px-6 lg:px-20 bg-[#f9f9f9] mt-2">
+    <footer class="w-full flex flex-col items-center justify-center py-8 lg:py-12 px-4 md:px-6 lg:px-20 bg-[#f9f9f9] mb-6">
         <div class="flex flex-row items-center space-y-0 space-x-6 md:space-x-12 mb-8">
             <a href="https://instagram.com/pvaliente_" target="_blank" rel="noopener noreferrer" class="font-['Syne'] text-[12px] tracking-widest uppercase text-neutral-500 hover:text-black transition-colors py-2 px-4 whitespace-nowrap">INSTAGRAM</a>
             <a href="https://www.behance.net/pvaliente" target="_blank" rel="noopener noreferrer" class="font-['Syne'] text-[12px] tracking-widest uppercase text-neutral-500 hover:text-black transition-colors py-2 px-4 whitespace-nowrap">BEHANCE</a>
@@ -152,48 +152,37 @@
     <script>
         document.getElementById('footerYear').textContent = new Date().getFullYear();
 
-        /* Frames grid: Auto-detect quantity of webp files */
-        (async function () {
+        /* Lógica de auto-detección segura para Cloudflare */
+        (function () {
             const section = document.getElementById('frames-section');
             if (!section) return;
             const grid        = section.querySelector('#photography-grid');
             const projectPath = section.dataset.projectPath;
             const ext         = section.dataset.frameExt || 'webp';
             const altPrefix   = section.dataset.altPrefix || 'Frame';
+            const maxFrames   = parseInt(section.dataset.maxFrames) || 30; 
+            
             if (!grid || !projectPath) return;
 
-            let i = 1;
-            let keepChecking = true;
-
-            while (keepChecking && i <= 100) {
+            for (let i = 1; i <= maxFrames; i++) {
                 const n = String(i).padStart(2, '0');
                 const imgSrc = `${projectPath}/frame-${n}.${ext}`;
                 
-                const checkImage = (src) => {
-                    return new Promise((resolve) => {
-                        const img = new Image();
-                        img.onload = () => resolve(true);
-                        img.onerror = () => resolve(false);
-                        img.src = src;
-                    });
+                const div = document.createElement('div');
+                div.className = 'grid-item group aspect-[16/9] overflow-hidden bg-surface-container-low';
+                
+                const img = document.createElement('img');
+                img.className = 'w-full h-full object-cover hover:scale-105 transition-all duration-700 ease-in-out';
+                img.src     = imgSrc;
+                img.alt     = altPrefix + ' — Frame ' + n;
+                img.loading = 'lazy';
+                
+                img.onerror = function() {
+                    this.parentElement.style.display = 'none';
                 };
 
-                const exists = await checkImage(imgSrc);
-
-                if (exists) {
-                    const div = document.createElement('div');
-                    div.className = 'grid-item group aspect-[16/9] overflow-hidden bg-surface-container-low';
-                    const img = document.createElement('img');
-                    img.className = 'w-full h-full object-cover hover:scale-105 transition-all duration-700 ease-in-out';
-                    img.src     = imgSrc;
-                    img.alt     = altPrefix + ' — Frame ' + n;
-                    img.loading = 'lazy';
-                    div.appendChild(img);
-                    grid.appendChild(div);
-                    i++;
-                } else {
-                    keepChecking = false;
-                }
+                div.appendChild(img);
+                grid.appendChild(div);
             }
         })();
 
@@ -218,6 +207,33 @@
             labelSub.textContent   = slideData[clamped].sub;
         }
 
+        /* Lógica de clics en imágenes/videos del slider */
+        const slidesWrap = document.querySelectorAll('.vimeo-slide-wrap');
+        let isDragging = false;
+        
+        slidesWrap.forEach(wrap => {
+            wrap.addEventListener('click', (e) => {
+                if(isDragging) return; 
+                const slide = wrap.closest('.snap-center');
+                const sliderRect = slider.getBoundingClientRect();
+                const slideRect = slide.getBoundingClientRect();
+                const sliderCenter = sliderRect.left + sliderRect.width / 2;
+                const slideCenter = slideRect.left + slideRect.width / 2;
+
+                if (Math.abs(sliderCenter - slideCenter) > (slideRect.width / 3)) {
+                    const offset = slideCenter - sliderCenter;
+                    slider.scrollBy({ left: offset, behavior: 'smooth' });
+                } else {
+                    const clickX = e.clientX - slideRect.left;
+                    if (clickX < slideRect.width / 2) {
+                        slider.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+                    } else {
+                        slider.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
         nextBtn.addEventListener('click', () => slider.scrollBy({ left:  getScrollAmount(), behavior: 'smooth' }));
         prevBtn.addEventListener('click', () => slider.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' }));
 
@@ -229,10 +245,12 @@
         });
 
         let touchStartX = 0;
-        slider.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+        slider.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; isDragging = false; }, { passive: true });
+        slider.addEventListener('touchmove', () => { isDragging = true; }, { passive: true });
         slider.addEventListener('touchend',   e => {
             const dx = touchStartX - e.changedTouches[0].screenX;
             if (Math.abs(dx) > 50) slider.scrollBy({ left: dx > 0 ? getScrollAmount() : -getScrollAmount(), behavior: 'smooth' });
+            setTimeout(() => { isDragging = false; }, 50);
         }, { passive: true });
 
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
