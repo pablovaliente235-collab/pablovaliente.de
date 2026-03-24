@@ -300,24 +300,35 @@
             }
         });
 
-        // Navegación por clic/tap en la imagen (Funciona en todos los dispositivos)
+        // Navegación por clic inteligente: Detecta central vs. lateral en cualquier dispositivo
         slider.addEventListener('click', (e) => {
-            // Asegurarse de que hemos hecho clic dentro de una imagen del slider
             const slide = e.target.closest('.snap-center');
             if (!slide) return;
 
-            // Obtener dimensiones de la imagen clickeada
-            const rect = slide.getBoundingClientRect();
-            // Calcular posición del clic relativa a la imagen
-            const clickX = e.clientX - rect.left;
+            const sliderRect = slider.getBoundingClientRect();
+            const slideRect = slide.getBoundingClientRect();
 
-            // Si el clic es en la mitad derecha
-            if (clickX > rect.width / 2) {
-                slider.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
-            } 
-            // Si el clic es en la mitad izquierda
-            else {
-                slider.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+            // Encontrar el punto central exacto en la pantalla del slider y del slide clickeado
+            const sliderCenter = sliderRect.left + (sliderRect.width / 2);
+            const slideCenter = slideRect.left + (slideRect.width / 2);
+
+            // Determinar si la tarjeta clickeada es la que ya está en el centro 
+            // (Si sus centros están cerca, cuenta como centrada)
+            const isCenterSlide = Math.abs(sliderCenter - slideCenter) < (slideRect.width / 2);
+
+            if (isCenterSlide) {
+                // Lógica de avanzar/retroceder normal si tocaste la tarjeta central
+                const clickX = e.clientX - slideRect.left;
+                if (clickX > slideRect.width / 2) {
+                    slider.scrollBy({ left: scrollAmount(), behavior: 'smooth' }); // Toco mitad derecha, avanza
+                } else {
+                    slider.scrollBy({ left: -scrollAmount(), behavior: 'smooth' }); // Toco mitad izquierda, retrocede
+                }
+            } else {
+                // Si tocaste una tarjeta lateral, desplazar hasta que ESQUINA se centre
+                // Calculamos cuánto hay que scrollear la barra para centrar la tarjeta
+                const scrollTarget = slide.offsetLeft - (slider.clientWidth / 2) + (slide.clientWidth / 2);
+                slider.scrollTo({ left: scrollTarget, behavior: 'smooth' });
             }
         });
 
