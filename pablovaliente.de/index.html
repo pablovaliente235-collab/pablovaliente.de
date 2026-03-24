@@ -73,9 +73,7 @@
   }
   .stage > *, .slider-col { pointer-events: auto; }
 
-  /* ══════════════════════════════════
-     DESKTOP SLIDER — horizontal translateX
-  ══════════════════════════════════ */
+  /* ── DESKTOP SLIDER ── */
   .slider-col {
     position: relative;
     width: 100vw;
@@ -91,7 +89,6 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* Track slides left/right */
   .slider-track {
     display: flex;
     align-items: center;
@@ -100,7 +97,6 @@
     will-change: transform;
   }
 
-  /* ── Cards — desktop ── */
   .card-wrap {
     flex-shrink: 0;
     width: var(--card-w); height: var(--card-h);
@@ -133,7 +129,6 @@
   }
   .card.is-active .card__overlay { opacity: 1; }
 
-  /* ── Photo carousel (Monasterio) ── */
   .card__carousel { position: absolute; inset: 0; }
   .card__carousel-frame {
     position: absolute; inset: 0; width: 100%; height: 100%;
@@ -148,14 +143,14 @@
   ══════════════════════════════════ */
   @media (max-width: 1024px) {
     #cur-arrow, #cur-open { display: none !important; }
-    body { cursor: auto; overflow-x: hidden; } /* Previene scroll horizontal */
+    body { cursor: auto; overflow-x: hidden; } /* Prevenir desborde horizontal total */
     .card { cursor: pointer; }
     :root { --card-w: 82vw; }
 
     .slider-col {
-      width: 100vw; /* Cambiado de 82vw para corregir desborde lateral */
+      width: 100vw; /* Cambiado de 82vw a 100vw para centrar y corregir desborde */
       height: 100vh;
-      overflow: hidden;
+      overflow: visible;
       clip-path: none;
       display: flex;
       align-items: center;
@@ -167,65 +162,53 @@
     .slider-track {
       position: relative;
       width: 100%;
-      height: 100%;
-      display: block;
       transform: none !important;
       transition: none !important;
       transform-style: preserve-3d;
     }
 
-    /* Default — centrado verticalmente por defecto */
     .card-wrap {
       position: absolute;
       top: 50%; left: 0; right: 0;
       margin: 0 auto;
       pointer-events: none;
-      /* Ajuste de translateY para mantener eje central */
-      transform: translateY(-50%) translateY(80px) scale(0.7) rotateX(15deg);
+      /* Estado base para desborde visual */
+      transform: translateY(-50%) translateY(60px) scale(0.78) rotateX(18deg);
       opacity: 0;
       transition: transform .7s var(--ease), opacity .55s var(--ease);
       will-change: transform, opacity;
-      transform-origin: center center;
-      z-index: 1;
+      transform-origin: center bottom;
     }
     .card-wrap .card { height: auto; aspect-ratio: 16 / 9; }
 
-    /* Active card — Ahora absoluta y centrada verticalmente */
+    /* Centrado Vertical de la tarjeta activa */
     .card-wrap.is-active {
-      position: absolute; 
-      top: 50%;
+      position: absolute; top: 50%;
       transform: translateY(-50%) scale(1) rotateX(0deg);
-      opacity: 1; 
-      pointer-events: auto; 
-      z-index: 50; /* Mayor que las secundarias */
+      opacity: 1; pointer-events: auto; z-index: 10;
+      transform-origin: center center;
     }
 
-    /* Previous — peeks from above */
     .card-wrap.is-prev {
-      transform: translateY(-50%) translateY(-45%) scale(0.8) rotateX(-20deg);
-      opacity: 0.55; 
-      z-index: 10;
-      pointer-events: none;
+      transform: translateY(-50%) translateY(-42%) scale(0.82) rotateX(-22deg);
+      opacity: 0.55; z-index: 5; pointer-events: none;
+      transform-origin: center top;
     }
 
-    /* Next — peeks from below */
     .card-wrap.is-next {
-      transform: translateY(-50%) translateY(45%) scale(0.8) rotateX(20deg);
-      opacity: 0.55; 
-      z-index: 10;
-      pointer-events: none;
+      transform: translateY(-50%) translateY(42%) scale(0.82) rotateX(22deg);
+      opacity: 0.55; z-index: 5; pointer-events: none;
+      transform-origin: center bottom;
     }
   }
 
   @media (max-width: 768px) {
     :root { --card-w: 88vw; }
-    /* Reafirmación de posicionamiento para tablets */
     .card-wrap.is-active { transform: translateY(-50%) scale(1) rotateX(0deg); }
-    .card-wrap.is-prev   { transform: translateY(-50%) translateY(-45%) scale(0.8) rotateX(-20deg); }
-    .card-wrap.is-next   { transform: translateY(-50%) translateY(45%) scale(0.8) rotateX(20deg); }
   }
   @media (max-width: 480px) {
     :root { --card-w: 92vw; }
+    .card-wrap.is-active { transform: translateY(-50%) scale(1) rotateX(0deg); }
   }
 
   /* ── Mobile menu overlay ── */
@@ -322,7 +305,6 @@
 <script>
 'use strict';
 
-/* ─── Cursor ─────────────────────────────────────── */
 const curArrow = document.getElementById('cur-arrow');
 const curOpen  = document.getElementById('cur-open');
 let mx = 0, my = 0;
@@ -337,7 +319,6 @@ document.querySelectorAll('a, button').forEach(el => {
   el.addEventListener('mouseleave', () => document.body.classList.remove('on-interactive'));
 });
 
-/* ─── Mobile menu ────────────────────────────────── */
 const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 const closeMenuBtn  = document.getElementById('close-menu-btn');
 const mobileOverlay = document.getElementById('mobile-overlay');
@@ -347,7 +328,6 @@ mobileMenuBtn.addEventListener('click', openMenu);
 closeMenuBtn.addEventListener('click',  closeMenu);
 mobileOverlay.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 
-/* ─── Slider core ────────────────────────────────── */
 const track  = document.getElementById('track');
 const col    = document.getElementById('sliderCol');
 const INTERVAL = 5000;
@@ -375,7 +355,6 @@ let isAnim     = false;
 function realIdx(v) { return ((v - OFFSET) % N + N) % N; }
 function isMobileSlider() { return window.innerWidth <= 1024; }
 
-/* ─── Vimeo thumbnails ───────────────────────────── */
 const thumbIds = [...new Set(
   Array.from(document.querySelectorAll('.vimeo-thumb[data-vimeo-id]'))
     .map(img => img.dataset.vimeoId)
@@ -402,7 +381,6 @@ if (orderedThumbIds.length > 1) {
   idle(() => orderedThumbIds.slice(1).forEach(fetchThumb));
 }
 
-/* ─── Vimeo cover facade ─────────────────────────── */
 let _coverCard = null;
 const _isMobile = window.innerWidth <= 1024 || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
 let _mobileUnlocked = false;
@@ -420,10 +398,6 @@ function _spawnCover(c) {
   }
   const ifr = document.createElement('iframe');
   ifr.src = `https://player.vimeo.com/video/${id}?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p`;
-  ifr.title = 'Project cover video';
-  ifr.setAttribute('aria-hidden', 'true');
-  ifr.setAttribute('tabindex', '-1');
-  ifr.style.opacity = '0';
   vl.appendChild(ifr);
   const player = new Vimeo.Player(ifr);
   vl._vPlayer = player;
@@ -454,7 +428,6 @@ function _activateCover(c) {
   }
 }
 
-/* ─── Active card ────────────────────────────────── */
 function updateActive(v) {
   const ri = realIdx(v);
   allCards.forEach((c, idx) => {
@@ -470,7 +443,6 @@ function updateActive(v) {
   _activateCover(realCards[ri]);
 }
 
-/* ─── Desktop: horizontal translateX ────────────── */
 const CARD_GAP = 24;
 function getTranslateX(v) {
   const colW = col.offsetWidth;
@@ -480,7 +452,6 @@ function getTranslateX(v) {
   return -(off - (colW / 2 - cardW / 2));
 }
 
-/* ─── goTo — desktop (horizontal) ───────────────── */
 function goTo(v, animated = true) {
   if (isAnim && animated) return;
   isAnim = animated;
@@ -503,7 +474,6 @@ function resetTimer() {
   timer = setInterval(() => goTo(vCurrent + 1), INTERVAL);
 }
 
-/* ─── Mobile 3D stack ─── */
 function updateMobileStack(v) {
   allCards.forEach((c, idx) => {
     c.classList.remove('is-prev', 'is-next');
@@ -531,7 +501,6 @@ goTo = function(v, animated = true) {
   else isAnim = false;
 };
 
-/* ─── Navigation ─────────────────────────────────── */
 function navigate() {
   const href = realCards[realIdx(vCurrent)].dataset.href;
   if (href) window.location.href = href;
@@ -551,7 +520,6 @@ col.addEventListener('click', e => {
   if (allCards[vCurrent]?.contains(e.target)) navigate();
 });
 
-/* Wheel */
 let wheelAccum = 0, wheelReady = true;
 col.addEventListener('wheel', e => {
   e.preventDefault();
@@ -564,7 +532,6 @@ col.addEventListener('wheel', e => {
   }
 }, { passive: false });
 
-/* Keyboard */
 document.addEventListener('keydown', e => {
   if (!isMobileSlider()) {
     if (e.key === 'ArrowRight') { e.preventDefault(); goTo(vCurrent + 1); }
@@ -575,7 +542,6 @@ document.addEventListener('keydown', e => {
   }
 });
 
-/* Touch swipe */
 let tX = 0, tY = 0;
 col.addEventListener('touchstart', e => { tX = e.touches[0].clientX; tY = e.touches[0].clientY; }, { passive: true });
 col.addEventListener('touchend', e => {
@@ -597,7 +563,6 @@ col.addEventListener('touchstart', () => {
 window.addEventListener('load',   () => { goTo(OFFSET, false); resetTimer(); });
 window.addEventListener('resize', () => goTo(vCurrent, false));
 
-/* ─── Photo carousel ─── */
 requestAnimationFrame(() => {
   document.querySelectorAll('.card__carousel').forEach(carousel => {
     const frames = Array.from(carousel.querySelectorAll('.card__carousel-frame'));
