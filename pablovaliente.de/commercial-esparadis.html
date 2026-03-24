@@ -40,6 +40,7 @@
             aspect-ratio: 16 / 9;
             overflow: hidden;
             background: #0f0f0f;
+            cursor: pointer;
         }
         .slide-wrap iframe, .slide-wrap img {
             position: absolute;
@@ -56,6 +57,7 @@
             .nav-scroll::-webkit-scrollbar { display:none; }
             .nav-scroll a { flex:0 0 auto; }
             #mobile-overlay { position:fixed !important; top:0 !important; left:0 !important; width:100vw !important; height:100dvh !important; overflow:hidden !important; }
+            #slider-description-wrapper { display:flex !important; flex-direction:column !important; justify-content:center !important; }
         }
         @media (max-width: 767px) {
             #slider ~ div span { font-size:8px !important; letter-spacing:0.1em !important; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:calc(100vw - 100px); display:inline !important; }
@@ -104,9 +106,9 @@
         </nav>
     </header>
 
-    <main class="px-4 md:px-6 lg:px-20 max-w-screen-2xl mx-auto pt-44 lg:pt-32 pb-6">
-        <section class="relative overflow-hidden mb-16 lg:mb-24">
-            <div class="flex space-x-4 md:space-x-8 lg:space-x-12 overflow-x-auto kinetic-scroll snap-x snap-mandatory scroll-smooth pb-4" id="slider" style="outline:none;">
+    <main class="px-4 md:px-6 lg:px-20 max-w-screen-2xl mx-auto pt-44 lg:pt-32 pb-2">
+        <section class="relative overflow-hidden mb-6 lg:mb-20">
+            <div class="flex space-x-4 md:space-x-8 lg:space-x-12 overflow-x-auto overscroll-x-none kinetic-scroll snap-x snap-mandatory scroll-smooth pb-4" id="slider" style="outline:none;">
 
                 <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center flex-shrink-0">
                     <div class="slide-wrap">
@@ -120,7 +122,7 @@
                 </div>
                 <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center flex-shrink-0">
                     <div class="slide-wrap">
-                        <img src="assets/commercial/project-3/frames/frame-01.webp" alt="Es Paradis — Still 01" class="w-full h-full object-cover">
+                        <img src="assets/commercial/project-3/Frames/frame-01.webp" alt="Es Paradis — Still 01" class="w-full h-full object-cover">
                     </div>
                 </div>
             </div>
@@ -138,18 +140,19 @@
         <script id="slide-data" type="application/json">[{"title": "ES PARADIS", "sub": "Social Media"}, {"title": "ES PARADIS", "sub": "Still Frame"}]</script>
         
         <section
-            class="p-4 md:p-6 lg:p-12 shadow-sm mb-6 bg-[#f3f3f4]"
+            class="p-2 md:p-6 lg:p-12 shadow-sm mb-2 bg-[#f3f3f4]"
             id="frames-section"
-            data-project-path="assets/commercial/project-3/frames"
+            data-project-path="assets/commercial/project-3/Frames"
             data-frame-ext="webp"
-            data-alt-prefix="Es Paradis">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8" id="photography-grid">
-                </div>
+            data-alt-prefix="Es Paradis"
+            data-max-frames="20">
+            <div class="grid grid-cols-2 gap-1 md:gap-4 lg:gap-8" id="photography-grid">
+            </div>
         </section>
     </main>
 
-    <footer class="w-full flex flex-col items-center justify-center py-16 px-4 md:px-6 lg:px-20 bg-[#f9f9f9] mt-2">
-        <div class="flex flex-row items-center space-y-0 space-x-6 md:space-x-12 mb-8">
+    <footer class="w-full flex flex-col items-center justify-center py-8 lg:py-12 px-4 md:px-6 lg:px-20 bg-[#f9f9f9]">
+        <div class="flex flex-row items-center space-y-0 space-x-6 md:space-x-12 mb-6">
             <a href="https://instagram.com/pvaliente_" target="_blank" rel="noopener noreferrer" class="font-['Syne'] text-[12px] tracking-widest uppercase text-neutral-500 hover:text-black transition-colors py-2 px-4 whitespace-nowrap">INSTAGRAM</a>
             <a href="https://www.behance.net/pvaliente" target="_blank" rel="noopener noreferrer" class="font-['Syne'] text-[12px] tracking-widest uppercase text-neutral-500 hover:text-black transition-colors py-2 px-4 whitespace-nowrap">BEHANCE</a>
             <a href="https://www.linkedin.com/in/valiente-pablo" target="_blank" rel="noopener noreferrer" class="font-['Syne'] text-[12px] tracking-widest uppercase text-neutral-500 hover:text-black transition-colors py-2 px-4 whitespace-nowrap">LINKEDIN</a>
@@ -162,52 +165,42 @@
     <script>
         document.getElementById('footerYear').textContent = new Date().getFullYear();
 
-        /* Frames grid: Auto-detect starting from frame-02.webp */
-        (async function () {
+        /* Lógica segura de carga de imágenes para Cloudflare (Auto-detección) */
+        (function () {
             const section = document.getElementById('frames-section');
             if (!section) return;
             const grid        = section.querySelector('#photography-grid');
             const projectPath = section.dataset.projectPath;
             const ext         = section.dataset.frameExt || 'webp';
             const altPrefix   = section.dataset.altPrefix || 'Frame';
+            const maxFrames   = parseInt(section.dataset.maxFrames) || 20; 
+            
             if (!grid || !projectPath) return;
 
-            let i = 2; // Iniciamos en el frame-02
-            let keepChecking = true;
-
-            while (keepChecking && i <= 100) { 
+            // Empezamos desde i = 2 porque el frame-01 ya está en el slider
+            for (let i = 2; i <= maxFrames; i++) {
                 const n = String(i).padStart(2, '0');
                 const imgSrc = `${projectPath}/frame-${n}.${ext}`;
                 
-                const checkImage = (src) => {
-                    return new Promise((resolve) => {
-                        const img = new Image();
-                        img.onload = () => resolve(true);
-                        img.onerror = () => resolve(false);
-                        img.src = src;
-                    });
+                const div = document.createElement('div');
+                div.className = 'grid-item group aspect-[16/9] overflow-hidden bg-surface-container-low';
+                
+                const img = document.createElement('img');
+                img.className = 'w-full h-full object-cover hover:scale-105 transition-all duration-700 ease-in-out';
+                img.src     = imgSrc;
+                img.alt     = altPrefix + ' — Frame ' + n;
+                img.loading = 'lazy';
+                
+                img.onerror = function() {
+                    this.parentElement.style.display = 'none';
                 };
 
-                const exists = await checkImage(imgSrc);
-
-                if (exists) {
-                    const div = document.createElement('div');
-                    div.className = 'grid-item group aspect-[16/9] overflow-hidden bg-surface-container-low';
-                    const img = document.createElement('img');
-                    img.className = 'w-full h-full object-cover hover:scale-105 transition-all duration-700 ease-in-out';
-                    img.src     = imgSrc;
-                    img.alt     = altPrefix + ' — Frame ' + n;
-                    img.loading = 'lazy';
-                    div.appendChild(img);
-                    grid.appendChild(div);
-                    i++;
-                } else {
-                    keepChecking = false;
-                }
+                div.appendChild(img);
+                grid.appendChild(div);
             }
         })();
 
-        /* Slider */
+        /* Slider - Lógica de clicks y estabilidad */
         const slider     = document.getElementById('slider');
         const prevBtn    = document.getElementById('prevBtn');
         const nextBtn    = document.getElementById('nextBtn');
@@ -217,20 +210,63 @@
 
         function getScrollAmount() {
             const item = slider.querySelector('.snap-center');
-            const gap  = parseInt(window.getComputedStyle(slider).gap) || 0;
+            if (!item) return 0;
+            const gap = parseInt(window.getComputedStyle(slider).gap) || 0;
             return item.clientWidth + gap;
         }
+
         function updateLabel() {
             const idx = Math.max(0, Math.min(Math.round(slider.scrollLeft / getScrollAmount()), slideData.length - 1));
-            labelTitle.textContent = slideData[idx].title;
-            labelSub.textContent   = slideData[idx].sub;
+            if (slideData[idx]) {
+                labelTitle.textContent = slideData[idx].title;
+                labelSub.textContent   = slideData[idx].sub;
+            }
         }
+
+        const slidesWrap = document.querySelectorAll('.slide-wrap');
+        let isDragging = false;
+        
+        slidesWrap.forEach(wrap => {
+            wrap.addEventListener('click', (e) => {
+                if(isDragging) return; 
+                const slide = wrap.closest('.snap-center');
+                const sliderRect = slider.getBoundingClientRect();
+                const slideRect = slide.getBoundingClientRect();
+                const sliderCenter = sliderRect.left + sliderRect.width / 2;
+                const slideCenter = slideRect.left + slideRect.width / 2;
+
+                // Si clic en tarjeta lateral, centrarla
+                if (Math.abs(sliderCenter - slideCenter) > (slideRect.width / 3)) {
+                    const offset = slideCenter - sliderCenter;
+                    slider.scrollBy({ left: offset, behavior: 'smooth' });
+                } else {
+                    // Si clic en tarjeta central, cambiar de slide según mitad izquierda/derecha
+                    const clickX = e.clientX - slideRect.left;
+                    if (clickX < slideRect.width / 2) {
+                        slider.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+                    } else {
+                        slider.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
         nextBtn.addEventListener('click', () => slider.scrollBy({ left:  getScrollAmount(), behavior: 'smooth' }));
         prevBtn.addEventListener('click', () => slider.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' }));
+        
         let scrollTimer;
         slider.addEventListener('scroll', () => { clearTimeout(scrollTimer); scrollTimer = setTimeout(updateLabel, 120); });
         
-        /* Mobile menu */
+        window.addEventListener('keydown', e => {
+            if (e.key === 'ArrowRight') slider.scrollBy({ left:  getScrollAmount(), behavior: 'smooth' });
+            if (e.key === 'ArrowLeft')  slider.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+        });
+        
+        // Estabilización de slider eliminando el control JS de touchend
+        slider.addEventListener('touchstart', () => { isDragging = false; }, { passive: true });
+        slider.addEventListener('touchmove', () => { isDragging = true; }, { passive: true });
+        slider.addEventListener('touchend', () => { setTimeout(() => { isDragging = false; }, 50); }, { passive: true });
+
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const closeMenuBtn  = document.getElementById('close-menu-btn');
         const mobileOverlay = document.getElementById('mobile-overlay');
