@@ -173,63 +173,63 @@
         
         <section class="relative overflow-hidden mb-6 lg:mb-24">
             <div class="flex space-x-4 md:space-x-8 lg:space-x-12 overflow-x-auto kinetic-scroll snap-x snap-mandatory scroll-smooth pb-4" id="slider" style="outline: none;">
-                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center">
+                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative">
                     <figure class="group cursor-pointer">
                         <div class="aspect-[3/2] overflow-hidden bg-surface-dim">
                             <img class="w-full h-full object-cover duration-700" data-alt="Monasterio de San Miguel interior detail" src="/assets/photography/project-1/frames/frame-01.webp"/>
                         </div>
                     </figure>
                 </div>
-                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center">
+                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative">
                     <figure class="group cursor-pointer">
                         <div class="aspect-[3/2] overflow-hidden bg-surface-dim">
                             <img class="w-full h-full object-cover duration-700" data-alt="Monasterio de San Miguel architecture" src="/assets/photography/project-1/frames/frame-02.webp"/>
                         </div>
                     </figure>
                 </div>
-                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center">
+                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative">
                     <figure class="group cursor-pointer">
                         <div class="aspect-[3/2] overflow-hidden bg-surface-dim">
                             <img class="w-full h-full object-cover duration-700" data-alt="Monasterio de San Miguel light and shadow" src="/assets/photography/project-1/frames/frame-03.webp"/>
                         </div>
                     </figure>
                 </div>
-                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center">
+                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative">
                     <figure class="group cursor-pointer">
                         <div class="aspect-[3/2] overflow-hidden bg-surface-dim">
                             <img class="w-full h-full object-cover duration-700" data-alt="Monasterio de San Miguel arches" src="/assets/photography/project-1/frames/frame-04.webp"/>
                         </div>
                     </figure>
                 </div>
-                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center">
+                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative">
                     <figure class="group cursor-pointer">
                         <div class="aspect-[3/2] overflow-hidden bg-surface-dim">
                             <img class="w-full h-full object-cover duration-700" data-alt="Monasterio de San Miguel texture detail" src="/assets/photography/project-1/frames/frame-05.webp"/>
                         </div>
                     </figure>
                 </div>
-                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center">
+                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative">
                     <figure class="group cursor-pointer">
                         <div class="aspect-[3/2] overflow-hidden bg-surface-dim">
                             <img class="w-full h-full object-cover duration-700" data-alt="Monasterio de San Miguel exterior" src="/assets/photography/project-1/frames/frame-06.webp"/>
                         </div>
                     </figure>
                 </div>
-                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center">
+                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative">
                     <figure class="group cursor-pointer">
                         <div class="aspect-[3/2] overflow-hidden bg-surface-dim">
                             <img class="w-full h-full object-cover duration-700" data-alt="Monasterio de San Miguel stone work" src="/assets/photography/project-1/frames/frame-07.webp"/>
                         </div>
                     </figure>
                 </div>
-                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center">
+                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative">
                     <figure class="group cursor-pointer">
                         <div class="aspect-[3/2] overflow-hidden bg-surface-dim">
                             <img class="w-full h-full object-cover duration-700" data-alt="Monasterio de San Miguel perspective" src="/assets/photography/project-1/frames/frame-08.webp"/>
                         </div>
                     </figure>
                 </div>
-                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center">
+                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative">
                     <figure class="group cursor-pointer">
                         <div class="aspect-[3/2] overflow-hidden bg-surface-dim">
                             <img class="w-full h-full object-cover duration-700" data-alt="Monasterio de San Miguel wide view" src="/assets/photography/project-1/frames/frame-09.webp"/>
@@ -282,7 +282,7 @@
             return itemWidth + gap;
         };
 
-        // Controles de flechas (AQUÍ ES DONDE SE USA EL SCROLL POR JAVASCRIPT)
+        // Controles de flechas
         nextBtn.addEventListener('click', () => {
             slider.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
         });
@@ -291,10 +291,35 @@
             slider.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
         });
 
+        // Controles por teclado
         window.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowRight') {
                 slider.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
             } else if (e.key === 'ArrowLeft') {
+                slider.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+            }
+        });
+
+        // Navegación por tap/clic en móvil y tablet
+        slider.addEventListener('click', (e) => {
+            // Solo actuar en pantallas menores a 1024px (Móvil y Tablet)
+            if (window.innerWidth >= 1024) return;
+
+            // Asegurarse de que hemos hecho clic dentro de una imagen del slider
+            const slide = e.target.closest('.snap-center');
+            if (!slide) return;
+
+            // Obtener dimensiones de la imagen clickeada
+            const rect = slide.getBoundingClientRect();
+            // Calcular posición del clic relativa a la imagen
+            const clickX = e.clientX - rect.left;
+
+            // Si el clic es en la mitad derecha
+            if (clickX > rect.width / 2) {
+                slider.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+            } 
+            // Si el clic es en la mitad izquierda
+            else {
                 slider.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
             }
         });
@@ -317,11 +342,9 @@
             });
         });
 
-        // *SE ELIMINÓ EL EVENTO TOUCHSTART/TOUCHEND PARA EVITAR DOBLE SCROLL*
-
         slider.style.outline = 'none';
 
-        // Project Bar Auto-scroll — center active item within the scrollable nav container
+        // Project Bar Auto-scroll
         (function() {
             const navScroll = document.querySelector('.nav-scroll');
             const activeLink = navScroll ? navScroll.querySelector('a.text-black') : null;
