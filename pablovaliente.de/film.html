@@ -33,7 +33,6 @@
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
         .kinetic-scroll::-webkit-scrollbar { display: none; }
         .kinetic-scroll { -ms-overflow-style: none; scrollbar-width: none; }
-        .tight-editorial { letter-spacing: -0.04em; }
 
         .vimeo-slide-wrap {
             position: relative;
@@ -69,7 +68,6 @@
             .group:hover img { transform:none !important; }
             a:hover, button:hover { color:inherit !important; border-color:inherit !important; }
         }
-        /* Grid span en desktop */
         @media (min-width: 768px) {
             #photography-grid .grid-item:last-child:nth-child(odd) { grid-column:span 2; }
         }
@@ -109,7 +107,7 @@
     
     <main class="px-4 md:px-6 lg:px-20 max-w-screen-2xl mx-auto pt-44 lg:pt-32 pb-2">
         <section class="relative overflow-hidden mb-6 lg:mb-20">
-            <div class="flex space-x-4 md:space-x-8 lg:space-x-12 overflow-x-auto kinetic-scroll snap-x snap-mandatory scroll-smooth pb-4" id="slider" style="outline:none;">
+            <div class="flex space-x-4 md:space-x-8 lg:space-x-12 overflow-x-auto overscroll-x-none kinetic-scroll snap-x snap-mandatory scroll-smooth pb-4" id="slider" style="outline:none;">
 
                 <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center flex-shrink-0">
                     <div class="vimeo-slide-wrap">
@@ -169,10 +167,8 @@
     </footer>
 
     <script>
-        /* Footer year */
         document.getElementById('footerYear').textContent = new Date().getFullYear();
 
-        /* Frames grid: Lógica optimizada y con rutas corregidas */
         (function () {
             const section = document.getElementById('frames-section');
             if (!section) return;
@@ -187,26 +183,19 @@
             for (let i = 1; i <= maxFrames; i++) {
                 const n = String(i).padStart(2, '0');
                 const imgSrc = `${projectPath}/frame-${n}.${ext}`;
-                
                 const div = document.createElement('div');
                 div.className = 'grid-item group aspect-[16/9] overflow-hidden bg-surface-container-low';
-                
                 const img = document.createElement('img');
                 img.className = 'w-full h-full object-cover hover:scale-105 transition-all duration-700 ease-in-out';
                 img.src     = imgSrc;
                 img.alt     = altPrefix + ' — Frame ' + n;
                 img.loading = 'lazy';
-                
-                img.onerror = function() {
-                    this.parentElement.style.display = 'none';
-                };
-
+                img.onerror = function() { this.parentElement.style.display = 'none'; };
                 div.appendChild(img);
                 grid.appendChild(div);
             }
         })();
 
-        /* Slider */
         const slider     = document.getElementById('slider');
         const prevBtn    = document.getElementById('prevBtn');
         const nextBtn    = document.getElementById('nextBtn');
@@ -266,21 +255,11 @@
             if (e.key === 'ArrowLeft')  slider.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
         });
         
-        let touchStartX = 0;
-        slider.addEventListener('touchstart', e => { 
-            touchStartX = e.changedTouches[0].screenX; 
-            isDragging = false; 
-        }, { passive: true });
-        
+        // Corregido: Solo se gestiona el flag de arrastre, el snap CSS hace el resto sin rebote
+        slider.addEventListener('touchstart', () => { isDragging = false; }, { passive: true });
         slider.addEventListener('touchmove', () => { isDragging = true; }, { passive: true });
-        
-        slider.addEventListener('touchend', e => {
-            const dx = touchStartX - e.changedTouches[0].screenX;
-            if (Math.abs(dx) > 50) slider.scrollBy({ left: dx > 0 ? getScrollAmount() : -getScrollAmount(), behavior: 'smooth' });
-            setTimeout(() => { isDragging = false; }, 50);
-        }, { passive: true });
+        slider.addEventListener('touchend', () => { setTimeout(() => { isDragging = false; }, 50); }, { passive: true });
 
-        /* Mobile menu */
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const closeMenuBtn  = document.getElementById('close-menu-btn');
         const mobileOverlay = document.getElementById('mobile-overlay');
@@ -288,7 +267,6 @@
         closeMenuBtn.addEventListener('click',  () => { mobileOverlay.classList.add('hidden');    document.body.classList.remove('mobile-menu-open'); });
         mobileOverlay.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { mobileOverlay.classList.add('hidden'); document.body.classList.remove('mobile-menu-open'); }));
 
-        /* Sub-nav */
         (function () {
             const navScroll  = document.querySelector('.nav-scroll');
             const activeLink = navScroll ? navScroll.querySelector('a.text-black') : null;
