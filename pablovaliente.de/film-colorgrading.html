@@ -6,10 +6,6 @@
     <title>Pablo Valiente | Perdido en una Perdiz — Color Grading</title>
     <meta name="description" content="Perdido en una Perdiz — Color Grading project by Pablo Valiente, Filmmaker and DoP based in Germany."/>
     <link rel="canonical" href="https://pablovaliente.de/film-colorgrading"/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:url" content="https://pablovaliente.de/film-colorgrading"/>
-    <meta property="og:title" content="Perdido en una Perdiz — Pablo Valiente, Filmmaker & DoP"/>
-    <meta property="og:description" content="Perdido en una Perdiz — Color Grading project by Pablo Valiente, Filmmaker and DoP based in Germany."/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Manrope:wght@300;400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <script id="tailwind-config">
@@ -79,27 +75,10 @@
     <style>
         body { background-color: #f9f9f9; }
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .tight-editorial { letter-spacing: -0.04em; }
         .kinetic-scroll::-webkit-scrollbar { display: none; }
         .kinetic-scroll { -ms-overflow-style: none; scrollbar-width: none; }
-
-        .vimeo-slide-wrap {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            overflow: hidden;
-            background: #0f0f0f;
-        }
-        .vimeo-slide-wrap iframe {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 102%;
-            height: 102%;
-            transform: translate(-50%, -50%);
-            border: 0;
-            pointer-events: none;
-        }
-
+        
         @media (max-width: 1023px) {
             .mobile-menu-open { overflow: hidden; }
             .nav-scroll {
@@ -125,61 +104,57 @@
                 justify-content: center !important;
             }
         }
+
         @media (max-width: 767px) {
-            #slider ~ div span {
-                font-size: 8px !important;
-                letter-spacing: 0.1em !important;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                max-width: calc(100vw - 100px);
+            #slider ~ div span { 
+                font-size: 8px !important; 
+                letter-spacing: 0.1em !important; 
+                overflow: hidden; 
+                text-overflow: ellipsis; 
+                white-space: nowrap; 
+                max-width: calc(100vw - 100px); 
                 display: inline !important;
             }
-            #slider ~ div span + span::before { content: " "; white-space: pre; }
+            #slider ~ div span + span::before {
+                content: " ";
+                white-space: pre;
+            }
             #prevBtn, #nextBtn { width: 32px !important; height: 32px !important; font-size: 18px !important; }
         }
+
         @media (hover: none) and (pointer: coarse) {
             .group:hover img { transform: none !important; }
             a:hover, button:hover { color: inherit !important; border-color: inherit !important; }
             .hover\:text-black:hover { color: inherit !important; }
             .hover\:text-white:hover { color: inherit !important; }
         }
-        /* Ajuste para que el último elemento ocupe las dos columnas si hay un número impar */
-        @media (min-width: 768px) {
-            #photography-grid .grid-item:last-child:nth-child(odd) {
-                grid-column: span 2;
-            }
-        }
     </style>
 </head>
 <body class="antialiased selection:bg-primary selection:text-white">
-
     <header class="fixed top-0 w-full z-[60] bg-[#f9f9f9] shadow-none" id="unified-header">
         <nav class="w-full flex items-center py-6 md:py-8 justify-between px-4 md:px-6 lg:px-10">
             <a href="index.html" class="font-['Syne'] text-[11px] font-bold tracking-[0.25em] text-black uppercase hover:opacity-70 transition-opacity">PABLO VALIENTE</a>
             <div class="hidden lg:flex space-x-6">
-                <a class="font-['Syne'] uppercase tracking-[0.2em] text-[9px] font-bold leading-tight antialiased text-black border-b border-black pb-1 transition-colors duration-300" href="film.html">FILM</a>
-                <a class="font-['Syne'] uppercase tracking-[0.2em] text-[9px] font-bold leading-tight antialiased text-black/60 hover:text-black transition-colors duration-300" href="commercial.html">COMMERCIAL</a>
-                <a class="font-['Syne'] uppercase tracking-[0.2em] text-[9px] font-bold leading-tight antialiased text-black/60 hover:text-black transition-colors duration-300" href="photography-monasterio.html">PHOTOGRAPHY</a>
-                <a class="font-['Syne'] uppercase tracking-[0.2em] text-[9px] font-bold leading-tight antialiased text-black/60 hover:text-black transition-colors duration-300" href="contact.html">CONTACT</a>
+                <a class="font-['Syne'] uppercase tracking-[0.2em] text-[9px] font-bold leading-tight antialiased text-black border-b border-black pb-1 transition-colors duration-600" href="film.html">FILM</a>
+                <a class="font-['Syne'] uppercase tracking-[0.2em] text-[9px] font-bold leading-tight antialiased text-black/60 hover:text-black transition-colors duration-600" href="commercial.html">COMMERCIAL</a>
+                <a class="font-['Syne'] uppercase tracking-[0.2em] text-[9px] font-bold leading-tight antialiased text-black/60 hover:text-black transition-colors duration-600" href="photography-monasterio.html">PHOTOGRAPHY</a>
+                <a class="font-['Syne'] uppercase tracking-[0.2em] text-[9px] font-bold leading-tight antialiased text-black/60 hover:text-black transition-colors duration-600" href="contact.html">CONTACT</a>
             </div>
             <button class="lg:hidden flex items-center justify-center w-11 h-11 -mr-2 focus:outline-none" id="mobile-menu-btn">
                 <span class="material-symbols-outlined text-black scale-125">menu</span>
             </button>
         </nav>
-
         <div class="fixed inset-0 bg-[#f9f9f9] z-[70] hidden flex-col items-center justify-center" id="mobile-overlay">
             <button class="absolute top-6 right-4 w-11 h-11 flex items-center justify-center focus:outline-none" id="close-menu-btn">
                 <span class="material-symbols-outlined text-black scale-125">close</span>
             </button>
             <div class="flex flex-col items-center space-y-6 pt-[80px]">
-                <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6 border-b border-black pb-1" href="film.html" style="color:#000000;">FILM</a>
-                <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="commercial.html" style="color:rgba(0,0,0,0.4);">COMMERCIAL</a>
-                <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="photography-monasterio.html" style="color:rgba(0,0,0,0.4);">PHOTOGRAPHY</a>
-                <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="contact.html" style="color:rgba(0,0,0,0.4);">CONTACT</a>
+                <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6 border-b border-black pb-1" href="film.html" style="color: #000000;">FILM</a>
+                <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="commercial.html" style="color: rgba(0,0,0,0.4);">COMMERCIAL</a>
+                <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="photography-monasterio.html" style="color: rgba(0,0,0,0.4);">PHOTOGRAPHY</a>
+                <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="contact.html" style="color: rgba(0,0,0,0.4);">CONTACT</a>
             </div>
         </div>
-
         <nav class="w-full flex lg:justify-center items-center py-4 px-4 md:px-6 nav-scroll border-t border-black/5 lg:border-none lg:space-x-16">
             <a class="font-['Syne'] uppercase tracking-[0.2em] font-semibold text-neutral-400 hover:text-black transition-all duration-300 text-[9px] mr-8 lg:mr-0" href="film.html">ZUFÄLLIGE BEGEGNUNG</a>
             <a class="font-['Syne'] uppercase tracking-[0.2em] font-semibold text-neutral-400 hover:text-black transition-all duration-300 text-[9px] mr-8 lg:mr-0" href="film-nichtschonwieder.html">NICHT SCHON WIEDER</a>
@@ -187,49 +162,28 @@
         </nav>
     </header>
 
-    <main class="px-4 md:px-6 lg:px-20 max-w-screen-2xl mx-auto pt-44 lg:pt-32 pb-6">
-
-        <section class="relative overflow-hidden mb-16 lg:mb-24">
-            <div class="flex space-x-4 md:space-x-8 lg:space-x-12 overflow-x-auto kinetic-scroll snap-x snap-mandatory scroll-smooth pb-4" id="slider" style="outline:none;">
-                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center flex-shrink-0">
-                    <div class="vimeo-slide-wrap">
-                        <iframe src="https://player.vimeo.com/video/1169716541?autoplay=1&loop=1&muted=1&background=1&autopause=0&controls=0&title=0&byline=0&portrait=0&dnt=1"
-                            allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Perdido en una Perdiz"></iframe>
-                    </div>
-                </div>
-                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center flex-shrink-0">
-                    <div class="vimeo-slide-wrap">
-                        <iframe src="https://player.vimeo.com/video/1170251945?autoplay=1&loop=1&muted=1&background=1&autopause=0&controls=0&title=0&byline=0&portrait=0&dnt=1"
-                            allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Perdido en una Perdiz — Color Grade"></iframe>
-                    </div>
-                </div>
-            </div>
-
+    <main class="px-4 md:px-6 lg:px-20 max-w-screen-2xl mx-auto pt-44 lg:pt-32 pb-2 lg:pb-6">
+        <section class="relative overflow-hidden mb-6 lg:mb-24">
+            <div class="flex space-x-4 md:space-x-8 lg:space-x-12 overflow-x-auto kinetic-scroll snap-x snap-mandatory scroll-smooth pb-4" id="slider" style="outline: none;"></div>
+            
             <div class="flex flex-row justify-between items-center border-t border-black/5 pt-4 mt-1">
                 <div class="flex items-center space-x-6">
                     <button class="material-symbols-outlined text-neutral-400 hover:text-black transition-colors w-11 h-11 flex items-center justify-center" id="prevBtn">west</button>
                     <button class="material-symbols-outlined text-neutral-400 hover:text-black transition-colors w-11 h-11 flex items-center justify-center" id="nextBtn">east</button>
                 </div>
                 <div class="font-['Syne'] text-[10px] tracking-[0.2em] font-semibold text-neutral-400 uppercase text-right self-center" id="slider-description-wrapper">
-                    <span class="block lg:inline" id="slide-label-title" style="color:rgb(115,115,115);font-family:Manrope;font-size:11px;font-weight:400;letter-spacing:2px;">PERDIDO EN UNA PERDIZ</span>
-                    <span class="block lg:inline lg:ml-2" id="slide-label-sub" style="color:rgb(115,115,115);font-family:Manrope;font-size:11px;font-weight:400;letter-spacing:2px;">Color Grading</span>
+                    <span class="block lg:inline" style="color: rgb(115, 115, 115); font-family: Manrope; font-size: 11px; font-weight: 400; letter-spacing: 2px;">PERDIDO EN UNA PERDIZ</span>
+                    <span class="block lg:inline lg:ml-2" style="color: rgb(115, 115, 115); font-family: Manrope; font-size: 11px; font-weight: 400; letter-spacing: 2px;">Color Grading</span>
                 </div>
             </div>
         </section>
 
-        <section 
-            class="p-4 md:p-6 lg:p-12 shadow-sm mb-6 bg-[#f3f3f4]" 
-            id="photography-grid-container"
-            data-project-path="assets/film/project-3/frames"
-            data-frame-ext="webp"
-            data-alt-prefix="Perdido en una Perdiz">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8" id="photography-grid">
-                </div>
+        <section class="p-4 md:p-6 lg:p-12 shadow-sm mb-2 lg:mb-6 bg-[#f3f3f4]" id="film-grid-container" data-project-path="/assets/film/project-3/frames" data-alt-prefix="Perdido en una Perdiz">
+            <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8" id="film-grid"></div>
         </section>
-
     </main>
 
-    <footer class="w-full flex flex-col items-center justify-center py-16 px-4 md:px-6 lg:px-20 bg-[#f9f9f9] mt-2">
+    <footer class="w-full flex flex-col items-center justify-center py-8 lg:py-16 px-4 md:px-6 lg:px-20 bg-[#f9f9f9] mt-0 lg:mt-2">
         <div class="flex flex-row items-center space-y-0 space-x-6 md:space-x-12 mb-8">
             <a href="https://instagram.com/pvaliente_" target="_blank" rel="noopener noreferrer" class="font-['Syne'] text-[12px] tracking-widest uppercase text-neutral-500 hover:text-black transition-colors py-2 px-4 whitespace-nowrap">INSTAGRAM</a>
             <a href="https://www.behance.net/pvaliente" target="_blank" rel="noopener noreferrer" class="font-['Syne'] text-[12px] tracking-widest uppercase text-neutral-500 hover:text-black transition-colors py-2 px-4 whitespace-nowrap">BEHANCE</a>
@@ -243,22 +197,87 @@
     <script>
         document.getElementById('footerYear').textContent = new Date().getFullYear();
 
-        /* Frames grid: Auto-detect quantity of webp files */
-        (async function () {
-            const section = document.getElementById('photography-grid-container');
-            if (!section) return;
-            const grid        = section.querySelector('#photography-grid');
-            const projectPath = section.dataset.projectPath;
-            const ext         = section.dataset.frameExt || 'webp';
-            const altPrefix   = section.dataset.altPrefix || 'Frame';
-            if (!grid || !projectPath) return;
+        const slider = document.getElementById('slider');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileOverlay = document.getElementById('mobile-overlay');
 
+        const scrollAmount = () => {
+            const item = slider.querySelector('.snap-center');
+            if (!item) return 0;
+            const itemWidth = item.clientWidth;
+            const gap = parseInt(window.getComputedStyle(slider).gap) || 0;
+            return itemWidth + gap;
+        };
+
+        nextBtn.addEventListener('click', () => slider.scrollBy({ left: scrollAmount(), behavior: 'smooth' }));
+        prevBtn.addEventListener('click', () => slider.scrollBy({ left: -scrollAmount(), behavior: 'smooth' }));
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') slider.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+            else if (e.key === 'ArrowLeft') slider.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+        });
+
+        slider.addEventListener('click', (e) => {
+            const slide = e.target.closest('.snap-center');
+            if (!slide) return;
+
+            const sliderRect = slider.getBoundingClientRect();
+            const slideRect = slide.getBoundingClientRect();
+
+            const sliderCenter = sliderRect.left + (sliderRect.width / 2);
+            const slideCenter = slideRect.left + (slideRect.width / 2);
+
+            const isCenterSlide = Math.abs(sliderCenter - slideCenter) < (slideRect.width / 2);
+
+            if (isCenterSlide) {
+                const clickX = e.clientX - slideRect.left;
+                if (clickX > slideRect.width / 2) {
+                    slider.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+                } else {
+                    slider.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+                }
+            } else {
+                const scrollTarget = slide.offsetLeft - (slider.clientWidth / 2) + (slide.clientWidth / 2);
+                slider.scrollTo({ left: scrollTarget, behavior: 'smooth' });
+            }
+        });
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileOverlay.classList.remove('hidden');
+            document.body.classList.add('mobile-menu-open');
+        });
+
+        closeMenuBtn.addEventListener('click', () => {
+            mobileOverlay.classList.add('hidden');
+            document.body.classList.remove('mobile-menu-open');
+        });
+
+        mobileOverlay.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileOverlay.classList.add('hidden');
+                document.body.classList.remove('mobile-menu-open');
+            });
+        });
+
+        slider.style.outline = 'none';
+
+        // Autodetección
+        (async function () {
+            const container = document.getElementById('film-grid-container');
+            if (!container) return;
+            const grid = document.getElementById('film-grid');
+            const projectPath = container.dataset.projectPath;
+            const altPrefix = container.dataset.altPrefix;
+            
             let i = 1;
             let keepChecking = true;
 
             while (keepChecking && i <= 100) {
                 const n = String(i).padStart(2, '0');
-                const imgSrc = `${projectPath}/frame-${n}.${ext}`;
+                const imgSrc = `${projectPath}/frame-${n}.webp`;
                 
                 const checkImage = (src) => {
                     return new Promise((resolve) => {
@@ -272,15 +291,22 @@
                 const exists = await checkImage(imgSrc);
 
                 if (exists) {
-                    const div = document.createElement('div');
-                    div.className = 'grid-item group aspect-[16/9] overflow-hidden bg-surface-container-low';
-                    const img = document.createElement('img');
-                    img.className = 'w-full h-full object-cover hover:scale-105 transition-all duration-700 ease-in-out';
-                    img.src     = imgSrc;
-                    img.alt     = altPrefix + ' — Frame ' + n;
-                    img.loading = 'lazy';
-                    div.appendChild(img);
-                    grid.appendChild(div);
+                    const sliderItem = document.createElement('div');
+                    sliderItem.className = 'min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative';
+                    sliderItem.innerHTML = `
+                        <figure class="group cursor-pointer">
+                            <div class="aspect-video overflow-hidden bg-surface-dim">
+                                <img class="w-full h-full object-cover duration-700" alt="${altPrefix} ${n}" src="${imgSrc}"/>
+                            </div>
+                        </figure>
+                    `;
+                    slider.appendChild(sliderItem);
+
+                    const gridItem = document.createElement('div');
+                    gridItem.className = 'grid-item group aspect-video overflow-hidden bg-surface-container-low';
+                    gridItem.innerHTML = `<img class="w-full h-full object-cover hover:scale-105 transition-all duration-700 ease-in-out" src="${imgSrc}" alt="${altPrefix} ${n}" loading="lazy">`;
+                    grid.appendChild(gridItem);
+                    
                     i++;
                 } else {
                     keepChecking = false;
@@ -288,56 +314,12 @@
             }
         })();
 
-        const slider  = document.getElementById('slider');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const slideData = [
-            { title: 'PERDIDO EN UNA PERDIZ', sub: 'Color Grading' },
-            { title: 'PERDIDO EN UNA PERDIZ', sub: 'Color Grade' }
-        ];
-        const labelTitle = document.getElementById('slide-label-title');
-        const labelSub   = document.getElementById('slide-label-sub');
-
-        function getScrollAmount() {
-            const item = slider.querySelector('.snap-center');
-            return item.clientWidth + (parseInt(window.getComputedStyle(slider).gap) || 0);
-        }
-        function updateLabel() {
-            const idx     = Math.round(slider.scrollLeft / getScrollAmount());
-            const clamped = Math.max(0, Math.min(idx, slideData.length - 1));
-            labelTitle.textContent = slideData[clamped].title;
-            labelSub.textContent   = slideData[clamped].sub;
-        }
-
-        nextBtn.addEventListener('click', () => slider.scrollBy({ left:  getScrollAmount(), behavior: 'smooth' }));
-        prevBtn.addEventListener('click', () => slider.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' }));
-
-        let scrollTimer;
-        slider.addEventListener('scroll', () => { clearTimeout(scrollTimer); scrollTimer = setTimeout(updateLabel, 120); });
-
-        window.addEventListener('keydown', e => {
-            if (e.key === 'ArrowRight') slider.scrollBy({ left:  getScrollAmount(), behavior: 'smooth' });
-            if (e.key === 'ArrowLeft')  slider.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
-        });
-
-        let touchStartX = 0;
-        slider.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
-        slider.addEventListener('touchend',   e => {
-            const dx = touchStartX - e.changedTouches[0].screenX;
-            if (Math.abs(dx) > 50) slider.scrollBy({ left: dx > 0 ? getScrollAmount() : -getScrollAmount(), behavior: 'smooth' });
-        }, { passive: true });
-
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const closeMenuBtn  = document.getElementById('close-menu-btn');
-        const mobileOverlay = document.getElementById('mobile-overlay');
-        mobileMenuBtn.addEventListener('click', () => { mobileOverlay.classList.remove('hidden'); document.body.classList.add('mobile-menu-open'); });
-        closeMenuBtn.addEventListener('click',  () => { mobileOverlay.classList.add('hidden');    document.body.classList.remove('mobile-menu-open'); });
-        mobileOverlay.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { mobileOverlay.classList.add('hidden'); document.body.classList.remove('mobile-menu-open'); }));
-
         (function() {
-            const navScroll  = document.querySelector('.nav-scroll');
+            const navScroll = document.querySelector('.nav-scroll');
             const activeLink = navScroll ? navScroll.querySelector('a.text-black') : null;
-            if (navScroll && activeLink) navScroll.scrollLeft = activeLink.offsetLeft - navScroll.offsetWidth / 2 + activeLink.offsetWidth / 2;
+            if (navScroll && activeLink) {
+                navScroll.scrollLeft = activeLink.offsetLeft - (navScroll.offsetWidth / 2) + (activeLink.offsetWidth / 2);
+            }
         })();
     </script>
 </body>
