@@ -77,7 +77,6 @@
         .kinetic-scroll::-webkit-scrollbar { display: none; }
         .kinetic-scroll { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* Mobile & Tablet Overrides */
         @media (max-width: 1023px) {
             .mobile-menu-open { overflow: hidden; }
             .nav-scroll {
@@ -89,7 +88,6 @@
             }
             .nav-scroll::-webkit-scrollbar { display: none; }
             .nav-scroll a { flex: 0 0 auto; }
-            
             #mobile-overlay {
                 position: fixed !important;
                 top: 0 !important;
@@ -98,8 +96,6 @@
                 height: 100dvh !important;
                 overflow: hidden !important;
             }
-
-            /* Slider Text Alignment Fix */
             #slider-description-wrapper {
                 display: flex !important;
                 flex-direction: column !important;
@@ -107,7 +103,6 @@
             }
         }
 
-        /* Mobile Specific Overrides */
         @media (max-width: 767px) {
             #slider ~ div span { 
                 font-size: 8px !important; 
@@ -125,19 +120,11 @@
             #prevBtn, #nextBtn { width: 32px !important; height: 32px !important; font-size: 18px !important; }
         }
 
-        /* Touch Optimization: Remove Hover Effects */
         @media (hover: none) and (pointer: coarse) {
             .group:hover img { transform: none !important; }
             a:hover, button:hover { color: inherit !important; border-color: inherit !important; }
             .hover\:text-black:hover { color: inherit !important; }
             .hover\:text-white:hover { color: inherit !important; }
-        }
-
-        /* Tablet Specific */
-        @media (min-width: 768px) and (max-width: 1023px) {
-            #photography-grid .grid-item:last-child:nth-child(odd) {
-                grid-column: span 2;
-            }
         }
     </style>
 </head>
@@ -176,31 +163,29 @@
         </nav>
     </header>
 
-    <main class="px-4 md:px-6 lg:px-20 max-w-screen-2xl mx-auto pt-44 lg:pt-32 pb-6">
-        <section class="relative overflow-hidden mb-16 lg:mb-24">
+    <main class="px-4 md:px-6 lg:px-20 max-w-screen-2xl mx-auto pt-44 lg:pt-32 pb-2 lg:pb-6">
+        <section class="relative overflow-hidden mb-6 lg:mb-24">
             <div class="flex space-x-4 md:space-x-8 lg:space-x-12 overflow-x-auto kinetic-scroll snap-x snap-mandatory scroll-smooth pb-4" id="slider" style="outline: none;">
-                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center">
-                    <figure class="group cursor-pointer">
-                        <div class="aspect-[3/2] overflow-hidden bg-surface-dim">
-                            <img class="w-full h-full object-cover duration-700" data-alt="Iglesia de Yaguarón 01" src="assets/photography/project-4/frames/Frame-01.webp"/>
-                        </div>
-                    </figure>
+                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative">
+                    <figure class="group cursor-pointer"><div class="aspect-[3/2] overflow-hidden bg-surface-dim"><img class="w-full h-full object-cover duration-700" data-alt="Iglesia de Yaguarón 01" src="/assets/photography/project-4/frames/frame-01.webp"/></div></figure>
                 </div>
-                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center">
-                    <figure class="group cursor-pointer">
-                        <div class="aspect-[3/2] overflow-hidden bg-surface-dim">
-                            <img class="w-full h-full object-cover duration-700" data-alt="Iglesia de Yaguarón 02" src="assets/photography/project-4/frames/Frame-02.webp"/>
-                        </div>
-                    </figure>
+                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative">
+                    <figure class="group cursor-pointer"><div class="aspect-[3/2] overflow-hidden bg-surface-dim"><img class="w-full h-full object-cover duration-700" data-alt="Iglesia de Yaguarón 02" src="/assets/photography/project-4/frames/frame-02.webp"/></div></figure>
                 </div>
-                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center">
-                    <figure class="group cursor-pointer">
-                        <div class="aspect-[3/2] overflow-hidden bg-surface-dim">
-                            <img class="w-full h-full object-cover duration-700" data-alt="Iglesia de Yaguarón 03" src="assets/photography/project-4/frames/Frame-03.webp"/>
-                        </div>
-                    </figure>
+                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative">
+                    <figure class="group cursor-pointer"><div class="aspect-[3/2] overflow-hidden bg-surface-dim"><img class="w-full h-full object-cover duration-700" data-alt="Iglesia de Yaguarón 03" src="/assets/photography/project-4/frames/frame-03.webp"/></div></figure>
+                </div>
+                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative">
+                    <figure class="group cursor-pointer"><div class="aspect-[3/2] overflow-hidden bg-surface-dim"><img class="w-full h-full object-cover duration-700" data-alt="Iglesia de Yaguarón 04" src="/assets/photography/project-4/frames/frame-04.webp"/></div></figure>
+                </div>
+                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative">
+                    <figure class="group cursor-pointer"><div class="aspect-[3/2] overflow-hidden bg-surface-dim"><img class="w-full h-full object-cover duration-700" data-alt="Iglesia de Yaguarón 05" src="/assets/photography/project-4/frames/frame-05.webp"/></div></figure>
+                </div>
+                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative">
+                    <figure class="group cursor-pointer"><div class="aspect-[3/2] overflow-hidden bg-surface-dim"><img class="w-full h-full object-cover duration-700" data-alt="Iglesia de Yaguarón 06" src="/assets/photography/project-4/frames/frame-06.webp"/></div></figure>
                 </div>
             </div>
+            
             <div class="flex flex-row justify-between items-center border-t border-black/5 pt-4 mt-1">
                 <div class="flex items-center space-x-6">
                     <button class="material-symbols-outlined text-neutral-400 hover:text-black transition-colors w-11 h-11 flex items-center justify-center" id="prevBtn">west</button>
@@ -208,38 +193,31 @@
                 </div>
                 <div class="font-['Syne'] text-[10px] tracking-[0.2em] font-semibold text-neutral-400 uppercase text-right self-center" id="slider-description-wrapper">
                     <span class="block lg:inline" style="color: rgb(115, 115, 115); font-family: Manrope; font-size: 11px; font-weight: 400; letter-spacing: 2px;">IGLESIA DE YAGUARÓN</span>
-                    <span class="block lg:inline lg:ml-2" style="color: rgb(115, 115, 115); font-family: Manrope; font-size: 11px; font-weight: 400; letter-spacing: 2px;">Fotografía de Arquitectura</span>
+                    <span class="block lg:inline lg:ml-2" style="color: rgb(115, 115, 115); font-family: Manrope; font-size: 11px; font-weight: 400; letter-spacing: 2px;">Documentary Photography</span>
                 </div>
             </div>
         </section>
 
-        <section class="p-4 md:p-6 lg:p-12 shadow-sm mb-6 bg-[#f3f3f4]" id="photography-grid-container">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8" id="photography-grid">
-                <div class="grid-item group aspect-[3/2] overflow-hidden bg-surface-container-low">
-                    <img class="w-full h-full object-cover hover:scale-105 transition-all duration-700 ease-in-out" data-alt="Iglesia de Yaguarón 01" src="assets/photography/project-4/frames/Frame-01.webp"/>
+        <section class="p-4 md:p-6 lg:p-12 shadow-sm mb-2 lg:mb-6 bg-[#f3f3f4]" id="photography-grid-container">
+            <div class="grid grid-cols-3 gap-4 lg:gap-8" id="photography-grid" data-project="project-4">
                 </div>
-                <div class="grid-item group aspect-[3/2] overflow-hidden bg-surface-container-low">
-                    <img class="w-full h-full object-cover hover:scale-105 transition-all duration-700 ease-in-out" data-alt="Iglesia de Yaguarón 02" src="assets/photography/project-4/frames/Frame-02.webp"/>
-                </div>
-                <div class="grid-item group aspect-[3/2] overflow-hidden bg-surface-container-low">
-                    <img class="w-full h-full object-cover hover:scale-105 transition-all duration-700 ease-in-out" data-alt="Iglesia de Yaguarón 03" src="assets/photography/project-4/frames/Frame-03.webp"/>
-                </div>
-            </div>
         </section>
     </main>
 
-    <footer class="w-full dark:bg-neutral-900 flex flex-col items-center justify-center py-16 px-4 md:px-6 lg:px-20 bg-[#f9f9f9] mt-2">
+    <footer class="w-full flex flex-col items-center justify-center py-8 lg:py-16 px-4 md:px-6 lg:px-20 bg-[#f9f9f9] mt-0 lg:mt-2">
         <div class="flex flex-row items-center space-y-0 space-x-6 md:space-x-12 mb-8">
             <a href="https://instagram.com/pvaliente_" target="_blank" rel="noopener noreferrer" class="font-['Syne'] text-[12px] tracking-widest uppercase text-neutral-500 hover:text-black transition-colors py-2 px-4 whitespace-nowrap">INSTAGRAM</a>
             <a href="https://www.behance.net/pvaliente" target="_blank" rel="noopener noreferrer" class="font-['Syne'] text-[12px] tracking-widest uppercase text-neutral-500 hover:text-black transition-colors py-2 px-4 whitespace-nowrap">BEHANCE</a>
             <a href="https://www.linkedin.com/in/valiente-pablo" target="_blank" rel="noopener noreferrer" class="font-['Syne'] text-[12px] tracking-widest uppercase text-neutral-500 hover:text-black transition-colors py-2 px-4 whitespace-nowrap">LINKEDIN</a>
         </div>
         <p class="font-['Syne'] text-[10px] tracking-widest uppercase text-neutral-600 text-center">
-            © 2024 PABLO VALIENTE. ALL RIGHTS RESERVED.
+            © <span id="footerYear"></span> PABLO VALIENTE. ALL RIGHTS RESERVED.
         </p>
     </footer>
 
     <script>
+        document.getElementById('footerYear').textContent = new Date().getFullYear();
+
         const slider = document.getElementById('slider');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
@@ -248,28 +226,47 @@
         const mobileOverlay = document.getElementById('mobile-overlay');
 
         const scrollAmount = () => {
-            const itemWidth = slider.querySelector('.snap-center').clientWidth;
+            const item = slider.querySelector('.snap-center');
+            if (!item) return 0;
+            const itemWidth = item.clientWidth;
             const gap = parseInt(window.getComputedStyle(slider).gap) || 0;
             return itemWidth + gap;
         };
 
-        nextBtn.addEventListener('click', () => {
-            slider.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
-        });
-
-        prevBtn.addEventListener('click', () => {
-            slider.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
-        });
+        nextBtn.addEventListener('click', () => slider.scrollBy({ left: scrollAmount(), behavior: 'smooth' }));
+        prevBtn.addEventListener('click', () => slider.scrollBy({ left: -scrollAmount(), behavior: 'smooth' }));
 
         window.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') {
-                slider.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
-            } else if (e.key === 'ArrowLeft') {
-                slider.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+            if (e.key === 'ArrowRight') slider.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+            else if (e.key === 'ArrowLeft') slider.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+        });
+
+        // Navegación inteligente
+        slider.addEventListener('click', (e) => {
+            const slide = e.target.closest('.snap-center');
+            if (!slide) return;
+
+            const sliderRect = slider.getBoundingClientRect();
+            const slideRect = slide.getBoundingClientRect();
+
+            const sliderCenter = sliderRect.left + (sliderRect.width / 2);
+            const slideCenter = slideRect.left + (slideRect.width / 2);
+
+            const isCenterSlide = Math.abs(sliderCenter - slideCenter) < (slideRect.width / 2);
+
+            if (isCenterSlide) {
+                const clickX = e.clientX - slideRect.left;
+                if (clickX > slideRect.width / 2) {
+                    slider.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+                } else {
+                    slider.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+                }
+            } else {
+                const scrollTarget = slide.offsetLeft - (slider.clientWidth / 2) + (slide.clientWidth / 2);
+                slider.scrollTo({ left: scrollTarget, behavior: 'smooth' });
             }
         });
 
-        // Mobile Menu Logic
         mobileMenuBtn.addEventListener('click', () => {
             mobileOverlay.classList.remove('hidden');
             document.body.classList.add('mobile-menu-open');
@@ -280,7 +277,6 @@
             document.body.classList.remove('mobile-menu-open');
         });
 
-        // Close menu on link click
         mobileOverlay.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileOverlay.classList.add('hidden');
@@ -288,42 +284,42 @@
             });
         });
 
-        // Swipe Support
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        slider.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-
-        slider.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleGesture();
-        }, { passive: true });
-
-        function handleGesture() {
-            const threshold = 50;
-            if (touchStartX - touchEndX > threshold) {
-                // Swiped Left
-                slider.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
-            } else if (touchEndX - touchStartX > threshold) {
-                // Swiped Right
-                slider.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
-            }
-        }
-
         slider.style.outline = 'none';
 
-        // Project Bar Auto-scroll — center active item within the scrollable nav container
+        // Autodetección para Grid
+        async function loadFrames() {
+            const grid = document.getElementById('photography-grid');
+            if (!grid) return;
+            const project = grid.dataset.project;
+            let i = 1;
+            
+            while (true) {
+                const frameNum = i.toString().padStart(2, '0');
+                const src = `/assets/photography/${project}/frames/frame-${frameNum}.webp`;
+                
+                const exists = await new Promise(resolve => {
+                    const img = new Image();
+                    img.onload = () => resolve(true);
+                    img.onerror = () => resolve(false);
+                    img.src = src;
+                });
+
+                if (!exists) break;
+
+                const div = document.createElement('div');
+                div.className = "grid-item group aspect-[3/2] overflow-hidden bg-surface-container-low";
+                div.innerHTML = `<img class="w-full h-full object-cover hover:scale-105 transition-all duration-700 ease-in-out" src="${src}" alt="Frame ${frameNum}"/>`;
+                grid.appendChild(div);
+                i++;
+            }
+        }
+        loadFrames();
+
         (function() {
             const navScroll = document.querySelector('.nav-scroll');
             const activeLink = navScroll ? navScroll.querySelector('a.text-black') : null;
             if (navScroll && activeLink) {
-                const navWidth = navScroll.offsetWidth;
-                const linkOffset = activeLink.offsetLeft;
-                const linkWidth = activeLink.offsetWidth;
-                const scrollTarget = linkOffset - (navWidth / 2) + (linkWidth / 2);
-                navScroll.scrollLeft = scrollTarget;
+                navScroll.scrollLeft = activeLink.offsetLeft - (navScroll.offsetWidth / 2) + (activeLink.offsetWidth / 2);
             }
         })();
     </script>
