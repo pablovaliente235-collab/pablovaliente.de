@@ -74,7 +74,7 @@
   .stage > *, .slider-col { pointer-events: auto; }
 
   /* ══════════════════════════════════
-     DESKTOP SLIDER — horizontal
+     DESKTOP SLIDER
   ══════════════════════════════════ */
   .slider-col {
     position: relative;
@@ -131,7 +131,6 @@
   }
   .card.is-active .card__overlay { opacity: 1; }
 
-  /* Photo carousel */
   .card__carousel { position: absolute; inset: 0; }
   .card__carousel-frame {
     position: absolute; inset: 0; width: 100%; height: 100%;
@@ -153,7 +152,7 @@
     .slider-col {
       width: 100vw;
       height: 100vh;
-      overflow: hidden; /* Evita desborde superior/inferior */
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -166,57 +165,47 @@
       height: 100%;
       display: block;
       transform: none !important;
-      transition: none !important;
       transform-style: preserve-3d;
     }
 
-    /* Todas las tarjetas centradas verticalmente por defecto */
     .card-wrap {
       position: absolute;
       top: 50%; left: 0; right: 0;
       margin: 0 auto;
       pointer-events: none;
-      transform: translateY(-50%) translateY(100px) scale(0.7) rotateX(20deg);
+      /* Estado base: oculto abajo */
+      transform: translateY(-50%) translateY(60px) scale(0.78) rotateX(18deg);
       opacity: 0;
       transition: transform .7s var(--ease), opacity .55s var(--ease);
       will-change: transform, opacity;
-      transform-origin: center center;
     }
 
-    /* Tarjeta activa: perfectamente centrada */
+    /* Tarjeta Central (Corregida) */
     .card-wrap.is-active {
       transform: translateY(-50%) scale(1) rotateX(0deg);
-      opacity: 1;
-      pointer-events: auto;
+      opacity: 1; 
+      pointer-events: auto; 
       z-index: 10;
     }
 
-    /* Previa: asoma por arriba */
+    /* Secundarias (Sin cambios) */
     .card-wrap.is-prev {
-      transform: translateY(-50%) translateY(-45%) scale(0.8) rotateX(-20deg);
-      opacity: 0.4;
-      z-index: 5;
+      transform: translateY(-50%) translateY(-42%) scale(0.82) rotateX(-22deg);
+      opacity: 0.55; z-index: 5;
     }
-
-    /* Siguiente: asoma por abajo */
     .card-wrap.is-next {
-      transform: translateY(-50%) translateY(45%) scale(0.8) rotateX(20deg);
-      opacity: 0.4;
-      z-index: 5;
+      transform: translateY(-50%) translateY(42%) scale(0.82) rotateX(22deg);
+      opacity: 0.55; z-index: 5;
     }
   }
 
   @media (max-width: 768px) {
     :root { --card-w: 88vw; }
-    .card-wrap.is-prev { transform: translateY(-50%) translateY(-42%) scale(0.8); }
-    .card-wrap.is-next { transform: translateY(-50%) translateY(42%) scale(0.8); }
   }
-
   @media (max-width: 480px) {
     :root { --card-w: 92vw; }
   }
 
-  /* Mobile menu overlay */
   @media (max-width: 1023px) {
     .mobile-menu-open { overflow: hidden; }
     #mobile-overlay { position: fixed !important; inset: 0 !important; width: 100vw !important; height: 100dvh !important; }
@@ -250,10 +239,10 @@
       <span class="material-symbols-outlined text-black scale-125">close</span>
     </button>
     <div class="flex flex-col items-center space-y-6 pt-20">
-      <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="film.html" style="color:rgba(0,0,0,.4)">FILM</a>
-      <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="commercial.html" style="color:rgba(0,0,0,.4)">COMMERCIAL</a>
+      <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="film.html"                  style="color:rgba(0,0,0,.4)">FILM</a>
+      <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="commercial.html"             style="color:rgba(0,0,0,.4)">COMMERCIAL</a>
       <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="photography-monasterio.html" style="color:rgba(0,0,0,.4)">PHOTOGRAPHY</a>
-      <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="contact.html" style="color:rgba(0,0,0,.4)">CONTACT</a>
+      <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="contact.html"                style="color:rgba(0,0,0,.4)">CONTACT</a>
     </div>
   </div>
 </header>
@@ -262,6 +251,7 @@
 <div class="stage">
   <div class="slider-col" id="sliderCol" role="region" aria-label="Portfolio">
     <div class="slider-track" id="track">
+
       <div class="card-wrap" data-cover="1169718635" data-href="film.html">
         <div class="card" style="background:#1a1208">
           <img class="card__media vimeo-thumb" data-vimeo-id="1169718635" alt="Zufällige Begegnung" fetchpriority="high"/>
@@ -269,6 +259,7 @@
           <div class="card__overlay"></div>
         </div>
       </div>
+
       <div class="card-wrap" data-cover="1170251945" data-href="film-colorgrading.html">
         <div class="card" style="background:#1a1510">
           <img class="card__media vimeo-thumb" data-vimeo-id="1170251945" alt="Perdido en una Perdiz"/>
@@ -276,6 +267,7 @@
           <div class="card__overlay"></div>
         </div>
       </div>
+
       <div class="card-wrap" data-cover="1169718441" data-href="commercial.html">
         <div class="card" style="background:#10160f">
           <img class="card__media vimeo-thumb" data-vimeo-id="1169718441" alt="Bellamar Hotel"/>
@@ -283,17 +275,19 @@
           <div class="card__overlay"></div>
         </div>
       </div>
+
       <div class="card-wrap" data-cover="" data-href="photography-monasterio.html">
         <div class="card" style="background:#120f0c">
           <div class="card__carousel" id="carouselMonasterio">
-            <img class="card__carousel-frame is-active" src="assets/carrusel/project-01/frame-01.webp" alt="Monasterio 1"/>
-            <img class="card__carousel-frame" src="assets/carrusel/project-01/frame-02.webp" alt="Monasterio 2"/>
-            <img class="card__carousel-frame" src="assets/carrusel/project-01/frame-03.webp" alt="Monasterio 3"/>
+            <img class="card__carousel-frame is-active" src="assets/carrusel/project-01/frame-01.webp" alt="Monasterio — frame 1"/>
+            <img class="card__carousel-frame"           src="assets/carrusel/project-01/frame-02.webp" alt="Monasterio — frame 2"/>
+            <img class="card__carousel-frame"           src="assets/carrusel/project-01/frame-03.webp" alt="Monasterio — frame 3"/>
           </div>
           <div class="video-layer"></div>
           <div class="card__overlay"></div>
         </div>
       </div>
+
     </div>
   </div>
 </div>
@@ -301,7 +295,8 @@
 
 <script>
 'use strict';
-/* Cursor */
+
+/* ─── Cursor ─────────────────────────────────────── */
 const curArrow = document.getElementById('cur-arrow');
 const curOpen  = document.getElementById('cur-open');
 let mx = 0, my = 0;
@@ -316,31 +311,24 @@ document.querySelectorAll('a, button').forEach(el => {
   el.addEventListener('mouseleave', () => document.body.classList.remove('on-interactive'));
 });
 
-/* Mobile menu */
+/* ─── Mobile menu ────────────────────────────────── */
 const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 const closeMenuBtn  = document.getElementById('close-menu-btn');
 const mobileOverlay = document.getElementById('mobile-overlay');
-function openMenu()  { mobileOverlay.classList.remove('hidden'); mobileOverlay.classList.add('flex'); mobileMenuBtn.setAttribute('aria-expanded','true');  document.body.classList.add('mobile-menu-open'); }
-function closeMenu() { mobileOverlay.classList.add('hidden');    mobileOverlay.classList.remove('flex'); mobileMenuBtn.setAttribute('aria-expanded','false'); document.body.classList.remove('mobile-menu-open'); }
+function openMenu()  { mobileOverlay.classList.remove('hidden'); mobileOverlay.classList.add('flex'); document.body.classList.add('mobile-menu-open'); }
+function closeMenu() { mobileOverlay.classList.add('hidden');    mobileOverlay.classList.remove('flex'); document.body.classList.remove('mobile-menu-open'); }
 mobileMenuBtn.addEventListener('click', openMenu);
 closeMenuBtn.addEventListener('click',  closeMenu);
-mobileOverlay.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 
-/* Slider */
+/* ─── Slider core ────────────────────────────────── */
 const track  = document.getElementById('track');
 const col    = document.getElementById('sliderCol');
 const INTERVAL = 5000;
 const realCards = Array.from(track.querySelectorAll('.card-wrap'));
 const N = realCards.length;
 
-realCards.forEach(c => {
-  const ce = c.cloneNode(true); ce.classList.add('clone');
-  track.appendChild(ce);
-});
-realCards.forEach(c => {
-  const cs = c.cloneNode(true); cs.classList.add('clone');
-  track.insertBefore(cs, realCards[0]);
-});
+realCards.forEach(c => track.appendChild(c.cloneNode(true)));
+realCards.forEach(c => track.insertBefore(c.cloneNode(true), realCards[0]));
 
 const allCards = Array.from(track.querySelectorAll('.card-wrap'));
 const OFFSET   = N;
@@ -351,7 +339,7 @@ let isAnim     = false;
 function realIdx(v) { return ((v - OFFSET) % N + N) % N; }
 function isMobileSlider() { return window.innerWidth <= 1024; }
 
-/* Thumbnails */
+/* Vimeo thumbnails */
 function fetchThumb(id) {
   fetch(`https://vimeo.com/api/oembed.json?url=https://vimeo.com/${id}&width=1280`)
     .then(r => r.json())
@@ -361,56 +349,43 @@ function fetchThumb(id) {
         img.src = `${base}_1280x720`;
         img.style.opacity = '1';
       });
-    }).catch(() => {});
+    });
 }
-[...new Set(realCards.map(c => c.dataset.cover).filter(id => id))].forEach(fetchThumb);
+[...new Set(allCards.map(c => c.querySelector('.vimeo-thumb')?.dataset.vimeoId).filter(Boolean))].forEach(fetchThumb);
 
-/* Vimeo logic */
+/* Vimeo covers */
 let _coverCard = null;
-const _isMobile = window.innerWidth <= 1024 || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
 let _mobileUnlocked = false;
 
 function _spawnCover(c) {
-  if (c.classList.contains('clone')) return;
   const id = c.dataset.cover;
-  if (!id || !_mobileUnlocked && _isMobile) return;
+  if (!id || c.querySelector('iframe')) return;
+  if (isMobileSlider() && !_mobileUnlocked) return;
   const vl = c.querySelector('.video-layer');
-  if (!vl || vl.querySelector('iframe')) return;
-  if (!window._vimeoReady) return;
   const ifr = document.createElement('iframe');
   ifr.src = `https://player.vimeo.com/video/${id}?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p`;
-  ifr.style.opacity = '0';
   vl.appendChild(ifr);
   const player = new Vimeo.Player(ifr);
   vl._vPlayer = player;
-  player.on('loaded', () => { if (c.classList.contains('is-active')) ifr.style.opacity = '1'; });
+  player.on('loaded', () => { if(c.classList.contains('is-active')) ifr.style.opacity = '1'; });
 }
 
 function _activateCover(c) {
   if (_coverCard && _coverCard !== c) {
-    const prevVl = _coverCard.querySelector('.video-layer');
-    if (prevVl?._vPlayer) prevVl._vPlayer.pause();
+    const ifr = _coverCard.querySelector('iframe');
+    if (ifr) { _coverCard.querySelector('.video-layer')._vPlayer?.pause(); ifr.style.opacity = '0'; }
   }
   _coverCard = c;
   _spawnCover(c);
-  const vl = c.querySelector('.video-layer');
-  if (vl?._vPlayer) vl._vPlayer.play().then(() => vl.querySelector('iframe').style.opacity = '1');
+  const ifr = c.querySelector('iframe');
+  if (ifr) { c.querySelector('.video-layer')._vPlayer?.play(); ifr.style.opacity = '1'; }
 }
 
 function updateActive(v) {
-  const ri = realIdx(v);
-  allCards.forEach((c, idx) => {
-    const active = idx === v;
-    c.classList.toggle('is-active', active);
-    if (!active && !c.classList.contains('clone')) {
-      const vl = c.querySelector('.video-layer');
-      if (vl?._vPlayer) { vl._vPlayer.pause(); vl.querySelector('iframe').style.opacity = '0'; }
-    }
-  });
-  _activateCover(realCards[ri]);
+  allCards.forEach((c, idx) => c.classList.toggle('is-active', idx === v));
+  _activateCover(allCards[v]);
 }
 
-/* Nav Desktop */
 function getTranslateX(v) {
   const colW = col.offsetWidth;
   let off = 0;
@@ -418,81 +393,64 @@ function getTranslateX(v) {
   return -(off - (colW / 2 - allCards[v].offsetWidth / 2));
 }
 
-let goTo = function(v, animated = true) {
+function goTo(v, animated = true) {
   if (isAnim && animated) return;
   isAnim = animated;
   updateActive(v);
-  vCurrent = v;
-  resetTimer();
-
-  if (!isMobileSlider()) {
-    track.style.transition = animated ? 'transform .75s var(--ease)' : 'none';
-    track.style.transform  = `translateX(${getTranslateX(v)}px)`;
-  } else {
+  if (isMobileSlider()) {
     allCards.forEach((c, idx) => {
       c.classList.remove('is-prev', 'is-next');
       if (idx === v - 1) c.classList.add('is-prev');
       if (idx === v + 1) c.classList.add('is-next');
     });
-    if (animated) setTimeout(() => { isAnim = false; checkLoop(); }, 720);
-    else { isAnim = false; checkLoop(); }
+    track.style.transform = 'none';
+  } else {
+    track.style.transition = animated ? 'transform .75s var(--ease)' : 'none';
+    track.style.transform  = `translateX(${getTranslateX(v)}px)`;
   }
-};
-
-function checkLoop() {
-  if (vCurrent < OFFSET) goTo(vCurrent + N, false);
-  else if (vCurrent >= OFFSET + N) goTo(vCurrent - N, false);
+  vCurrent = v;
+  resetTimer();
+  if (!animated || isMobileSlider()) {
+    isAnim = false;
+    if (vCurrent < OFFSET) goTo(vCurrent + N, false);
+    else if (vCurrent >= OFFSET + N) goTo(vCurrent - N, false);
+  }
 }
 
-track.addEventListener('transitionend', e => {
-  if (e.propertyName === 'transform') { isAnim = false; checkLoop(); }
+track.addEventListener('transitionend', () => {
+  isAnim = false;
+  if (vCurrent < OFFSET) goTo(vCurrent + N, false);
+  else if (vCurrent >= OFFSET + N) goTo(vCurrent - N, false);
 });
 
 function resetTimer() { clearInterval(timer); timer = setInterval(() => goTo(vCurrent + 1), INTERVAL); }
 
 function navigate() {
-  const href = realCards[realIdx(vCurrent)].dataset.href;
+  const href = allCards[vCurrent].dataset.href;
   if (href) window.location.href = href;
 }
 
 document.addEventListener('click', e => {
   if (e.target.closest('header, button')) return;
-  const rect = allCards[vCurrent].getBoundingClientRect();
-  const onCard = mx >= rect.left && mx <= rect.right && my >= rect.top && my <= rect.bottom;
-  if (onCard) navigate();
+  if (allCards[vCurrent].contains(e.target)) navigate();
   else goTo(mx < window.innerWidth / 2 ? vCurrent - 1 : vCurrent + 1);
 });
 
-/* Interaction */
-document.addEventListener('keydown', e => {
-  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goTo(vCurrent + 1);
-  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goTo(vCurrent - 1);
-});
-
-let tY = 0;
-col.addEventListener('touchstart', e => { 
-  tY = e.touches[0].clientY; 
-  if (!_mobileUnlocked) { _mobileUnlocked = true; _activateCover(realCards[realIdx(vCurrent)]); }
-}, { passive: true });
-
-col.addEventListener('touchend', e => {
-  const dy = tY - e.changedTouches[0].clientY;
-  if (Math.abs(dy) > 40) goTo(dy > 0 ? vCurrent + 1 : vCurrent - 1);
-}, { passive: true });
+/* Interaction Listeners */
+col.addEventListener('touchstart', () => { _mobileUnlocked = true; _activateCover(allCards[vCurrent]); }, { once: true, passive: true });
 
 window.addEventListener('load', () => { goTo(OFFSET, false); resetTimer(); });
 window.addEventListener('resize', () => goTo(vCurrent, false));
 
-/* Carousels */
-document.querySelectorAll('.card__carousel').forEach(carousel => {
-  const frames = Array.from(carousel.querySelectorAll('.card__carousel-frame'));
-  let cur = 0;
-  setInterval(() => {
+/* Photo carousel */
+setInterval(() => {
+  document.querySelectorAll('.card__carousel').forEach(carousel => {
+    const frames = Array.from(carousel.querySelectorAll('.card__carousel-frame'));
+    const cur = frames.findIndex(f => f.classList.contains('is-active'));
     frames[cur].classList.remove('is-active');
-    cur = (cur + 1) % frames.length;
-    frames[cur].classList.add('is-active');
-  }, 2800);
-});
+    frames[(cur + 1) % frames.length].classList.add('is-active');
+  });
+}, 2800);
 </script>
 </body>
 </html>
