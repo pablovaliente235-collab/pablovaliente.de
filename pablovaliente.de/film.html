@@ -3,132 +3,266 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Pablo Valiente | Zufällige Begegnung</title>
+    <title>Pablo Valiente | Zufällige Begegnung — Film</title>
+    <meta name="description" content="Film portfolio of Pablo Valiente — Filmmaker and Director of Photography based in Germany."/>
+    <link rel="canonical" href="https://pablovaliente.de/film"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Manrope:wght@300;400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
     <script id="tailwind-config">
         tailwind.config = {
           darkMode: "class",
           theme: {
             extend: {
-              colors: { "primary": "#000000", "background": "#f9f9f9", "surface-dim": "#dadada" },
-              fontFamily: { "headline": ["Syne", "sans-serif"], "body": ["Manrope", "sans-serif"] }
+              colors: {
+                "tertiary-container":"#747474","on-primary-fixed-variant":"#e2e2e2","tertiary-fixed-dim":"#464747","primary":"#000000","on-tertiary-fixed":"#ffffff","outline-variant":"#c6c6c6","on-secondary-fixed":"#1b1c1c","primary-container":"#3b3b3b","secondary":"#5e5e5e","primary-fixed-dim":"#474747","on-tertiary-fixed-variant":"#e3e2e2","on-secondary":"#ffffff","inverse-primary":"#c6c6c6","on-error-container":"#410002","secondary-fixed-dim":"#acabab","tertiary-fixed":"#5e5e5e","surface-variant":"#e2e2e2","on-tertiary-container":"#ffffff","on-primary-fixed":"#ffffff","on-background":"#1a1c1c","on-secondary-fixed-variant":"#3b3b3b","outline":"#777777","on-surface-variant":"#474747","surface-container-highest":"#e2e2e2","on-primary":"#e2e2e2","surface-container-low":"#f3f3f4","secondary-container":"#d6d4d3","primary-fixed":"#5e5e5e","background":"#f9f9f9","surface-bright":"#f9f9f9","on-secondary-container":"#1b1c1c","surface-container":"#eeeeee","on-tertiary":"#e3e2e2","on-surface":"#1a1c1c","surface-dim":"#dadada","on-error":"#ffffff","error-container":"#ffdad6","surface":"#f9f9f9","surface-container-high":"#e8e8e8","inverse-on-surface":"#f0f1f1","error":"#ba1a1a","tertiary":"#3b3b3c","surface-container-lowest":"#ffffff","on-primary-container":"#ffffff","surface-tint":"#5e5e5e","secondary-fixed":"#c8c6c6","inverse-surface":"#2f3131"
+              },
+              fontFamily: {
+                "headline":["Syne","sans-serif"],
+                "body":["Manrope","sans-serif"],
+                "label":["Manrope","sans-serif"]
+              },
+              borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"}
             }
           }
         }
     </script>
+
     <style>
+        body { background-color: #f9f9f9; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
         .kinetic-scroll::-webkit-scrollbar { display: none; }
         .kinetic-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+        .tight-editorial { letter-spacing: -0.04em; }
+
+        .vimeo-slide-wrap {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            background: #0f0f0f;
+        }
+        .vimeo-slide-wrap iframe {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 100%; height: 100%;
+            transform: translate(-50%, -50%);
+            border: 0;
+            pointer-events: none;
+        }
+
         @media (max-width: 1023px) {
-            .nav-scroll { display: flex; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
-            .nav-scroll::-webkit-scrollbar { display: none; }
-            #mobile-overlay { position: fixed!important; inset: 0!important; width: 100vw!important; height: 100dvh!important; }
+            .mobile-menu-open { overflow: hidden; }
+            .nav-scroll { display:flex; overflow-x:auto; white-space:nowrap; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+            .nav-scroll::-webkit-scrollbar { display:none; }
+            .nav-scroll a { flex:0 0 auto; }
+            #mobile-overlay { position:fixed !important; top:0 !important; left:0 !important; width:100vw !important; height:100dvh !important; overflow:hidden !important; }
+            #slider-description-wrapper { display:flex !important; flex-direction:column !important; justify-content:center !important; }
+        }
+        @media (max-width: 767px) {
+            #slider ~ div span { font-size:8px !important; letter-spacing:0.1em !important; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:calc(100vw - 100px); display:inline !important; }
+            #slider ~ div span + span::before { content:" "; white-space:pre; }
+            #prevBtn, #nextBtn { width:32px !important; height:32px !important; font-size:18px !important; }
+        }
+        @media (hover: none) and (pointer: coarse) {
+            .group:hover img { transform:none !important; }
+            a:hover, button:hover { color:inherit !important; border-color:inherit !important; }
+        }
+        /* Ajuste para que el último elemento ocupe las dos columnas si hay un número impar */
+        @media (min-width: 768px) {
+            #photography-grid .grid-item:last-child:nth-child(odd) { grid-column:span 2; }
         }
     </style>
-</head>
-<body class="antialiased bg-[#f9f9f9]">
-    <header class="fixed top-0 w-full z-[60] bg-[#f9f9f9]">
+</head><body class="antialiased selection:bg-primary selection:text-white">
+
+    <header class="fixed top-0 w-full z-[60] bg-[#f9f9f9] shadow-none" id="unified-header">
         <nav class="w-full flex items-center py-6 md:py-8 justify-between px-4 md:px-6 lg:px-10">
-            <a href="index.html" class="font-['Syne'] text-[11px] font-bold tracking-[0.25em] text-black uppercase">PABLO VALIENTE</a>
-            <button class="lg:hidden" id="mobile-menu-btn"><span class="material-symbols-outlined text-black">menu</span></button>
+            <a href="index.html" class="font-['Syne'] text-[11px] font-bold tracking-[0.25em] text-black uppercase hover:opacity-70 transition-opacity">PABLO VALIENTE</a>
             <div class="hidden lg:flex space-x-6">
-                <a class="font-['Syne'] uppercase tracking-[0.2em] text-[9px] font-bold text-black border-b border-black pb-1" href="film.html">FILM</a>
-                <a class="font-['Syne'] uppercase tracking-[0.2em] text-[9px] font-bold text-black/60 hover:text-black" href="commercial.html">COMMERCIAL</a>
-                <a class="font-['Syne'] uppercase tracking-[0.2em] text-[9px] font-bold text-black/60 hover:text-black" href="photography-monasterio.html">PHOTOGRAPHY</a>
-                <a class="font-['Syne'] uppercase tracking-[0.2em] text-[9px] font-bold text-black/60 hover:text-black" href="contact.html">CONTACT</a>
+                <a class="font-['Syne'] uppercase tracking-[0.2em] text-[9px] font-bold leading-tight antialiased text-black border-b border-black pb-1 transition-colors duration-300" href="film.html">FILM</a>
+                <a class="font-['Syne'] uppercase tracking-[0.2em] text-[9px] font-bold leading-tight antialiased text-black/60 hover:text-black transition-colors duration-300" href="commercial.html">COMMERCIAL</a>
+                <a class="font-['Syne'] uppercase tracking-[0.2em] text-[9px] font-bold leading-tight antialiased text-black/60 hover:text-black transition-colors duration-300" href="photography-monasterio.html">PHOTOGRAPHY</a>
+                <a class="font-['Syne'] uppercase tracking-[0.2em] text-[9px] font-bold leading-tight antialiased text-black/60 hover:text-black transition-colors duration-300" href="contact.html">CONTACT</a>
             </div>
+            <button class="lg:hidden flex items-center justify-center w-11 h-11 -mr-2 focus:outline-none" id="mobile-menu-btn">
+                <span class="material-symbols-outlined text-black scale-125">menu</span>
+            </button>
         </nav>
-        <nav class="w-full flex lg:justify-center items-center py-4 px-4 nav-scroll border-t border-black/5 lg:border-none lg:space-x-16">
-            <a class="font-['Syne'] uppercase tracking-[0.2em] font-bold text-black text-[9px] mr-8 lg:mr-0" href="film.html">ZUFÄLLIGE BEGEGNUNG</a>
-            <a class="font-['Syne'] uppercase tracking-[0.2em] font-semibold text-neutral-400 hover:text-black text-[9px] mr-8 lg:mr-0" href="film-nichtschonwieder.html">NICHT SCHON WIEDER</a>
-            <a class="font-['Syne'] uppercase tracking-[0.2em] font-semibold text-neutral-400 hover:text-black text-[9px]" href="film-colorgrading.html">COLOR GRADING</a>
+        <div class="fixed inset-0 bg-[#f9f9f9] z-[70] hidden flex-col items-center justify-center" id="mobile-overlay">
+            <button class="absolute top-6 right-4 w-11 h-11 flex items-center justify-center focus:outline-none" id="close-menu-btn">
+                <span class="material-symbols-outlined text-black scale-125">close</span>
+            </button>
+            <div class="flex flex-col items-center space-y-6 pt-[80px]">
+                <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6 border-b border-black pb-1" href="film.html" style="color:#000000;">FILM</a>
+                <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="commercial.html" style="color:rgba(0,0,0,0.4);">COMMERCIAL</a>
+                <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="photography-monasterio.html" style="color:rgba(0,0,0,0.4);">PHOTOGRAPHY</a>
+                <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="contact.html" style="color:rgba(0,0,0,0.4);">CONTACT</a>
+            </div>
+        </div>
+        <nav class="w-full flex lg:justify-center items-center py-4 px-4 md:px-6 nav-scroll border-t border-black/5 lg:border-none lg:space-x-16">
+            <a class="font-['Syne'] uppercase tracking-[0.2em] font-bold text-black text-[9px] mr-8 lg:mr-0" href="film.html">Z&#xFC;F&#xC4;LLIGE BEGEGNUNG</a>
+            <a class="font-['Syne'] uppercase tracking-[0.2em] font-semibold text-neutral-400 hover:text-black transition-all duration-300 text-[9px] mr-8 lg:mr-0" href="film-nichtschonwieder.html">NICHT SCHON WIEDER</a>
+            <a class="font-['Syne'] uppercase tracking-[0.2em] font-semibold text-neutral-400 hover:text-black transition-all duration-300 text-[9px] pr-4 lg:pr-0" href="film-colorgrading.html">PERDIDO EN UNA PERDIZ</a>
         </nav>
     </header>
+    <main class="px-4 md:px-6 lg:px-20 max-w-screen-2xl mx-auto pt-44 lg:pt-32 pb-6">
+        <section class="relative overflow-hidden mb-16 lg:mb-24">
+            <div class="flex space-x-4 md:space-x-8 lg:space-x-12 overflow-x-auto kinetic-scroll snap-x snap-mandatory scroll-smooth pb-4" id="slider" style="outline:none;">
 
-    <div id="mobile-overlay" class="fixed inset-0 bg-[#f9f9f9] z-[70] hidden flex-col items-center justify-center">
-        <button class="absolute top-6 right-4" id="close-menu-btn"><span class="material-symbols-outlined text-black">close</span></button>
-        <div class="flex flex-col items-center space-y-6">
-            <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold border-b border-black" href="film.html">FILM</a>
-            <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold text-black/40" href="commercial.html">COMMERCIAL</a>
-            <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold text-black/40" href="photography-monasterio.html">PHOTOGRAPHY</a>
-            <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold text-black/40" href="contact.html">CONTACT</a>
-        </div>
-    </div>
-
-    <main class="px-4 md:px-6 lg:px-20 max-w-screen-2xl mx-auto pt-44 lg:pt-32 pb-4 lg:pb-8">
-        <section class="mb-12 lg:mb-20">
-            <div class="aspect-video w-full bg-black">
-                <iframe src="https://player.vimeo.com/video/893321443?h=8c78c3a1b3&color=ffffff&title=0&byline=0&portrait=0" class="w-full h-full" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-            </div>
-        </section>
-
-        <section class="relative overflow-hidden mb-6 lg:mb-24">
-            <div class="flex space-x-4 md:space-x-8 lg:space-x-12 overflow-x-auto kinetic-scroll snap-x snap-mandatory scroll-smooth pb-4" id="slider" style="outline: none;"></div>
-            <div class="flex justify-between items-center border-t border-black/5 pt-4">
-                <div class="flex space-x-6">
-                    <button class="material-symbols-outlined text-neutral-400 hover:text-black" id="prevBtn">west</button>
-                    <button class="material-symbols-outlined text-neutral-400 hover:text-black" id="nextBtn">east</button>
+                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center flex-shrink-0">
+                    <div class="vimeo-slide-wrap">
+                        <iframe
+                            src="https://player.vimeo.com/video/1169500086?autoplay=1&loop=1&muted=1&background=1&autopause=0&controls=0&title=0&byline=0&portrait=0&dnt=1"
+                            allow="autoplay; fullscreen; picture-in-picture"
+                            allowfullscreen
+                            title="ZUFÄLLIGE BEGEGNUNG">
+                        </iframe>
+                    </div>
                 </div>
-                <div class="font-['Syne'] text-[10px] tracking-[0.2em] text-neutral-400 uppercase">ZUFÄLLIGE BEGEGNUNG | Kurzfilm</div>
+                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center flex-shrink-0">
+                    <div class="vimeo-slide-wrap">
+                        <iframe
+                            src="https://player.vimeo.com/video/1169716541?autoplay=1&loop=1&muted=1&background=1&autopause=0&controls=0&title=0&byline=0&portrait=0&dnt=1"
+                            allow="autoplay; fullscreen; picture-in-picture"
+                            allowfullscreen
+                            title="PERDIDO EN UNA PERDIZ">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-row justify-between items-center border-t border-black/5 pt-4 mt-1">
+                <div class="flex items-center space-x-6">
+                    <button class="material-symbols-outlined text-neutral-400 hover:text-black transition-colors w-11 h-11 flex items-center justify-center" id="prevBtn">west</button>
+                    <button class="material-symbols-outlined text-neutral-400 hover:text-black transition-colors w-11 h-11 flex items-center justify-center" id="nextBtn">east</button>
+                </div>
+                <div class="font-['Syne'] text-[10px] tracking-[0.2em] font-semibold text-neutral-400 uppercase text-right self-center" id="slider-description-wrapper">
+                    <span class="block lg:inline" id="slide-label-title" style="color:rgb(115,115,115);font-family:Manrope;font-size:11px;font-weight:400;letter-spacing:2px;">ZUFÄLLIGE BEGEGNUNG</span>
+                    <span class="block lg:inline lg:ml-2" id="slide-label-sub" style="color:rgb(115,115,115);font-family:Manrope;font-size:11px;font-weight:400;letter-spacing:2px;">Personal Project</span>
+                </div>
             </div>
         </section>
-
-        <section class="p-4 md:p-6 lg:p-12 bg-[#f3f3f4] mb-2 lg:mb-6" id="grid-container" data-path="/assets/film/project-1/frames" data-prefix="Film">
-            <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8" id="film-grid"></div>
+        <script id="slide-data" type="application/json">[{"title": "ZUF\u00c4LLIGE BEGEGNUNG", "sub": "Personal Project"}, {"title": "PERDIDO EN UNA PERDIZ", "sub": "Color Grading"}]</script>
+        
+        <section
+            class="p-4 md:p-6 lg:p-12 shadow-sm mb-6 bg-[#f3f3f4]"
+            id="frames-section"
+            data-project-path="assets/film/project-1/frames"
+            data-frame-ext="webp"
+            data-alt-prefix="Zufällige Begegnung">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8" id="photography-grid">
+                </div>
         </section>
     </main>
 
-    <footer class="py-8 lg:py-16 flex flex-col items-center bg-[#f9f9f9]">
-        <div class="flex space-x-8 mb-8 text-[12px] font-['Syne'] text-neutral-500">
-            <a href="https://instagram.com/pvaliente_" target="_blank">INSTAGRAM</a>
-            <a href="https://www.behance.net/pvaliente" target="_blank">BEHANCE</a>
+    <footer class="w-full flex flex-col items-center justify-center py-16 px-4 md:px-6 lg:px-20 bg-[#f9f9f9] mt-2">
+        <div class="flex flex-row items-center space-y-0 space-x-6 md:space-x-12 mb-8">
+            <a href="https://instagram.com/pvaliente_" target="_blank" rel="noopener noreferrer" class="font-['Syne'] text-[12px] tracking-widest uppercase text-neutral-500 hover:text-black transition-colors py-2 px-4 whitespace-nowrap">INSTAGRAM</a>
+            <a href="https://www.behance.net/pvaliente" target="_blank" rel="noopener noreferrer" class="font-['Syne'] text-[12px] tracking-widest uppercase text-neutral-500 hover:text-black transition-colors py-2 px-4 whitespace-nowrap">BEHANCE</a>
+            <a href="https://www.linkedin.com/in/valiente-pablo" target="_blank" rel="noopener noreferrer" class="font-['Syne'] text-[12px] tracking-widest uppercase text-neutral-500 hover:text-black transition-colors py-2 px-4 whitespace-nowrap">LINKEDIN</a>
         </div>
-        <p class="text-[10px] font-['Syne'] text-neutral-600 uppercase">© <span id="year"></span> PABLO VALIENTE</p>
+        <p class="font-['Syne'] text-[10px] tracking-widest uppercase text-neutral-600 text-center">
+            &copy; <span id="footerYear"></span> PABLO VALIENTE. ALL RIGHTS RESERVED.
+        </p>
     </footer>
 
     <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
-        const slider = document.getElementById('slider');
-        const nextBtn = document.getElementById('nextBtn');
-        const prevBtn = document.getElementById('prevBtn');
+        /* Footer year */
+        document.getElementById('footerYear').textContent = new Date().getFullYear();
 
-        const getScroll = () => slider.querySelector('.snap-center').clientWidth + parseInt(getComputedStyle(slider).gap);
+        /* Frames grid: Auto-detect quantity of webp files */
+        (async function () {
+            const section = document.getElementById('frames-section');
+            if (!section) return;
+            const grid        = section.querySelector('#photography-grid');
+            const projectPath = section.dataset.projectPath;
+            const ext         = section.dataset.frameExt || 'webp';
+            const altPrefix   = section.dataset.altPrefix || 'Frame';
+            if (!grid || !projectPath) return;
 
-        nextBtn.onclick = () => slider.scrollBy({ left: getScroll(), behavior: 'smooth' });
-        prevBtn.onclick = () => slider.scrollBy({ left: -getScroll(), behavior: 'smooth' });
+            let i = 1;
+            let keepChecking = true;
 
-        slider.onclick = (e) => {
-            const slide = e.target.closest('.snap-center');
-            if(!slide) return;
-            const rect = slide.getBoundingClientRect();
-            const center = slider.getBoundingClientRect().left + slider.clientWidth/2;
-            if(Math.abs(center - (rect.left + rect.width/2)) < rect.width/2) {
-                (e.clientX - rect.left > rect.width/2) ? nextBtn.click() : prevBtn.click();
-            } else {
-                slider.scrollTo({ left: slide.offsetLeft - slider.clientWidth/2 + slide.clientWidth/2, behavior: 'smooth' });
-            }
-        };
-
-        // Auto-load Images
-        (async function() {
-            const path = document.getElementById('grid-container').dataset.path;
-            const grid = document.getElementById('film-grid');
-            for(let i=1; i<=30; i++) {
-                const src = `${path}/frame-${String(i).padStart(2,'0')}.webp`;
-                const img = new Image();
-                img.src = src;
-                const exists = await new Promise(r => { img.onload=()=>r(true); img.onerror=()=>r(false); });
-                if(!exists) break;
+            while (keepChecking && i <= 100) { 
+                const n = String(i).padStart(2, '0');
+                const imgSrc = `${projectPath}/frame-${n}.${ext}`;
                 
-                slider.innerHTML += `<div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative"><div class="aspect-video overflow-hidden bg-surface-dim"><img class="w-full h-full object-cover" src="${src}"></div></div>`;
-                grid.innerHTML += `<div class="aspect-video overflow-hidden bg-white"><img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" src="${src}" loading="lazy"></div>`;
+                const checkImage = (src) => {
+                    return new Promise((resolve) => {
+                        const img = new Image();
+                        img.onload = () => resolve(true);
+                        img.onerror = () => resolve(false);
+                        img.src = src;
+                    });
+                };
+
+                const exists = await checkImage(imgSrc);
+
+                if (exists) {
+                    const div = document.createElement('div');
+                    div.className = 'grid-item group aspect-[16/9] overflow-hidden bg-surface-container-low';
+                    const img = document.createElement('img');
+                    img.className = 'w-full h-full object-cover hover:scale-105 transition-all duration-700 ease-in-out';
+                    img.src     = imgSrc;
+                    img.alt     = altPrefix + ' — Frame ' + n;
+                    img.loading = 'lazy';
+                    div.appendChild(img);
+                    grid.appendChild(div);
+                    i++;
+                } else {
+                    keepChecking = false;
+                }
             }
         })();
 
-        // Menu
-        document.getElementById('mobile-menu-btn').onclick = () => document.getElementById('mobile-overlay').classList.remove('hidden');
-        document.getElementById('close-menu-btn').onclick = () => document.getElementById('mobile-overlay').classList.add('hidden');
+        /* Slider */
+        const slider     = document.getElementById('slider');
+        const prevBtn    = document.getElementById('prevBtn');
+        const nextBtn    = document.getElementById('nextBtn');
+        const slideData  = JSON.parse(document.getElementById('slide-data').textContent);
+        const labelTitle = document.getElementById('slide-label-title');
+        const labelSub   = document.getElementById('slide-label-sub');
+
+        function getScrollAmount() {
+            const item = slider.querySelector('.snap-center');
+            const gap  = parseInt(window.getComputedStyle(slider).gap) || 0;
+            return item.clientWidth + gap;
+        }
+        function updateLabel() {
+            const idx = Math.max(0, Math.min(Math.round(slider.scrollLeft / getScrollAmount()), slideData.length - 1));
+            labelTitle.textContent = slideData[idx].title;
+            labelSub.textContent   = slideData[idx].sub;
+        }
+        nextBtn.addEventListener('click', () => slider.scrollBy({ left:  getScrollAmount(), behavior: 'smooth' }));
+        prevBtn.addEventListener('click', () => slider.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' }));
+        let scrollTimer;
+        slider.addEventListener('scroll', () => { clearTimeout(scrollTimer); scrollTimer = setTimeout(updateLabel, 120); });
+        window.addEventListener('keydown', e => {
+            if (e.key === 'ArrowRight') slider.scrollBy({ left:  getScrollAmount(), behavior: 'smooth' });
+            if (e.key === 'ArrowLeft')  slider.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+        });
+        let touchStartX = 0;
+        slider.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+        slider.addEventListener('touchend',   e => {
+            const dx = touchStartX - e.changedTouches[0].screenX;
+            if (Math.abs(dx) > 50) slider.scrollBy({ left: dx > 0 ? getScrollAmount() : -getScrollAmount(), behavior: 'smooth' });
+        }, { passive: true });
+
+        /* Mobile menu */
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeMenuBtn  = document.getElementById('close-menu-btn');
+        const mobileOverlay = document.getElementById('mobile-overlay');
+        mobileMenuBtn.addEventListener('click', () => { mobileOverlay.classList.remove('hidden'); document.body.classList.add('mobile-menu-open'); });
+        closeMenuBtn.addEventListener('click',  () => { mobileOverlay.classList.add('hidden');    document.body.classList.remove('mobile-menu-open'); });
+        mobileOverlay.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { mobileOverlay.classList.add('hidden'); document.body.classList.remove('mobile-menu-open'); }));
+
+        /* Sub-nav: scroll to active item on mobile */
+        (function () {
+            const navScroll  = document.querySelector('.nav-scroll');
+            const activeLink = navScroll ? navScroll.querySelector('a.text-black') : null;
+            if (navScroll && activeLink) {
+                navScroll.scrollLeft = activeLink.offsetLeft - navScroll.offsetWidth / 2 + activeLink.offsetWidth / 2;
+            }
+        })();
     </script>
 </body>
 </html>
