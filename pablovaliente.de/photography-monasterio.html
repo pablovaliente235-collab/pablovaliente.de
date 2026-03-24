@@ -300,11 +300,8 @@
             }
         });
 
-        // Navegación por tap/clic en móvil y tablet
+        // Navegación por clic/tap en la imagen (Funciona en todos los dispositivos)
         slider.addEventListener('click', (e) => {
-            // Solo actuar en pantallas menores a 1024px (Móvil y Tablet)
-            if (window.innerWidth >= 1024) return;
-
             // Asegurarse de que hemos hecho clic dentro de una imagen del slider
             const slide = e.target.closest('.snap-center');
             if (!slide) return;
@@ -344,7 +341,7 @@
 
         slider.style.outline = 'none';
 
-        // Project Bar Auto-scroll
+        // Project Bar Auto-scroll — center active item within the scrollable nav container
         (function() {
             const navScroll = document.querySelector('.nav-scroll');
             const activeLink = navScroll ? navScroll.querySelector('a.text-black') : null;
