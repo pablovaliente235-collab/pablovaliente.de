@@ -173,42 +173,42 @@
         
         <section class="relative overflow-hidden mb-6 lg:mb-24">
             <div class="flex space-x-4 md:space-x-8 lg:space-x-12 overflow-x-auto kinetic-scroll snap-x snap-mandatory scroll-smooth pb-4" id="slider" style="outline: none;">
-                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center">
+                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative">
                     <figure class="group cursor-pointer">
                         <div class="aspect-[3/2] overflow-hidden bg-surface-dim">
                             <img class="w-full h-full object-cover duration-700" data-alt="Nature & Tradition 01" src="/assets/photography/project-2/frames/frame-01.webp"/>
                         </div>
                     </figure>
                 </div>
-                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center">
+                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative">
                     <figure class="group cursor-pointer">
                         <div class="aspect-[3/2] overflow-hidden bg-surface-dim">
                             <img class="w-full h-full object-cover duration-700" data-alt="Nature & Tradition 02" src="/assets/photography/project-2/frames/frame-02.webp"/>
                         </div>
                     </figure>
                 </div>
-                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center">
+                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative">
                     <figure class="group cursor-pointer">
                         <div class="aspect-[3/2] overflow-hidden bg-surface-dim">
                             <img class="w-full h-full object-cover duration-700" data-alt="Nature & Tradition 03" src="/assets/photography/project-2/frames/frame-03.webp"/>
                         </div>
                     </figure>
                 </div>
-                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center">
+                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative">
                     <figure class="group cursor-pointer">
                         <div class="aspect-[3/2] overflow-hidden bg-surface-dim">
                             <img class="w-full h-full object-cover duration-700" data-alt="Nature & Tradition 04" src="/assets/photography/project-2/frames/frame-04.webp"/>
                         </div>
                     </figure>
                 </div>
-                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center">
+                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative">
                     <figure class="group cursor-pointer">
                         <div class="aspect-[3/2] overflow-hidden bg-surface-dim">
                             <img class="w-full h-full object-cover duration-700" data-alt="Nature & Tradition 05" src="/assets/photography/project-2/frames/frame-05.webp"/>
                         </div>
                     </figure>
                 </div>
-                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center">
+                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative">
                     <figure class="group cursor-pointer">
                         <div class="aspect-[3/2] overflow-hidden bg-surface-dim">
                             <img class="w-full h-full object-cover duration-700" data-alt="Nature & Tradition 06" src="/assets/photography/project-2/frames/frame-06.webp"/>
@@ -261,6 +261,7 @@
             return itemWidth + gap;
         };
 
+        // Controles de flechas
         nextBtn.addEventListener('click', () => {
             slider.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
         });
@@ -269,11 +270,41 @@
             slider.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
         });
 
+        // Controles por teclado
         window.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowRight') {
                 slider.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
             } else if (e.key === 'ArrowLeft') {
                 slider.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+            }
+        });
+
+        // Navegación por clic inteligente: Detecta central vs. lateral en cualquier dispositivo
+        slider.addEventListener('click', (e) => {
+            const slide = e.target.closest('.snap-center');
+            if (!slide) return;
+
+            const sliderRect = slider.getBoundingClientRect();
+            const slideRect = slide.getBoundingClientRect();
+
+            // Encontrar el punto central exacto
+            const sliderCenter = sliderRect.left + (sliderRect.width / 2);
+            const slideCenter = slideRect.left + (slideRect.width / 2);
+
+            const isCenterSlide = Math.abs(sliderCenter - slideCenter) < (slideRect.width / 2);
+
+            if (isCenterSlide) {
+                // Lógica normal
+                const clickX = e.clientX - slideRect.left;
+                if (clickX > slideRect.width / 2) {
+                    slider.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+                } else {
+                    slider.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+                }
+            } else {
+                // Centrar lateral
+                const scrollTarget = slide.offsetLeft - (slider.clientWidth / 2) + (slide.clientWidth / 2);
+                slider.scrollTo({ left: scrollTarget, behavior: 'smooth' });
             }
         });
 
@@ -288,7 +319,6 @@
             document.body.classList.remove('mobile-menu-open');
         });
 
-        // Close menu on link click
         mobileOverlay.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileOverlay.classList.add('hidden');
@@ -296,33 +326,9 @@
             });
         });
 
-        // Swipe Support
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        slider.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-
-        slider.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleGesture();
-        }, { passive: true });
-
-        function handleGesture() {
-            const threshold = 50;
-            if (touchStartX - touchEndX > threshold) {
-                // Swiped Left
-                slider.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
-            } else if (touchEndX - touchStartX > threshold) {
-                // Swiped Right
-                slider.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
-            }
-        }
-
         slider.style.outline = 'none';
 
-        // Project Bar Auto-scroll — center active item within the scrollable nav container
+        // Project Bar Auto-scroll
         (function() {
             const navScroll = document.querySelector('.nav-scroll');
             const activeLink = navScroll ? navScroll.querySelector('a.text-black') : null;
@@ -343,7 +349,6 @@
             
             while (true) {
                 const frameNum = i.toString().padStart(2, '0');
-                // IMPORTANTE: Ruta absoluta (/) y en minúsculas (frame) para Cloudflare Pages
                 const src = `/assets/photography/${project}/frames/frame-${frameNum}.webp`;
                 
                 const exists = await new Promise(resolve => {
@@ -363,7 +368,6 @@
             }
         }
 
-        // Iniciar la carga de imágenes
         loadFrames();
     </script>
 </body>
