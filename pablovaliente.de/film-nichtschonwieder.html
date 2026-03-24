@@ -128,10 +128,10 @@
         <section 
             class="p-2 md:p-6 lg:p-12 shadow-sm mb-2 bg-[#f3f3f4]" 
             id="frames-section"
-            data-project-path="assets/film/project-2/frames"
+            data-project-path="assets/film/project-2/Frames"
             data-frame-ext="webp"
             data-alt-prefix="Nicht schon wieder"
-            data-max-frames="30">
+            data-max-frames="8">
             <div class="grid grid-cols-2 gap-1 md:gap-4 lg:gap-8" id="photography-grid">
             </div>
         </section>
@@ -152,7 +152,6 @@
     <script>
         document.getElementById('footerYear').textContent = new Date().getFullYear();
 
-        /* Lógica de auto-detección segura para Cloudflare */
         (function () {
             const section = document.getElementById('frames-section');
             if (!section) return;
@@ -160,7 +159,7 @@
             const projectPath = section.dataset.projectPath;
             const ext         = section.dataset.frameExt || 'webp';
             const altPrefix   = section.dataset.altPrefix || 'Frame';
-            const maxFrames   = parseInt(section.dataset.maxFrames) || 30; 
+            const maxFrames   = parseInt(section.dataset.maxFrames) || 8; 
             
             if (!grid || !projectPath) return;
 
@@ -207,7 +206,6 @@
             labelSub.textContent   = slideData[clamped].sub;
         }
 
-        /* Lógica de clics en imágenes/videos del slider */
         const slidesWrap = document.querySelectorAll('.vimeo-slide-wrap');
         let isDragging = false;
         
