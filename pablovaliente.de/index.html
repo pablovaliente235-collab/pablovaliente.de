@@ -73,9 +73,7 @@
   }
   .stage > *, .slider-col { pointer-events: auto; }
 
-  /* ══════════════════════════════════
-     DESKTOP SLIDER
-  ══════════════════════════════════ */
+  /* ── Desktop Slider ── */
   .slider-col {
     position: relative;
     width: 100vw;
@@ -157,42 +155,45 @@
       align-items: center;
       justify-content: center;
       perspective: 1200px;
+      perspective-origin: center center;
     }
 
     .slider-track {
       position: relative;
       width: 100%;
       height: 100%;
-      display: block;
       transform: none !important;
+      transition: none !important;
       transform-style: preserve-3d;
     }
 
+    /* Base cards */
     .card-wrap {
       position: absolute;
       top: 50%; left: 0; right: 0;
       margin: 0 auto;
       pointer-events: none;
-      /* Estado base: oculto abajo */
       transform: translateY(-50%) translateY(60px) scale(0.78) rotateX(18deg);
       opacity: 0;
       transition: transform .7s var(--ease), opacity .55s var(--ease);
       will-change: transform, opacity;
+      transform-origin: center center;
     }
+    .card-wrap .card { height: auto; aspect-ratio: 16 / 9; }
 
-    /* Tarjeta Central (Corregida) */
+    /* Active card — Corrected vertical position */
     .card-wrap.is-active {
       transform: translateY(-50%) scale(1) rotateX(0deg);
-      opacity: 1; 
-      pointer-events: auto; 
-      z-index: 10;
+      opacity: 1; pointer-events: auto; z-index: 10;
     }
 
-    /* Secundarias (Sin cambios) */
+    /* Previous — No modification */
     .card-wrap.is-prev {
       transform: translateY(-50%) translateY(-42%) scale(0.82) rotateX(-22deg);
       opacity: 0.55; z-index: 5;
     }
+
+    /* Next — No modification */
     .card-wrap.is-next {
       transform: translateY(-50%) translateY(42%) scale(0.82) rotateX(22deg);
       opacity: 0.55; z-index: 5;
@@ -208,7 +209,7 @@
 
   @media (max-width: 1023px) {
     .mobile-menu-open { overflow: hidden; }
-    #mobile-overlay { position: fixed !important; inset: 0 !important; width: 100vw !important; height: 100dvh !important; }
+    #mobile-overlay { position: fixed !important; inset: 0 !important; width: 100vw !important; height: 100dvh !important; overflow: hidden !important; }
   }
 </style>
 </head>
@@ -223,43 +224,41 @@
 
 <header class="fixed top-0 w-full z-[600] bg-white" id="unified-header">
   <nav class="w-full flex items-center py-6 md:py-8 justify-between px-4 md:px-6 lg:px-10">
-    <a href="index.html" class="font-['Syne'] text-[11px] font-bold tracking-[0.25em] text-black uppercase hover:opacity-70 transition-opacity">PABLO VALIENTE</a>
+    <a href="index.html" class="font-['Syne'] text-[11px] font-bold tracking-[0.25em] text-black uppercase">PABLO VALIENTE</a>
     <div class="hidden lg:flex space-x-6">
       <a class="font-['Syne'] uppercase tracking-[0.2em] text-[9px] font-bold text-black/60 hover:text-black transition-colors" href="film.html">FILM</a>
       <a class="font-['Syne'] uppercase tracking-[0.2em] text-[9px] font-bold text-black/60 hover:text-black transition-colors" href="commercial.html">COMMERCIAL</a>
       <a class="font-['Syne'] uppercase tracking-[0.2em] text-[9px] font-bold text-black/60 hover:text-black transition-colors" href="photography-monasterio.html">PHOTOGRAPHY</a>
       <a class="font-['Syne'] uppercase tracking-[0.2em] text-[9px] font-bold text-black/60 hover:text-black transition-colors" href="contact.html">CONTACT</a>
     </div>
-    <button class="lg:hidden flex items-center justify-center w-11 h-11 -mr-2" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">
+    <button class="lg:hidden flex items-center justify-center w-11 h-11 -mr-2" id="mobile-menu-btn" aria-label="Open menu">
       <span class="material-symbols-outlined text-black scale-125">menu</span>
     </button>
   </nav>
-  <div class="fixed inset-0 bg-white z-[70] hidden flex-col items-center justify-center" id="mobile-overlay" role="dialog" aria-label="Navigation menu">
-    <button class="absolute top-6 right-4 w-11 h-11 flex items-center justify-center" id="close-menu-btn" aria-label="Close menu">
+  <div class="fixed inset-0 bg-white z-[70] hidden flex-col items-center justify-center" id="mobile-overlay">
+    <button class="absolute top-6 right-4 w-11 h-11 flex items-center justify-center" id="close-menu-btn">
       <span class="material-symbols-outlined text-black scale-125">close</span>
     </button>
     <div class="flex flex-col items-center space-y-6 pt-20">
-      <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="film.html"                  style="color:rgba(0,0,0,.4)">FILM</a>
-      <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="commercial.html"             style="color:rgba(0,0,0,.4)">COMMERCIAL</a>
-      <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="photography-monasterio.html" style="color:rgba(0,0,0,.4)">PHOTOGRAPHY</a>
-      <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="contact.html"                style="color:rgba(0,0,0,.4)">CONTACT</a>
+      <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="film.html">FILM</a>
+      <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="commercial.html">COMMERCIAL</a>
+      <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="photography-monasterio.html">PHOTOGRAPHY</a>
+      <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="contact.html">CONTACT</a>
     </div>
   </div>
 </header>
 
 <main>
 <div class="stage">
-  <div class="slider-col" id="sliderCol" role="region" aria-label="Portfolio">
+  <div class="slider-col" id="sliderCol">
     <div class="slider-track" id="track">
-
       <div class="card-wrap" data-cover="1169718635" data-href="film.html">
         <div class="card" style="background:#1a1208">
-          <img class="card__media vimeo-thumb" data-vimeo-id="1169718635" alt="Zufällige Begegnung" fetchpriority="high"/>
+          <img class="card__media vimeo-thumb" data-vimeo-id="1169718635" alt="Zufällige Begegnung"/>
           <div class="video-layer"></div>
           <div class="card__overlay"></div>
         </div>
       </div>
-
       <div class="card-wrap" data-cover="1170251945" data-href="film-colorgrading.html">
         <div class="card" style="background:#1a1510">
           <img class="card__media vimeo-thumb" data-vimeo-id="1170251945" alt="Perdido en una Perdiz"/>
@@ -267,7 +266,6 @@
           <div class="card__overlay"></div>
         </div>
       </div>
-
       <div class="card-wrap" data-cover="1169718441" data-href="commercial.html">
         <div class="card" style="background:#10160f">
           <img class="card__media vimeo-thumb" data-vimeo-id="1169718441" alt="Bellamar Hotel"/>
@@ -275,19 +273,17 @@
           <div class="card__overlay"></div>
         </div>
       </div>
-
       <div class="card-wrap" data-cover="" data-href="photography-monasterio.html">
         <div class="card" style="background:#120f0c">
-          <div class="card__carousel" id="carouselMonasterio">
-            <img class="card__carousel-frame is-active" src="assets/carrusel/project-01/frame-01.webp" alt="Monasterio — frame 1"/>
-            <img class="card__carousel-frame"           src="assets/carrusel/project-01/frame-02.webp" alt="Monasterio — frame 2"/>
-            <img class="card__carousel-frame"           src="assets/carrusel/project-01/frame-03.webp" alt="Monasterio — frame 3"/>
+          <div class="card__carousel">
+            <img class="card__carousel-frame is-active" src="assets/carrusel/project-01/frame-01.webp"/>
+            <img class="card__carousel-frame" src="assets/carrusel/project-01/frame-02.webp"/>
+            <img class="card__carousel-frame" src="assets/carrusel/project-01/frame-03.webp"/>
           </div>
           <div class="video-layer"></div>
           <div class="card__overlay"></div>
         </div>
       </div>
-
     </div>
   </div>
 </div>
@@ -295,8 +291,6 @@
 
 <script>
 'use strict';
-
-/* ─── Cursor ─────────────────────────────────────── */
 const curArrow = document.getElementById('cur-arrow');
 const curOpen  = document.getElementById('cur-open');
 let mx = 0, my = 0;
@@ -306,147 +300,78 @@ document.addEventListener('mousemove', e => {
   curOpen.style.left  = mx + 'px'; curOpen.style.top  = my + 'px';
   curArrow.classList.add('is-ready');
 });
-document.querySelectorAll('a, button').forEach(el => {
-  el.addEventListener('mouseenter', () => document.body.classList.add('on-interactive'));
-  el.addEventListener('mouseleave', () => document.body.classList.remove('on-interactive'));
-});
 
-/* ─── Mobile menu ────────────────────────────────── */
 const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 const closeMenuBtn  = document.getElementById('close-menu-btn');
 const mobileOverlay = document.getElementById('mobile-overlay');
-function openMenu()  { mobileOverlay.classList.remove('hidden'); mobileOverlay.classList.add('flex'); document.body.classList.add('mobile-menu-open'); }
-function closeMenu() { mobileOverlay.classList.add('hidden');    mobileOverlay.classList.remove('flex'); document.body.classList.remove('mobile-menu-open'); }
-mobileMenuBtn.addEventListener('click', openMenu);
-closeMenuBtn.addEventListener('click',  closeMenu);
+mobileMenuBtn.onclick = () => { mobileOverlay.classList.remove('hidden'); mobileOverlay.classList.add('flex'); document.body.style.overflow = 'hidden'; };
+closeMenuBtn.onclick = () => { mobileOverlay.classList.add('hidden'); mobileOverlay.classList.remove('flex'); document.body.style.overflow = ''; };
 
-/* ─── Slider core ────────────────────────────────── */
-const track  = document.getElementById('track');
-const col    = document.getElementById('sliderCol');
-const INTERVAL = 5000;
+const track = document.getElementById('track');
+const col = document.getElementById('sliderCol');
 const realCards = Array.from(track.querySelectorAll('.card-wrap'));
 const N = realCards.length;
-
 realCards.forEach(c => track.appendChild(c.cloneNode(true)));
-realCards.forEach(c => track.insertBefore(c.cloneNode(true), realCards[0]));
+realCards.forEach(c => track.insertBefore(c.cloneNode(true), track.firstChild));
 
 const allCards = Array.from(track.querySelectorAll('.card-wrap'));
-const OFFSET   = N;
-let vCurrent   = OFFSET;
-let timer      = null;
-let isAnim     = false;
+const OFFSET = N;
+let vCurrent = OFFSET;
+let isAnim = false;
 
-function realIdx(v) { return ((v - OFFSET) % N + N) % N; }
 function isMobileSlider() { return window.innerWidth <= 1024; }
 
-/* Vimeo thumbnails */
-function fetchThumb(id) {
-  fetch(`https://vimeo.com/api/oembed.json?url=https://vimeo.com/${id}&width=1280`)
-    .then(r => r.json())
-    .then(data => {
-      const base = data.thumbnail_url.replace(/_\d+x\d+/, '');
-      document.querySelectorAll(`.vimeo-thumb[data-vimeo-id="${id}"]`).forEach(img => {
-        img.src = `${base}_1280x720`;
-        img.style.opacity = '1';
-      });
-    });
-}
-[...new Set(allCards.map(c => c.querySelector('.vimeo-thumb')?.dataset.vimeoId).filter(Boolean))].forEach(fetchThumb);
-
-/* Vimeo covers */
-let _coverCard = null;
-let _mobileUnlocked = false;
-
-function _spawnCover(c) {
-  const id = c.dataset.cover;
-  if (!id || c.querySelector('iframe')) return;
-  if (isMobileSlider() && !_mobileUnlocked) return;
-  const vl = c.querySelector('.video-layer');
-  const ifr = document.createElement('iframe');
-  ifr.src = `https://player.vimeo.com/video/${id}?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p`;
-  vl.appendChild(ifr);
-  const player = new Vimeo.Player(ifr);
-  vl._vPlayer = player;
-  player.on('loaded', () => { if(c.classList.contains('is-active')) ifr.style.opacity = '1'; });
-}
-
-function _activateCover(c) {
-  if (_coverCard && _coverCard !== c) {
-    const ifr = _coverCard.querySelector('iframe');
-    if (ifr) { _coverCard.querySelector('.video-layer')._vPlayer?.pause(); ifr.style.opacity = '0'; }
-  }
-  _coverCard = c;
-  _spawnCover(c);
-  const ifr = c.querySelector('iframe');
-  if (ifr) { c.querySelector('.video-layer')._vPlayer?.play(); ifr.style.opacity = '1'; }
-}
-
 function updateActive(v) {
-  allCards.forEach((c, idx) => c.classList.toggle('is-active', idx === v));
-  _activateCover(allCards[v]);
-}
-
-function getTranslateX(v) {
-  const colW = col.offsetWidth;
-  let off = 0;
-  for (let i = 0; i < v; i++) off += allCards[i].offsetWidth + 24;
-  return -(off - (colW / 2 - allCards[v].offsetWidth / 2));
+  allCards.forEach((c, idx) => {
+    c.classList.toggle('is-active', idx === v);
+    if (isMobileSlider()) {
+      c.classList.remove('is-prev', 'is-next');
+      if (idx === v - 1) c.classList.add('is-prev');
+      if (idx === v + 1) c.classList.add('is-next');
+    }
+  });
 }
 
 function goTo(v, animated = true) {
   if (isAnim && animated) return;
   isAnim = animated;
   updateActive(v);
-  if (isMobileSlider()) {
-    allCards.forEach((c, idx) => {
-      c.classList.remove('is-prev', 'is-next');
-      if (idx === v - 1) c.classList.add('is-prev');
-      if (idx === v + 1) c.classList.add('is-next');
-    });
-    track.style.transform = 'none';
-  } else {
-    track.style.transition = animated ? 'transform .75s var(--ease)' : 'none';
-    track.style.transform  = `translateX(${getTranslateX(v)}px)`;
-  }
   vCurrent = v;
-  resetTimer();
-  if (!animated || isMobileSlider()) {
-    isAnim = false;
-    if (vCurrent < OFFSET) goTo(vCurrent + N, false);
-    else if (vCurrent >= OFFSET + N) goTo(vCurrent - N, false);
+  if (!isMobileSlider()) {
+    track.style.transition = animated ? 'transform .75s var(--ease)' : 'none';
+    const cardW = allCards[0].offsetWidth;
+    const gap = 24;
+    const totalX = -(v * (cardW + gap) - (col.offsetWidth / 2 - cardW / 2));
+    track.style.transform = `translateX(${totalX}px)`;
+  } else {
+    track.style.transform = 'none';
   }
+  if (!animated) isAnim = false;
 }
 
 track.addEventListener('transitionend', () => {
   isAnim = false;
   if (vCurrent < OFFSET) goTo(vCurrent + N, false);
-  else if (vCurrent >= OFFSET + N) goTo(vCurrent - N, false);
+  if (vCurrent >= OFFSET + N) goTo(vCurrent - N, false);
 });
-
-function resetTimer() { clearInterval(timer); timer = setInterval(() => goTo(vCurrent + 1), INTERVAL); }
-
-function navigate() {
-  const href = allCards[vCurrent].dataset.href;
-  if (href) window.location.href = href;
-}
 
 document.addEventListener('click', e => {
   if (e.target.closest('header, button')) return;
-  if (allCards[vCurrent].contains(e.target)) navigate();
-  else goTo(mx < window.innerWidth / 2 ? vCurrent - 1 : vCurrent + 1);
+  if (allCards[vCurrent].contains(e.target)) {
+    const href = allCards[vCurrent].dataset.href;
+    if (href) window.location.href = href;
+  } else {
+    goTo(mx < window.innerWidth/2 ? vCurrent - 1 : vCurrent + 1);
+  }
 });
 
-/* Interaction Listeners */
-col.addEventListener('touchstart', () => { _mobileUnlocked = true; _activateCover(allCards[vCurrent]); }, { once: true, passive: true });
+window.onload = () => goTo(OFFSET, false);
+window.onresize = () => goTo(vCurrent, false);
 
-window.addEventListener('load', () => { goTo(OFFSET, false); resetTimer(); });
-window.addEventListener('resize', () => goTo(vCurrent, false));
-
-/* Photo carousel */
 setInterval(() => {
   document.querySelectorAll('.card__carousel').forEach(carousel => {
-    const frames = Array.from(carousel.querySelectorAll('.card__carousel-frame'));
-    const cur = frames.findIndex(f => f.classList.contains('is-active'));
+    const frames = carousel.querySelectorAll('.card__carousel-frame');
+    const cur = Array.from(frames).findIndex(f => f.classList.contains('is-active'));
     frames[cur].classList.remove('is-active');
     frames[(cur + 1) % frames.length].classList.add('is-active');
   });
