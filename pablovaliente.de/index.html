@@ -77,13 +77,15 @@
   }
   .stage > *, .slider-col { pointer-events: auto; }
 
-  /* ── DESKTOP SLIDER ── */
+  /* ── DESKTOP ACCORDION SLIDER ── */
   .slider-col {
     position: relative;
     width: 100vw;
-    height: var(--card-h);
-    overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
+    height: 100vh;
+    padding: 80px 40px 56px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: stretch;
     pointer-events: auto;
     opacity: 0;
     animation: fadeInUp .9s var(--ease) .2s forwards;
@@ -95,26 +97,26 @@
 
   .slider-track {
     display: flex;
-    align-items: center;
-    gap: 24px;
-    position: absolute; top: 0; left: 0; height: 100%;
-    will-change: transform;
+    width: 100%;
+    gap: 12px;
   }
 
   .card-wrap {
-    flex-shrink: 0;
-    width: var(--card-w); height: var(--card-h);
-    transform: scale(.73); opacity: .55;
-    transition: transform .75s var(--ease), opacity .5s var(--ease);
-    transform-origin: center center;
-    will-change: transform;
+    flex: 0.4;
+    min-width: 0;
+    opacity: 0.55;
+    transition: flex 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s var(--ease);
+    cursor: pointer;
   }
-  .card-wrap.is-active { transform: scale(1); opacity: 1; }
+  .card-wrap.is-active {
+    flex: 4;
+    opacity: 1;
+  }
 
   .card {
-    position: relative; width: 100%; aspect-ratio: 16 / 9;
+    position: relative; width: 100%; height: 100%;
     border-radius: var(--radius); overflow: hidden; background: #1a1510;
-    cursor: none; transform: translateZ(0); backface-visibility: hidden; will-change: transform;
+    cursor: none;
   }
   .card__media {
     position: absolute; inset: 0; width: 100%; height: 100%;
@@ -354,24 +356,11 @@ const realCards = Array.from(track.querySelectorAll('.card-wrap'));
 const N = realCards.length;
 const cardLabels = ['FILM', 'COLOR GRADING', 'COMMERCIAL', 'PHOTOGRAPHY'];
 
-realCards.forEach(c => {
-  const ce = c.cloneNode(true); ce.classList.add('clone');
-  ce.querySelector('[id]')?.removeAttribute('id');
-  track.appendChild(ce);
-});
-realCards.forEach(c => {
-  const cs = c.cloneNode(true); cs.classList.add('clone');
-  cs.querySelector('[id]')?.removeAttribute('id');
-  track.insertBefore(cs, realCards[0]);
-});
+let vCurrent = 0;
+let timer    = null;
+let isAnimMobile = false;
 
-const allCards = Array.from(track.querySelectorAll('.card-wrap'));
-const OFFSET   = N;
-let vCurrent   = OFFSET;
-let timer      = null;
-let isAnim     = false;
-
-function realIdx(v) { return ((v - OFFSET) % N + N) % N; }
+function realIdx(v) { return ((v % N) + N) % N; }
 function isMobileSlider() { return window.innerWidth <= 1024; }
 
 let _coverCard = null;
@@ -381,12 +370,10 @@ let _placeholderTimer = null;
 const _PLACEHOLDER_DELAY = _isMobile ? 5000 : 3000;
 
 function _spawnCover(c) {
-  if (c.classList.contains('clone')) return;
   const id = c.dataset.cover;
   if (!id) return;
   const vl = c.querySelector('.video-layer');
   if (!vl || vl.querySelector('iframe')) return;
-  // videos cargan inmediatamente en todos los dispositivos
   if (!window._vimeoReady) {
     document.addEventListener('vimeo:ready', () => _spawnCover(c), { once: true });
     return;
@@ -423,14 +410,13 @@ function _activateCover(c) {
   }
 }
 
-function updateActive(v) {
-  const ri = realIdx(v);
+function updateActive(ri) {
   if (_placeholderTimer) { clearTimeout(_placeholderTimer); _placeholderTimer = null; }
-  allCards.forEach((c, idx) => {
-    const active = idx === v;
+  realCards.forEach((c, idx) => {
+    const active = idx === ri;
     c.classList.toggle('is-active', active);
     c.querySelector('.card')?.classList.toggle('is-active', active);
-    if (!active && !c.classList.contains('clone')) {
+    if (!active) {
       const vl = c.querySelector('.video-layer');
       const ifr = vl?.querySelector('iframe');
       if (vl?._vPlayer && ifr) { vl._vPlayer.pause(); ifr.style.opacity = '0'; }
@@ -455,81 +441,65 @@ function updateActive(v) {
   }
 }
 
-const CARD_GAP = 24;
-function getTranslateX(v) {
-  const colW = col.offsetWidth;
-  let off = 0;
-  for (let i = 0; i < v; i++) off += allCards[i].offsetWidth + CARD_GAP;
-  const cardW = allCards[v].offsetWidth;
-  return -(off - (colW / 2 - cardW / 2));
+function updateMobileStack(ri) {
+  realCards.forEach((c, idx) => {
+    c.classList.remove('is-prev', 'is-next');
+    if (idx === realIdx(ri - 1)) c.classList.add('is-prev');
+    if (idx === realIdx(ri + 1)) c.classList.add('is-next');
+  });
+}
+
+function navigate() {
+  const href = realCards[vCurrent].dataset.href;
+  if (href) window.location.href = href;
 }
 
 function goTo(v, animated = true) {
-  if (isAnim && animated) return;
-  isAnim = animated;
-  updateActive(v);
-  vCurrent = v;
+  const ri = realIdx(v);
+  if (!isMobileSlider()) {
+    // Desktop accordion: just flip the active class
+    vCurrent = ri;
+    updateActive(ri);
+    resetTimer();
+    return;
+  }
+  // Mobile 3D stack
+  if (isAnimMobile && animated) return;
+  isAnimMobile = animated;
+  vCurrent = ri;
+  updateActive(ri);
+  updateMobileStack(ri);
   resetTimer();
-  track.style.transition = animated ? 'transform .75s cubic-bezier(.16,1,.3,1)' : 'none';
-  track.style.transform  = `translateX(${getTranslateX(v)}px)`;
+  if (animated) setTimeout(() => { isAnimMobile = false; }, 720);
+  else isAnimMobile = false;
 }
-
-track.addEventListener('transitionend', e => {
-  if (e.propertyName !== 'transform') return;
-  isAnim = false;
-  if (vCurrent < OFFSET)           goTo(vCurrent + N, false);
-  else if (vCurrent >= OFFSET + N) goTo(vCurrent - N, false);
-});
 
 function resetTimer() {
   clearInterval(timer);
   timer = setInterval(() => goTo(vCurrent + 1), INTERVAL);
 }
 
-function updateMobileStack(v) {
-  allCards.forEach((c, idx) => {
-    c.classList.remove('is-prev', 'is-next');
-    if (idx === v - 1) c.classList.add('is-prev');
-    if (idx === v + 1) c.classList.add('is-next');
+// Desktop accordion: click inactive card = activate; click active card = navigate
+realCards.forEach((c, idx) => {
+  c.addEventListener('click', e => {
+    if (isMobileSlider()) return;
+    if (e.target.closest('header, button')) return;
+    if (idx === vCurrent) navigate();
+    else goTo(idx);
   });
-}
-
-const _goToDesktop = goTo;
-goTo = function(v, animated = true) {
-  if (!isMobileSlider()) { _goToDesktop(v, animated); return; }
-  if (isAnim && animated) return;
-  isAnim = animated;
-  updateActive(v);
-  updateMobileStack(v);
-  track.style.transition = 'none';
-  track.style.transform  = 'none';
-  vCurrent = v;
-  resetTimer();
-  if (animated) setTimeout(() => {
-    isAnim = false;
-    if (vCurrent < OFFSET)           goTo(vCurrent + N, false);
-    else if (vCurrent >= OFFSET + N) goTo(vCurrent - N, false);
-  }, 720);
-  else isAnim = false;
-};
-
-function navigate() {
-  const href = realCards[realIdx(vCurrent)].dataset.href;
-  if (href) window.location.href = href;
-}
-
-document.addEventListener('click', e => {
-  if (e.target.closest('header, button')) return;
-  const rect = allCards[vCurrent].querySelector('.card').getBoundingClientRect();
-  const onCard = mx >= rect.left && mx <= rect.right && my >= rect.top && my <= rect.bottom;
-  if (onCard) navigate();
-  else if (!isMobileSlider()) goTo(mx < window.innerWidth / 2 ? vCurrent - 1 : vCurrent + 1);
-  else goTo(e.clientY < window.innerHeight / 2 ? vCurrent - 1 : vCurrent + 1);
+  // Cursor: show "Open" circle when hovering any card on desktop
+  c.addEventListener('mouseenter', () => {
+    if (!isMobileSlider()) document.body.classList.add('on-card');
+  });
+  c.addEventListener('mouseleave', () => document.body.classList.remove('on-card'));
 });
 
-col.addEventListener('click', e => {
+// Mobile: tap active card = navigate; tap elsewhere = change slide
+document.addEventListener('click', e => {
   if (!isMobileSlider()) return;
-  if (allCards[vCurrent]?.contains(e.target)) navigate();
+  if (e.target.closest('header, button')) return;
+  if (realCards[vCurrent]?.contains(e.target)) navigate();
+  else goTo(e.clientY < window.innerHeight / 2 ? vCurrent - 1 : vCurrent + 1);
 });
 
 let wheelAccum = 0, wheelReady = true;
@@ -569,10 +539,10 @@ col.addEventListener('touchend', e => {
 col.addEventListener('touchstart', () => {
   if (_mobileUnlocked) return;
   _mobileUnlocked = true;
-  _activateCover(realCards[realIdx(vCurrent)]);
+  _activateCover(realCards[vCurrent]);
 }, { once: true, passive: true });
 
-window.addEventListener('load',   () => { goTo(OFFSET, false); resetTimer(); });
+window.addEventListener('load',   () => { goTo(0, false); resetTimer(); });
 window.addEventListener('resize', () => goTo(vCurrent, false));
 
 requestAnimationFrame(() => {
