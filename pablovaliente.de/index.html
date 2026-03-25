@@ -100,7 +100,7 @@
     display: flex;
     flex-shrink: 0;
     width: min(80vw, 1100px);
-    height: min(35vw, 460px);
+    height: min(calc(34.6vw - 15px), 460px);
     gap: 12px;
   }
 
@@ -159,11 +159,12 @@
     .slider-track {
       flex-direction: column;
       width: min(88vw, 480px);
-      height: calc(100vh - 128px);
+      height: min(calc(87vw + 36px), 507px);
       flex-shrink: 0;
     }
 
     .card-wrap {
+      flex: 1;
       min-width: unset;
       width: 100%;
       min-height: 0;
