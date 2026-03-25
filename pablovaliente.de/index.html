@@ -452,12 +452,11 @@ function updateActive(v) {
     }
   });
   _activateCover(realCards[ri]);
-  const labelLink = document.getElementById('slide-label-link');
+  const labelLink = document.querySelector('#slide-label a');
   if (labelLink) {
-    labelLink.textContent = (cardLabels[ri] || '') + ' →';
-    labelLink.href = realCards[ri].dataset.href || '#';
+    labelLink.href = realCards[ri].dataset.href;
+    labelLink.textContent = cardLabels[ri] + ' →';
   }
-  // href siempre viene del DOM — nunca puede desincronizarse
 }
 
 const CARD_GAP = 24;
