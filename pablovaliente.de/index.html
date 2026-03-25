@@ -82,10 +82,10 @@
     position: relative;
     width: 100vw;
     height: 100vh;
-    padding: 80px 40px 56px;
+    padding: 40px 40px 0;
     box-sizing: border-box;
     display: flex;
-    align-items: stretch;
+    align-items: center;
     pointer-events: auto;
     opacity: 0;
     animation: fadeInUp .9s var(--ease) .2s forwards;
@@ -98,6 +98,7 @@
   .slider-track {
     display: flex;
     width: 100%;
+    height: clamp(260px, calc(26vw - 20px), 500px);
     gap: 12px;
   }
 
