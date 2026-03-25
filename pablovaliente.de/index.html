@@ -386,7 +386,7 @@ function _spawnCover(c) {
   if (!id) return;
   const vl = c.querySelector('.video-layer');
   if (!vl || vl.querySelector('iframe')) return;
-  if (_isMobile && !_mobileUnlocked) return;
+  // videos cargan inmediatamente en todos los dispositivos
   if (!window._vimeoReady) {
     document.addEventListener('vimeo:ready', () => _spawnCover(c), { once: true });
     return;
@@ -425,6 +425,7 @@ function _activateCover(c) {
 
 function updateActive(v) {
   const ri = realIdx(v);
+  if (_placeholderTimer) { clearTimeout(_placeholderTimer); _placeholderTimer = null; }
   allCards.forEach((c, idx) => {
     const active = idx === v;
     c.classList.toggle('is-active', active);
@@ -433,9 +434,20 @@ function updateActive(v) {
       const vl = c.querySelector('.video-layer');
       const ifr = vl?.querySelector('iframe');
       if (vl?._vPlayer && ifr) { vl._vPlayer.pause(); ifr.style.opacity = '0'; }
+      const ph = c.querySelector('.card__placeholder');
+      const thumb = c.querySelector('.vimeo-thumb');
+      if (ph) ph.style.opacity = '1';
+      if (thumb) thumb.style.opacity = '0';
     }
   });
   _activateCover(realCards[ri]);
+  _placeholderTimer = setTimeout(() => {
+    const ph = realCards[ri].querySelector('.card__placeholder');
+    const thumb = realCards[ri].querySelector('.vimeo-thumb');
+    if (ph) ph.style.opacity = '0';
+    if (thumb) thumb.style.opacity = '1';
+    _placeholderTimer = null;
+  }, _PLACEHOLDER_DELAY);
   const labelLink = document.querySelector('#slide-label a');
   if (labelLink) {
     labelLink.href = realCards[ri].dataset.href;
