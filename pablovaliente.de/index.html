@@ -374,24 +374,11 @@ let isAnim     = false;
 function realIdx(v) { return ((v - OFFSET) % N + N) % N; }
 function isMobileSlider() { return window.innerWidth <= 1024; }
 
-const _thumbStart = Date.now();
-const _thumbDelay = (window.innerWidth <= 1024 || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) ? 5000 : 3000;
-document.querySelectorAll('.vimeo-thumb[src]').forEach(img => {
-  function showThumb() {
-    const delay = Math.max(0, _thumbDelay - (Date.now() - _thumbStart));
-    setTimeout(() => {
-      img.style.opacity = '1';
-      const ph = img.previousElementSibling;
-      if (ph && ph.classList.contains('card__placeholder')) ph.style.opacity = '0';
-    }, delay);
-  }
-  if (img.complete) showThumb();
-  else img.addEventListener('load', showThumb, { once: true });
-});
-
 let _coverCard = null;
 const _isMobile = window.innerWidth <= 1024 || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
 let _mobileUnlocked = false;
+let _placeholderTimer = null;
+const _PLACEHOLDER_DELAY = _isMobile ? 5000 : 3000;
 
 function _spawnCover(c) {
   if (c.classList.contains('clone')) return;
