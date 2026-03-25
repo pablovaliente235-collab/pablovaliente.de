@@ -153,72 +153,21 @@
   ══════════════════════════════════ */
   @media (max-width: 1024px) {
     #cur-arrow, #cur-open { display: none !important; }
-    body { cursor: auto; overflow-x: hidden; } /* Prevenir desborde horizontal total */
+    body { cursor: auto; overflow-x: hidden; }
     .card { cursor: pointer; }
-    :root { --card-w: 82vw; }
-
-    .slider-col {
-      width: 100vw; /* Cambiado de 82vw a 100vw para centrar y corregir desborde */
-      height: 100vh;
-      overflow: visible;
-      clip-path: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      perspective: 1200px;
-      perspective-origin: center center;
-    }
 
     .slider-track {
-      position: relative;
-      width: 100%;
-      transform: none !important;
-      transition: none !important;
-      transform-style: preserve-3d;
+      flex-direction: column;
+      width: min(88vw, 480px);
+      height: calc(100vh - 128px);
+      flex-shrink: 0;
     }
 
     .card-wrap {
-      position: absolute;
-      top: 50%; left: 0; right: 0;
-      margin: 0 auto;
-      pointer-events: none;
-      /* Estado base para desborde visual */
-      transform: translateY(-50%) translateY(60px) scale(0.78) rotateX(18deg);
-      opacity: 0;
-      transition: transform .7s var(--ease), opacity .55s var(--ease);
-      will-change: transform, opacity;
-      transform-origin: center bottom;
+      min-width: unset;
+      width: 100%;
+      min-height: 0;
     }
-    .card-wrap .card { height: auto; aspect-ratio: 16 / 9; }
-
-    /* Centrado Vertical de la tarjeta activa */
-    .card-wrap.is-active {
-      position: absolute; top: 50%;
-      transform: translateY(-50%) scale(1) rotateX(0deg);
-      opacity: 1; pointer-events: auto; z-index: 10;
-      transform-origin: center center;
-    }
-
-    .card-wrap.is-prev {
-      transform: translateY(-50%) translateY(-42%) scale(0.82) rotateX(-22deg);
-      opacity: 0.55; z-index: 5; pointer-events: none;
-      transform-origin: center top;
-    }
-
-    .card-wrap.is-next {
-      transform: translateY(-50%) translateY(42%) scale(0.82) rotateX(22deg);
-      opacity: 0.55; z-index: 5; pointer-events: none;
-      transform-origin: center bottom;
-    }
-  }
-
-  @media (max-width: 768px) {
-    :root { --card-w: 88vw; }
-    .card-wrap.is-active { transform: translateY(-50%) scale(1) rotateX(0deg); }
-  }
-  @media (max-width: 480px) {
-    :root { --card-w: 92vw; }
-    .card-wrap.is-active { transform: translateY(-50%) scale(1) rotateX(0deg); }
   }
 
   /* ── Slide label ── */
@@ -361,7 +310,6 @@ const cardLabels = ['FILM', 'COLOR GRADING', 'COMMERCIAL', 'PHOTOGRAPHY'];
 
 let vCurrent = 0;
 let timer    = null;
-let isAnimMobile = false;
 
 function realIdx(v) { return ((v % N) + N) % N; }
 function isMobileSlider() { return window.innerWidth <= 1024; }
@@ -444,37 +392,16 @@ function updateActive(ri) {
   }
 }
 
-function updateMobileStack(ri) {
-  realCards.forEach((c, idx) => {
-    c.classList.remove('is-prev', 'is-next');
-    if (idx === realIdx(ri - 1)) c.classList.add('is-prev');
-    if (idx === realIdx(ri + 1)) c.classList.add('is-next');
-  });
-}
-
 function navigate() {
   const href = realCards[vCurrent].dataset.href;
   if (href) window.location.href = href;
 }
 
-function goTo(v, animated = true) {
+function goTo(v) {
   const ri = realIdx(v);
-  if (!isMobileSlider()) {
-    // Desktop accordion: just flip the active class
-    vCurrent = ri;
-    updateActive(ri);
-    resetTimer();
-    return;
-  }
-  // Mobile 3D stack
-  if (isAnimMobile && animated) return;
-  isAnimMobile = animated;
   vCurrent = ri;
   updateActive(ri);
-  updateMobileStack(ri);
   resetTimer();
-  if (animated) setTimeout(() => { isAnimMobile = false; }, 720);
-  else isAnimMobile = false;
 }
 
 function resetTimer() {
@@ -545,8 +472,8 @@ col.addEventListener('touchstart', () => {
   _activateCover(realCards[vCurrent]);
 }, { once: true, passive: true });
 
-window.addEventListener('load',   () => { goTo(0, false); resetTimer(); });
-window.addEventListener('resize', () => goTo(vCurrent, false));
+window.addEventListener('load',   () => { goTo(0); resetTimer(); });
+window.addEventListener('resize', () => goTo(vCurrent));
 
 requestAnimationFrame(() => {
   document.querySelectorAll('.card__carousel').forEach(carousel => {
