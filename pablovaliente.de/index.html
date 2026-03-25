@@ -344,7 +344,7 @@ const INTERVAL = 5000;
 
 const realCards = Array.from(track.querySelectorAll('.card-wrap'));
 const N = realCards.length;
-const cardLabels = ['FILM', 'COLOR GRADING', 'COMMERCIAL', 'PHOTOGRAPHY'];
+const cardLabels = ['FILM', 'FILM — COLOR GRADING', 'COMMERCIAL', 'PHOTOGRAPHY'];
 
 realCards.forEach(c => {
   const ce = c.cloneNode(true); ce.classList.add('clone');
@@ -457,6 +457,7 @@ function updateActive(v) {
     labelLink.textContent = (cardLabels[ri] || '') + ' →';
     labelLink.href = realCards[ri].dataset.href || '#';
   }
+  // href siempre viene del DOM — nunca puede desincronizarse
 }
 
 const CARD_GAP = 24;
