@@ -120,8 +120,8 @@
     position: absolute; inset: 0; width: 100%; height: 100%;
     object-fit: cover; border: 0; transform: scale(1.02); pointer-events: none;
   }
-  .card__placeholder { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; opacity: 1; transition: opacity 0.5s ease; pointer-events: none; }
-  .card__media.vimeo-thumb { z-index: 2; opacity: 0; transition: opacity .8s ease; }
+  .card__placeholder { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; opacity: 1; transition: opacity 0.5s ease; pointer-events: none; }
+  .card__media.vimeo-thumb { z-index: 0; opacity: 0; transition: opacity .8s ease; }
   .video-layer { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
   .video-layer iframe {
     position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
@@ -375,9 +375,10 @@ function realIdx(v) { return ((v - OFFSET) % N + N) % N; }
 function isMobileSlider() { return window.innerWidth <= 1024; }
 
 const _thumbStart = Date.now();
+const _thumbDelay = (window.innerWidth <= 1024 || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) ? 5000 : 3000;
 document.querySelectorAll('.vimeo-thumb[src]').forEach(img => {
   function showThumb() {
-    const delay = Math.max(0, 900 - (Date.now() - _thumbStart));
+    const delay = Math.max(0, _thumbDelay - (Date.now() - _thumbStart));
     setTimeout(() => {
       img.style.opacity = '1';
       const ph = img.previousElementSibling;
