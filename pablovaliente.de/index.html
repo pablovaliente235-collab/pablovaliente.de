@@ -276,7 +276,7 @@
       <div class="card-wrap" data-cover="1169718635" data-href="film.html">
         <div class="card" style="background:#1a1208">
           <img class="card__placeholder" src="assets/film/project-1/Frames/frame-01.webp" alt="" aria-hidden="true" fetchpriority="high" loading="eager"/>
-          <img class="card__media vimeo-thumb" data-vimeo-id="1169718635" src="https://i.vimeocdn.com/video/1169718635_1280x720.jpg" srcset="https://i.vimeocdn.com/video/1169718635_640x360.jpg 640w, https://i.vimeocdn.com/video/1169718635_1280x720.jpg 1280w" sizes="(max-width:768px) 640px, 1280px" alt="Zufällige Begegnung" loading="eager" fetchpriority="high"/>
+          <img class="card__media vimeo-thumb" data-vimeo-id="1169718635" src="https://i.vimeocdn.com/video/1169718635_1280x720.jpg" alt="Zufällige Begegnung" loading="eager" fetchpriority="high"/>
           <div class="video-layer"></div>
           <div class="card__overlay"></div>
         </div>
@@ -284,8 +284,8 @@
 
       <div class="card-wrap" data-cover="1170251945" data-href="film-colorgrading.html">
         <div class="card" style="background:#1a1510">
-          <img class="card__placeholder" src="assets/film/project-3/Frames/frame-01.webp" alt="" aria-hidden="true" fetchpriority="high" loading="eager"/>
-          <img class="card__media vimeo-thumb" data-vimeo-id="1170251945" src="https://i.vimeocdn.com/video/1170251945_1280x720.jpg" srcset="https://i.vimeocdn.com/video/1170251945_640x360.jpg 640w, https://i.vimeocdn.com/video/1170251945_1280x720.jpg 1280w" sizes="(max-width:768px) 640px, 1280px" alt="Perdido en una Perdiz" loading="lazy"/>
+          <img class="card__placeholder" src="assets/film/project-3/Frames/frame-01.webp" alt="" aria-hidden="true" loading="lazy"/>
+          <img class="card__media vimeo-thumb" data-vimeo-id="1170251945" src="https://i.vimeocdn.com/video/1170251945_1280x720.jpg" alt="Perdido en una Perdiz" loading="lazy"/>
           <div class="video-layer"></div>
           <div class="card__overlay"></div>
         </div>
@@ -293,8 +293,8 @@
 
       <div class="card-wrap" data-cover="1169718441" data-href="commercial.html">
         <div class="card" style="background:#10160f">
-          <img class="card__placeholder" src="assets/commercial/project-1/Frames/frame-01.webp" alt="" aria-hidden="true" fetchpriority="high" loading="eager"/>
-          <img class="card__media vimeo-thumb" data-vimeo-id="1169718441" src="https://i.vimeocdn.com/video/1169718441_1280x720.jpg" srcset="https://i.vimeocdn.com/video/1169718441_640x360.jpg 640w, https://i.vimeocdn.com/video/1169718441_1280x720.jpg 1280w" sizes="(max-width:768px) 640px, 1280px" alt="Bellamar Hotel" loading="lazy"/>
+          <img class="card__placeholder" src="assets/commercial/project-1/Frames/frame-01.webp" alt="" aria-hidden="true" loading="lazy"/>
+          <img class="card__media vimeo-thumb" data-vimeo-id="1169718441" src="https://i.vimeocdn.com/video/1169718441_1280x720.jpg" alt="Bellamar Hotel" loading="lazy"/>
           <div class="video-layer"></div>
           <div class="card__overlay"></div>
         </div>
@@ -374,11 +374,15 @@ let isAnim     = false;
 function realIdx(v) { return ((v - OFFSET) % N + N) % N; }
 function isMobileSlider() { return window.innerWidth <= 1024; }
 
+const _thumbStart = Date.now();
 document.querySelectorAll('.vimeo-thumb[src]').forEach(img => {
   function showThumb() {
-    img.style.opacity = '1';
-    const ph = img.previousElementSibling;
-    if (ph && ph.classList.contains('card__placeholder')) ph.style.opacity = '0';
+    const delay = Math.max(0, 900 - (Date.now() - _thumbStart));
+    setTimeout(() => {
+      img.style.opacity = '1';
+      const ph = img.previousElementSibling;
+      if (ph && ph.classList.contains('card__placeholder')) ph.style.opacity = '0';
+    }, delay);
   }
   if (img.complete) showThumb();
   else img.addEventListener('load', showThumb, { once: true });
