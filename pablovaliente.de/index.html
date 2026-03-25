@@ -211,6 +211,13 @@
     .card-wrap.is-active { transform: translateY(-50%) scale(1) rotateX(0deg); }
   }
 
+  /* ── Slide label ── */
+  #slide-label a { font-size: 9px; }
+  @media (max-width: 768px) {
+    #slide-label { bottom: 24px !important; }
+    #slide-label a { font-size: 8px; }
+  }
+
   /* ── Mobile menu overlay ── */
   @media (max-width: 1023px) {
     .mobile-menu-open { overflow: hidden; }
@@ -300,6 +307,9 @@
     </div>
   </div>
 </div>
+  <div id="slide-label" style="position:fixed;bottom:32px;left:50%;transform:translateX(-50%);z-index:600;pointer-events:auto;">
+    <a id="slide-label-link" href="film.html" style="font-family:'Syne',sans-serif;font-weight:800;letter-spacing:0.3em;text-transform:uppercase;color:#0C0C0B;text-decoration:none;border-bottom:1px solid #0C0C0B;padding-bottom:3px;">FILM →</a>
+  </div>
 </main>
 
 <script>
@@ -334,6 +344,7 @@ const INTERVAL = 5000;
 
 const realCards = Array.from(track.querySelectorAll('.card-wrap'));
 const N = realCards.length;
+const cardLabels = ['FILM', 'FILM — COLOR GRADING', 'COMMERCIAL', 'PHOTOGRAPHY'];
 
 realCards.forEach(c => {
   const ce = c.cloneNode(true); ce.classList.add('clone');
@@ -441,6 +452,11 @@ function updateActive(v) {
     }
   });
   _activateCover(realCards[ri]);
+  const labelLink = document.getElementById('slide-label-link');
+  if (labelLink) {
+    labelLink.textContent = (cardLabels[ri] || '') + ' →';
+    labelLink.href = realCards[ri].dataset.href || '#';
+  }
 }
 
 const CARD_GAP = 24;
