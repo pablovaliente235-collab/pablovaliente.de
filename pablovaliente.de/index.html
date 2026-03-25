@@ -3,6 +3,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="preconnect" href="https://player.vimeo.com">
+<link rel="preconnect" href="https://i.vimeocdn.com">
+<link rel="preconnect" href="https://f.vimeocdn.com">
+<link rel="dns-prefetch" href="https://vimeo.com">
 <title>Pablo Valiente González – Fotograf, Videograf &amp; Drohnenpilot | Deutschland</title>
 <meta name="description" content="Pablo Valiente González – Freelance Photographer, Videographer &amp; EU-certified Drone Pilot based in Germany."/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -270,7 +274,7 @@
 
       <div class="card-wrap" data-cover="1169718635" data-href="film.html">
         <div class="card" style="background:#1a1208">
-          <img class="card__media vimeo-thumb" data-vimeo-id="1169718635" alt="Zufällige Begegnung" fetchpriority="high"/>
+          <img class="card__media vimeo-thumb" data-vimeo-id="1169718635" src="https://i.vimeocdn.com/video/1169718635_1280x720.jpg" alt="Zufällige Begegnung" loading="eager" fetchpriority="high"/>
           <div class="video-layer"></div>
           <div class="card__overlay"></div>
         </div>
@@ -278,7 +282,7 @@
 
       <div class="card-wrap" data-cover="1170251945" data-href="film-colorgrading.html">
         <div class="card" style="background:#1a1510">
-          <img class="card__media vimeo-thumb" data-vimeo-id="1170251945" alt="Perdido en una Perdiz"/>
+          <img class="card__media vimeo-thumb" data-vimeo-id="1170251945" src="https://i.vimeocdn.com/video/1170251945_1280x720.jpg" alt="Perdido en una Perdiz" loading="lazy"/>
           <div class="video-layer"></div>
           <div class="card__overlay"></div>
         </div>
@@ -286,7 +290,7 @@
 
       <div class="card-wrap" data-cover="1169718441" data-href="commercial.html">
         <div class="card" style="background:#10160f">
-          <img class="card__media vimeo-thumb" data-vimeo-id="1169718441" alt="Bellamar Hotel"/>
+          <img class="card__media vimeo-thumb" data-vimeo-id="1169718441" src="https://i.vimeocdn.com/video/1169718441_1280x720.jpg" alt="Bellamar Hotel" loading="lazy"/>
           <div class="video-layer"></div>
           <div class="card__overlay"></div>
         </div>
@@ -366,31 +370,7 @@ let isAnim     = false;
 function realIdx(v) { return ((v - OFFSET) % N + N) % N; }
 function isMobileSlider() { return window.innerWidth <= 1024; }
 
-const thumbIds = [...new Set(
-  Array.from(document.querySelectorAll('.vimeo-thumb[data-vimeo-id]'))
-    .map(img => img.dataset.vimeoId)
-)];
-const activeId = allCards[vCurrent]?.querySelector('.vimeo-thumb')?.dataset.vimeoId;
-const orderedThumbIds = activeId ? [activeId, ...thumbIds.filter(id => id !== activeId)] : thumbIds;
-
-function fetchThumb(id) {
-  fetch(`https://vimeo.com/api/oembed.json?url=https://vimeo.com/${id}&width=1280`)
-    .then(r => r.json())
-    .then(data => {
-      const base = data.thumbnail_url.replace(/_\d+x\d+/, '');
-      document.querySelectorAll(`.vimeo-thumb[data-vimeo-id="${id}"]`).forEach(img => {
-        img.srcset = `${base}_640x360 640w, ${base}_960x540 960w, ${base}_1280x720 1280w`;
-        img.sizes  = '(max-width:600px) 640px, (max-width:1024px) 960px, 1280px';
-        img.src    = `${base}_1280x720`;
-        img.style.opacity = '1';
-      });
-    }).catch(() => {});
-}
-if (orderedThumbIds.length) fetchThumb(orderedThumbIds[0]);
-if (orderedThumbIds.length > 1) {
-  const idle = typeof requestIdleCallback === 'function' ? requestIdleCallback : fn => setTimeout(fn, 250);
-  idle(() => orderedThumbIds.slice(1).forEach(fetchThumb));
-}
+document.querySelectorAll('.vimeo-thumb[src]').forEach(img => { img.style.opacity = '1'; });
 
 let _coverCard = null;
 const _isMobile = window.innerWidth <= 1024 || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
