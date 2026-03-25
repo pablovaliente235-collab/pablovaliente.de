@@ -373,7 +373,15 @@ let isAnim     = false;
 function realIdx(v) { return ((v - OFFSET) % N + N) % N; }
 function isMobileSlider() { return window.innerWidth <= 1024; }
 
-document.querySelectorAll('.vimeo-thumb[src]').forEach(img => { img.style.opacity = '1'; });
+document.querySelectorAll('.vimeo-thumb[src]').forEach(img => {
+  function showThumb() {
+    img.style.opacity = '1';
+    const ph = img.previousElementSibling;
+    if (ph && ph.classList.contains('card__placeholder')) ph.style.opacity = '0';
+  }
+  if (img.complete) showThumb();
+  else img.addEventListener('load', showThumb, { once: true });
+});
 
 let _coverCard = null;
 const _isMobile = window.innerWidth <= 1024 || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
