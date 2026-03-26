@@ -392,12 +392,12 @@ function updateTrackShift(ri) {
   const lastIdx = realCards.length - 1;
   const vw = window.innerWidth;
   const trackWidth = Math.min(vw + 20, 1640);
-  const trackLeft = (vw - trackWidth) / 2;           // typically -10px
+  const trackLeft = (vw - trackWidth) / 2;
   const gap = 12;
   const barWidth = 40;
-  const shift = Math.max(0, barWidth + gap - trackLeft); // typically 62px
+  const shift = Math.max(0, barWidth + gap - trackLeft);
   let tx = 0;
-  if (ri === 0)         tx =  shift;
+  if (ri === 0)            tx =  shift;
   else if (ri === lastIdx) tx = -shift;
   track.style.transform = tx ? `translateX(${tx}px)` : '';
 }
