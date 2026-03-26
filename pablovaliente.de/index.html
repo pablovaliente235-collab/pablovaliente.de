@@ -76,6 +76,12 @@
     pointer-events: none;
   }
   .stage > *, .slider-col { pointer-events: auto; }
+  .stage::before, .stage::after {
+    content: ''; position: fixed; top: 0; bottom: 0;
+    width: 40px; background: #0C0C0B; z-index: 550; pointer-events: none;
+  }
+  .stage::before { left: 0; }
+  .stage::after  { right: 0; }
 
   /* ── DESKTOP ACCORDION SLIDER ── */
   .slider-col {
@@ -99,13 +105,13 @@
   .slider-track {
     display: flex;
     flex-shrink: 0;
-    width: min(86vw, 1190px);
-    height: min(calc(32.5vw - 14px), 437px);
+    width: min(calc(100vw - 20px), 1600px);
+    height: min(calc(33.4vw - 25px), 513px);
     gap: 12px;
   }
 
   .card-wrap {
-    flex: 0.65;
+    flex: 0.95;
     min-width: 0;
     opacity: 1;
     transition: flex 0.7s cubic-bezier(0.16, 1, 0.3, 1);
@@ -154,11 +160,13 @@
     #cur-arrow, #cur-open { display: none !important; }
     body { cursor: auto; overflow-x: hidden; }
     .card { cursor: pointer; }
+    .stage::before, .stage::after { display: none; }
 
     .slider-col {
       align-self: center;
       margin-top: calc(var(--header-h, 56px) / 2);
       height: auto;
+      clip-path: none;
     }
 
     .slider-track {
