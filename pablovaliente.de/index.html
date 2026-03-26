@@ -166,9 +166,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding-top: 72px;
-      overflow: visible;
-      clip-path: none;
+      padding-top: calc(var(--header-h, 72px) / 2);
     }
 
     .slider-track {
@@ -292,6 +290,16 @@
 
 <script>
 'use strict';
+
+function updateHeaderOffset() {
+  const header = document.getElementById('unified-header');
+  if (header) {
+    const h = header.getBoundingClientRect().height;
+    document.documentElement.style.setProperty('--header-h', h + 'px');
+  }
+}
+updateHeaderOffset();
+window.addEventListener('resize', updateHeaderOffset);
 
 const curArrow = document.getElementById('cur-arrow');
 const curOpen  = document.getElementById('cur-open');
