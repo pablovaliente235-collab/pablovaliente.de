@@ -136,7 +136,7 @@
 
     <!-- ══════════ HEADER ══════════ -->
     <header class="fixed top-0 w-full z-[60] bg-[#f9f9f9] shadow-none" id="unified-header">
-        <nav class="w-full flex items-center pt-5 pb-2 md:pt-6 md:pb-3 justify-between px-4 md:px-6 lg:px-10">
+        <nav class="w-full flex items-center py-6 md:py-8 justify-between px-4 md:px-6 lg:px-10">
             <a href="index.html" class="font-['Syne'] text-[11px] font-bold tracking-[0.25em] text-black uppercase hover:opacity-70 transition-opacity">PABLO VALIENTE</a>
             <div class="hidden lg:flex space-x-6">
                 <a class="font-['Syne'] uppercase tracking-[0.2em] text-[9px] font-bold leading-tight antialiased text-black/60 hover:text-black transition-colors duration-300" href="film.html">FILM</a>
@@ -144,14 +144,14 @@
                 <a class="font-['Syne'] uppercase tracking-[0.2em] text-[9px] font-bold leading-tight antialiased text-black/60 hover:text-black transition-colors duration-300" href="photography-monasterio.html">PHOTOGRAPHY</a>
                 <a class="font-['Syne'] uppercase tracking-[0.2em] text-[9px] font-bold leading-tight antialiased text-black border-b border-black pb-1 transition-colors duration-300" href="contact.html">CONTACT</a>
             </div>
-            <button class="lg:hidden flex items-center justify-center w-8 h-8" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">
-                <span class="material-symbols-outlined text-black" style="font-size:16px">menu</span>
+            <button class="lg:hidden flex items-center justify-center w-11 h-11 -mr-2" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">
+                <span class="material-symbols-outlined text-black scale-125">menu</span>
             </button>
         </nav>
         <!-- Mobile overlay -->
         <div class="fixed inset-0 bg-[#f9f9f9] z-[70] hidden flex-col items-center justify-center" id="mobile-overlay">
             <button class="absolute top-6 right-4 w-11 h-11 flex items-center justify-center focus:outline-none" id="close-menu-btn">
-                <span class="material-symbols-outlined text-black" style="font-size:16px">close</span>
+                <span class="material-symbols-outlined text-black scale-125">close</span>
             </button>
             <div class="flex flex-col items-center space-y-6 pt-[80px]">
                 <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="film.html" style="color:rgba(0,0,0,0.4);">FILM</a>
@@ -165,7 +165,7 @@
     </header>
 
     <!-- ══════════ MAIN ══════════ -->
-    <main class="px-4 md:px-6 lg:px-20 max-w-screen-2xl mx-auto pt-28 lg:pt-40 pb-16 lg:pb-24 min-h-screen">
+    <main class="px-4 md:px-6 lg:px-20 max-w-screen-2xl mx-auto pt-36 lg:pt-40 pb-16 lg:pb-24 min-h-screen">
 
         <!-- Title row -->
         <div class="mb-12 lg:mb-20">
@@ -181,12 +181,22 @@
 
                 <div class="flex flex-col gap-1">
                     <p class="font-['Syne'] text-[9px] font-bold tracking-[0.3em] uppercase text-neutral-400 mb-3">LOCATION</p>
-                    <p class="font-['Manrope'] text-[13px] text-black/70 leading-relaxed">Berlin & Frankfurt, Germany<br/>Available worldwide.</p>
+                    <div class="flex flex-col gap-3">
+                        <div>
+                            <p class="font-['Syne'] text-[8px] font-bold tracking-[0.2em] uppercase text-black/30 mb-1">Germany</p>
+                            <p class="font-['Manrope'] text-[13px] text-black/70">Berlin &amp; Frankfurt</p>
+                        </div>
+                        <div>
+                            <p class="font-['Syne'] text-[8px] font-bold tracking-[0.2em] uppercase text-black/30 mb-1">Spain</p>
+                            <p class="font-['Manrope'] text-[13px] text-black/70">Madrid, Barcelona, Valencia &amp; Ibiza</p>
+                        </div>
+                        <p class="font-['Manrope'] text-[13px] text-black/40 mt-1">Available worldwide.</p>
+                    </div>
                 </div>
 
                 <div class="flex flex-col gap-1">
                     <p class="font-['Syne'] text-[9px] font-bold tracking-[0.3em] uppercase text-neutral-400 mb-3">EMAIL</p>
-                    <a href="mailto:contact@pablovaliente.me" class="font-['Manrope'] text-[13px] text-black hover:text-neutral-500 transition-colors duration-300">contact@pablovaliente.me</a>
+                    <a href="/cdn-cgi/l/email-protection#afccc0c1dbceccdbefdfcecdc3c0d9cec3c6cac1dbca81c2ca" class="font-['Manrope'] text-[13px] text-black hover:text-neutral-500 transition-colors duration-300"><span class="__cf_email__" data-cfemail="0b6864657f6a687f4b7b6a6967647d6a67626e657f6e25666e">[email&#160;protected]</span></a>
                 </div>
 
                 <div class="flex flex-col gap-1">
@@ -284,7 +294,7 @@
         </p>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         document.getElementById('footerYear').textContent = new Date().getFullYear();
 
         // ── Mobile menu ──
@@ -334,12 +344,3 @@
                     statusMsg.className = 'show error-msg';
 
                     setTimeout(() => {
-                        submitBtn.textContent = 'SEND INQUIRY';
-                        submitBtn.classList.remove('error-state');
-                        submitBtn.disabled = false;
-                    }, 4000);
-                });
-        });
-    </script>
-</body>
-</html>
