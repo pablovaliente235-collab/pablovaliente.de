@@ -189,7 +189,7 @@
       margin: 0 auto;
       width: var(--card-w);
       pointer-events: none;
-      transform: translateY(-50%) translateY(60px) scale(0.78) rotateX(18deg);
+      transform: translateY(calc(-50% - var(--header-h, 64px) / 2 + 60px)) scale(0.78) rotateX(18deg);
       opacity: 0;
       transition: transform .7s cubic-bezier(0.16,1,0.3,1), opacity .55s cubic-bezier(0.16,1,0.3,1);
       will-change: transform, opacity;
@@ -206,7 +206,7 @@
       right: 0;
       margin: 0 auto;
       width: var(--card-w);
-      transform: translateY(-50%) translateY(calc(var(--header-h, 64px) * -0.25)) scale(1) rotateX(0deg);
+      transform: translateY(calc(-50% - var(--header-h, 64px) / 2)) scale(1) rotateX(0deg);
       opacity: 1;
       pointer-events: auto;
       z-index: 10;
@@ -214,7 +214,7 @@
     }
 
     .card-wrap.is-prev {
-      transform: translateY(-50%) translateY(-42%) scale(0.82) rotateX(-22deg);
+      transform: translateY(calc(-50% - var(--header-h, 64px) / 2 - 42%)) scale(0.82) rotateX(-22deg);
       opacity: 0.55;
       z-index: 5;
       pointer-events: none;
@@ -222,7 +222,7 @@
     }
 
     .card-wrap.is-next {
-      transform: translateY(-50%) translateY(42%) scale(0.82) rotateX(22deg);
+      transform: translateY(calc(-50% - var(--header-h, 64px) / 2 + 42%)) scale(0.82) rotateX(22deg);
       opacity: 0.55;
       z-index: 5;
       pointer-events: none;
