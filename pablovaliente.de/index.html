@@ -78,7 +78,7 @@
   .stage > *, .slider-col { pointer-events: auto; }
   .stage::before, .stage::after {
     content: ''; position: fixed; top: 0; bottom: 0;
-    width: 40px; background: #0C0C0B; z-index: 550; pointer-events: none;
+    width: 40px; background: #ffffff; z-index: 550; pointer-events: none;
   }
   .stage::before { left: 0; }
   .stage::after  { right: 0; }
@@ -105,13 +105,14 @@
   .slider-track {
     display: flex;
     flex-shrink: 0;
-    width: min(calc(100vw - 20px), 1600px);
-    height: min(calc(33.4vw - 25px), 513px);
+    width: min(calc(100vw + 20px), 1640px);
+    height: min(calc(31.9vw - 5px), 514px);
     gap: 12px;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .card-wrap {
-    flex: 0.95;
+    flex: 1.02;
     min-width: 0;
     opacity: 1;
     transition: flex 0.7s cubic-bezier(0.16, 1, 0.3, 1);
@@ -385,7 +386,24 @@ function _activateCover(c) {
   }
 }
 
+function updateTrackShift(ri) {
+  if (isMobileSlider()) return;
+  const track = document.getElementById('track');
+  const lastIdx = realCards.length - 1;
+  const vw = window.innerWidth;
+  const trackWidth = Math.min(vw + 20, 1640);
+  const trackLeft = (vw - trackWidth) / 2;           // typically -10px
+  const gap = 12;
+  const barWidth = 40;
+  const shift = Math.max(0, barWidth + gap - trackLeft); // typically 62px
+  let tx = 0;
+  if (ri === 0)         tx =  shift;
+  else if (ri === lastIdx) tx = -shift;
+  track.style.transform = tx ? `translateX(${tx}px)` : '';
+}
+
 function updateActive(ri) {
+  updateTrackShift(ri);
   if (_placeholderTimer) { clearTimeout(_placeholderTimer); _placeholderTimer = null; }
   realCards.forEach((c, idx) => {
     const active = idx === ri;
