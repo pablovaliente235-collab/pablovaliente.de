@@ -156,16 +156,9 @@
     .card { cursor: pointer; }
 
     .slider-col {
-      position: fixed;
-      top: var(--header-h, 56px);
-      left: 0;
-      right: 0;
-      bottom: 0;
-      margin-top: 0;
-      height: auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      align-self: flex-start;
+      margin-top: var(--header-h, 56px);
+      height: calc(100dvh - var(--header-h, 56px));
     }
 
     .slider-track {
