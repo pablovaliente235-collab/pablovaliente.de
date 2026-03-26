@@ -1,0 +1,10 @@
+# Cloudflare Pages — Cache headers
+
+/dist/output.css
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.html
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400

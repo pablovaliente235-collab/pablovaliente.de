@@ -7,12 +7,14 @@
     <meta name="description" content="Contact Pablo Valiente González — Filmmaker, Photographer &amp; Drone Pilot based in Germany."/>
     <link rel="canonical" href="https://pablovaliente.me/contact"/>
     <link rel="stylesheet" href="dist/output.css">
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Manrope:wght@300;400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Manrope:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Manrope:wght@300;400;500;600&display=swap"></noscript>
 
 
     <style>
         body { background-color: #f9f9f9; }
-        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
 
         /* ── Form inputs ── */
         .form-field {
@@ -127,13 +129,13 @@
                 <a class="font-['Syne'] uppercase tracking-[0.2em] text-[9px] font-bold leading-tight antialiased text-black border-b border-black pb-1 transition-colors duration-300" href="contact.html">CONTACT</a>
             </div>
             <button class="lg:hidden flex items-center justify-center w-8 h-8" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">
-                <span class="material-symbols-outlined text-black" style="font-size:16px">menu</span>
+                <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><rect width="16" height="1.5" fill="currentColor"/><rect y="5.25" width="16" height="1.5" fill="currentColor"/><rect y="10.5" width="16" height="1.5" fill="currentColor"/></svg>
             </button>
         </nav>
         <!-- Mobile overlay -->
         <div class="fixed inset-0 bg-[#f9f9f9] z-[70] hidden flex-col items-center justify-center" id="mobile-overlay">
             <button class="absolute top-6 right-4 w-11 h-11 flex items-center justify-center focus:outline-none" id="close-menu-btn">
-                <span class="material-symbols-outlined text-black" style="font-size:16px">close</span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
             </button>
             <div class="flex flex-col items-center space-y-6 pt-[80px]">
                 <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="film.html" style="color:rgba(0,0,0,0.4);">FILM</a>
