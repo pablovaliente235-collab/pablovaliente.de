@@ -505,6 +505,9 @@ document.querySelectorAll('.card__carousel').forEach(carousel => {
   function stopCarousel() {
     clearInterval(carouselTimer);
     carouselTimer = null;
+    frames[cur].classList.remove('is-active');
+    cur = 0;
+    frames[0].classList.add('is-active');
   }
 
   // Observe is-active class on the card-wrap
