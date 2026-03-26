@@ -156,6 +156,12 @@
     body { cursor: auto; overflow-x: hidden; }
     .card { cursor: pointer; }
 
+    /* Centrado exacto: margin-top = altura header mobile (~41px), height = 100vh - header - label zone (~40px) */
+    .slider-col {
+      margin-top: 41px;
+      height: calc(100vh - 81px);
+    }
+
     .slider-track {
       flex-direction: column;
       width: min(88vw, 480px);
