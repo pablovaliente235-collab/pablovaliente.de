@@ -157,15 +157,18 @@
 
     .slider-col {
       position: fixed;
-      top: 72px;
+      top: 0;
       left: 0;
       right: 0;
       bottom: 0;
+      width: 100vw;
+      height: 100dvh;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-top: 0;
-      height: auto;
+      padding-top: 72px;
+      overflow: visible;
+      clip-path: none;
     }
 
     .slider-track {
