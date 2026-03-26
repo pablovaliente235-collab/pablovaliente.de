@@ -376,11 +376,15 @@ function updateActive(ri) {
     if (!active) {
       const vl = c.querySelector('.video-layer');
       const ifr = vl?.querySelector('iframe');
-      if (vl?._vPlayer && ifr) { vl._vPlayer.pause(); ifr.style.opacity = '0'; }
+      if (vl?._vPlayer && ifr) {
+        vl._vPlayer.pause();
+        ifr.style.transition = 'none';
+        ifr.style.opacity = '0';
+      }
       const ph = c.querySelector('.card__placeholder');
       const thumb = c.querySelector('.vimeo-thumb');
-      if (ph) ph.style.opacity = '1';
-      if (thumb) thumb.style.opacity = '0';
+      if (ph)    { ph.style.transition = 'none';    ph.style.opacity = '1'; }
+      if (thumb) { thumb.style.transition = 'none'; thumb.style.opacity = '0'; }
     }
   });
   _activateCover(realCards[ri]);
