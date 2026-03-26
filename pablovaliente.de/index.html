@@ -154,6 +154,7 @@
     #cur-arrow, #cur-open { display: none !important; }
     body { cursor: auto; overflow-x: hidden; }
     .card { cursor: pointer; }
+    :root { --card-w: 82vw; }
 
     .slider-col {
       position: fixed;
@@ -166,22 +167,75 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding-top: calc(var(--header-h, 72px) / 2);
+      overflow: visible;
+      clip-path: none;
+      perspective: 1200px;
+      perspective-origin: center center;
     }
 
     .slider-track {
-      flex-direction: column;
-      width: min(88vw, 480px);
-      height: min(calc(87vw + 36px), 507px);
-      flex-shrink: 0;
+      position: relative;
+      width: 100%;
+      transform: none !important;
+      transition: none !important;
+      transform-style: preserve-3d;
     }
 
     .card-wrap {
-      flex: 1;
-      min-width: unset;
-      width: 100%;
-      min-height: 0;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      width: var(--card-w);
+      pointer-events: none;
+      transform: translateY(-50%) translateY(60px) scale(0.78) rotateX(18deg);
+      opacity: 0;
+      transition: transform .7s cubic-bezier(0.16,1,0.3,1), opacity .55s cubic-bezier(0.16,1,0.3,1);
+      will-change: transform, opacity;
+      transform-origin: center bottom;
+      flex: unset;
     }
+
+    .card-wrap .card { height: auto; aspect-ratio: 16 / 9; }
+
+    .card-wrap.is-active {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      width: var(--card-w);
+      transform: translateY(-50%) translateY(calc(var(--header-h, 64px) * -0.25)) scale(1) rotateX(0deg);
+      opacity: 1;
+      pointer-events: auto;
+      z-index: 10;
+      transform-origin: center center;
+    }
+
+    .card-wrap.is-prev {
+      transform: translateY(-50%) translateY(-42%) scale(0.82) rotateX(-22deg);
+      opacity: 0.55;
+      z-index: 5;
+      pointer-events: none;
+      transform-origin: center top;
+    }
+
+    .card-wrap.is-next {
+      transform: translateY(-50%) translateY(42%) scale(0.82) rotateX(22deg);
+      opacity: 0.55;
+      z-index: 5;
+      pointer-events: none;
+      transform-origin: center bottom;
+    }
+  }
+
+  @media (max-width: 768px) {
+    :root { --card-w: 88vw; }
+  }
+
+  @media (max-width: 480px) {
+    :root { --card-w: 92vw; }
   }
 
   /* ── Slide label ── */
