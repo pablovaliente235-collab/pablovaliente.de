@@ -155,10 +155,10 @@
     body { cursor: auto; overflow-x: hidden; }
     .card { cursor: pointer; }
 
-    /* Centrado exacto: margin-top = altura header mobile (~41px), height = 100vh - header - label zone (~40px) */
+    /* Centrado exacto: usa 100svh (small viewport) para compensar la barra del navegador en Safari móvil */
     .slider-col {
       margin-top: 41px;
-      height: calc(100vh - 81px);
+      height: calc(100svh - 81px);
     }
 
     .slider-track {
