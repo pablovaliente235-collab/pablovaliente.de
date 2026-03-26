@@ -479,10 +479,19 @@ function navigate() {
   if (href) window.location.href = href;
 }
 
+function updateMobileStack(v) {
+  realCards.forEach((c, idx) => {
+    c.classList.remove('is-prev', 'is-next');
+    if (idx === v - 1) c.classList.add('is-prev');
+    if (idx === v + 1) c.classList.add('is-next');
+  });
+}
+
 function goTo(v) {
   const ri = realIdx(v);
   vCurrent = ri;
   updateActive(ri);
+  if (isMobileSlider()) updateMobileStack(ri);
   resetTimer();
 }
 
