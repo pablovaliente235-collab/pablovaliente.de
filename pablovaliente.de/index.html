@@ -481,18 +481,32 @@ col.addEventListener('touchstart', () => {
 window.addEventListener('load',   () => { goTo(0); resetTimer(); });
 window.addEventListener('resize', () => goTo(vCurrent));
 
-requestAnimationFrame(() => {
-  document.querySelectorAll('.card__carousel').forEach(carousel => {
-    const frames = Array.from(carousel.querySelectorAll('.card__carousel-frame'));
-    if (frames.length < 2) return;
-    let cur = 0;
-    frames.forEach((f, i) => f.classList.toggle('is-active', i === 0));
-    setInterval(() => {
+// Carousel: only runs while the card is active
+document.querySelectorAll('.card__carousel').forEach(carousel => {
+  const cardWrap = carousel.closest('.card-wrap');
+  const frames = Array.from(carousel.querySelectorAll('.card__carousel-frame'));
+  if (frames.length < 2) return;
+  let cur = 0;
+  let carouselTimer = null;
+  frames.forEach((f, i) => f.classList.toggle('is-active', i === 0));
+
+  function startCarousel() {
+    if (carouselTimer) return;
+    carouselTimer = setInterval(() => {
       frames[cur].classList.remove('is-active');
       cur = (cur + 1) % frames.length;
       frames[cur].classList.add('is-active');
     }, 2800);
-  });
+  }
+  function stopCarousel() {
+    clearInterval(carouselTimer);
+    carouselTimer = null;
+  }
+
+  // Observe is-active class on the card-wrap
+  new MutationObserver(() => {
+    cardWrap.classList.contains('is-active') ? startCarousel() : stopCarousel();
+  }).observe(cardWrap, { attributes: true, attributeFilter: ['class'] });
 });
 </script>
 </body>
