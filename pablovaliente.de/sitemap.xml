@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <url>
     <loc>https://pablovaliente.me/</loc>
@@ -55,6 +56,42 @@
     <lastmod>2026-03-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-1/frames/frame-01.webp</image:loc>
+      <image:title>Monasterio de San Miguel arches</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-1/frames/frame-02.webp</image:loc>
+      <image:title>Monasterio de San Miguel architecture</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-1/frames/frame-03.webp</image:loc>
+      <image:title>Monasterio de San Miguel exterior</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-1/frames/frame-04.webp</image:loc>
+      <image:title>Monasterio de San Miguel interior detail</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-1/frames/frame-05.webp</image:loc>
+      <image:title>Monasterio de San Miguel light and shadow</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-1/frames/frame-06.webp</image:loc>
+      <image:title>Monasterio de San Miguel perspective</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-1/frames/frame-07.webp</image:loc>
+      <image:title>Monasterio de San Miguel stone work</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-1/frames/frame-08.webp</image:loc>
+      <image:title>Monasterio de San Miguel texture detail</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-1/frames/frame-09.webp</image:loc>
+      <image:title>Monasterio de San Miguel wide view</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -62,6 +99,58 @@
     <lastmod>2026-03-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-3/frames/frame-01.webp</image:loc>
+      <image:title>Bellamar Hotel 01</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-3/frames/frame-02.webp</image:loc>
+      <image:title>Bellamar Hotel 02</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-3/frames/frame-03.webp</image:loc>
+      <image:title>Bellamar Hotel 03</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-3/frames/frame-04.webp</image:loc>
+      <image:title>Bellamar Hotel 04</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-3/frames/frame-05.webp</image:loc>
+      <image:title>Bellamar Hotel 05</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-3/frames/frame-06.webp</image:loc>
+      <image:title>Bellamar Hotel 06</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-3/frames/frame-07.webp</image:loc>
+      <image:title>Bellamar Hotel 07</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-3/frames/frame-08.webp</image:loc>
+      <image:title>Bellamar Hotel 08</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-3/frames/frame-09.webp</image:loc>
+      <image:title>Bellamar Hotel 09</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-3/frames/frame-10.webp</image:loc>
+      <image:title>Bellamar Hotel 10</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-3/frames/frame-11.webp</image:loc>
+      <image:title>Bellamar Hotel 11</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-3/frames/frame-12.webp</image:loc>
+      <image:title>Bellamar Hotel 12</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-3/frames/frame-13.webp</image:loc>
+      <image:title>Bellamar Hotel 13</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -69,6 +158,42 @@
     <lastmod>2026-03-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-6/frames/frame-01.webp</image:loc>
+      <image:title>Schrebergarten 01</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-6/frames/frame-02.webp</image:loc>
+      <image:title>Schrebergarten 02</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-6/frames/frame-03.webp</image:loc>
+      <image:title>Schrebergarten 03</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-6/frames/frame-04.webp</image:loc>
+      <image:title>Schrebergarten 04</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-6/frames/frame-05.webp</image:loc>
+      <image:title>Schrebergarten 05</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-6/frames/frame-06.webp</image:loc>
+      <image:title>Schrebergarten 06</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-6/frames/frame-07.webp</image:loc>
+      <image:title>Schrebergarten 07</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-6/frames/frame-08.webp</image:loc>
+      <image:title>Schrebergarten 08</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-6/frames/frame-09.webp</image:loc>
+      <image:title>Schrebergarten 09</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -76,6 +201,22 @@
     <lastmod>2026-03-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-5/frames/frame-01.webp</image:loc>
+      <image:title>Winterlandschaft 01</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-5/frames/frame-02.webp</image:loc>
+      <image:title>Winterlandschaft 02</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-5/frames/frame-03.webp</image:loc>
+      <image:title>Winterlandschaft 03</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-5/frames/frame-04.webp</image:loc>
+      <image:title>Winterlandschaft 04</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -83,6 +224,18 @@
     <lastmod>2026-03-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-4/frames/frame-01.webp</image:loc>
+      <image:title>Iglesia de Yaguarón 01</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-4/frames/frame-02.webp</image:loc>
+      <image:title>Iglesia de Yaguarón 02</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-4/frames/frame-03.webp</image:loc>
+      <image:title>Iglesia de Yaguarón 03</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -90,6 +243,30 @@
     <lastmod>2026-03-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-2/frames/frame-01.webp</image:loc>
+      <image:title>Nature and Tradition 01</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-2/frames/frame-02.webp</image:loc>
+      <image:title>Nature and Tradition 02</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-2/frames/frame-03.webp</image:loc>
+      <image:title>Nature and Tradition 03</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-2/frames/frame-04.webp</image:loc>
+      <image:title>Nature and Tradition 04</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-2/frames/frame-05.webp</image:loc>
+      <image:title>Nature and Tradition 05</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://pablovaliente.me/assets/photography/project-2/frames/frame-06.webp</image:loc>
+      <image:title>Nature and Tradition 06</image:title>
+    </image:image>
   </url>
 
   <url>
