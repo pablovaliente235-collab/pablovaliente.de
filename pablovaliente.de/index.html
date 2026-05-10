@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Pablo Valiente – End-to-End Visual Content Creator | Hotellerie, Architektur &amp; Immobilien | Berlin</title>
-<meta name="description" content="Pablo Valiente – End-to-End Visual Content Creator für Hotellerie, Architektur und Immobilien. Fotografie, Videografie &amp; Aerial Filmmaking aus Berlin."/>
+<title>Pablo Valiente – END-TO-END VISUAL CONTENT CREATOR | Hotellerie, Architektur &amp; Immobilien | Berlin</title>
+<meta name="description" content="Pablo Valiente – END-TO-END VISUAL CONTENT CREATOR für Hotellerie, Architektur und Immobilien. Fotografie, Videografie &amp; Aerial Filmmaking aus Berlin."/>
 <link rel="canonical" href="https://pablovaliente.de/"/>
 <link rel="alternate" hreflang="de" href="https://pablovaliente.de/"/>
 <link rel="alternate" hreflang="en" href="https://pablovaliente.de/"/>
@@ -136,14 +136,11 @@
   }
   .card.is-active .card__overlay { opacity: 1; }
 
-  .card__carousel { position: absolute; inset: 0; }
-  .card__carousel-frame {
+  .card__img {
     position: absolute; inset: 0; width: 100%; height: 100%;
     object-fit: cover; transform: scale(1.02);
-    opacity: 0; transition: opacity 1.1s ease;
-    pointer-events: none; will-change: opacity;
+    pointer-events: none;
   }
-  .card__carousel-frame.is-active { opacity: 1; }
 
   /* ── MOBILE / TABLET ≤ 1024px ── */
   @media (max-width: 1024px) {
@@ -188,8 +185,8 @@
   "@type": "Person",
   "name": "Pablo Valiente",
   "url": "https://pablovaliente.de",
-  "jobTitle": "End-to-End Visual Content Creator",
-  "description": "End-to-End Visual Content Creator für Hotellerie, Architektur und Immobilien. Fotografie, Videografie &amp; Aerial Filmmaking aus Berlin.",
+  "jobTitle": "END-TO-END VISUAL CONTENT CREATOR",
+  "description": "END-TO-END VISUAL CONTENT CREATOR für Hotellerie, Architektur und Immobilien. Fotografie, Videografie &amp; Aerial Filmmaking aus Berlin.",
   "email": "contact@pablovaliente.me",
   "address": [
     { "@type": "PostalAddress", "addressLocality": "Berlin", "addressCountry": "DE" },
@@ -216,7 +213,7 @@
   <nav class="w-full flex items-center pt-5 pb-2 md:pt-6 md:pb-3 justify-between px-4 md:px-6 lg:px-10">
     <a href="/" class="flex flex-col leading-tight hover:opacity-70 transition-opacity">
       <span class="font-['Syne'] text-[11px] font-bold tracking-[0.25em] text-black uppercase">PABLO VALIENTE</span>
-      <span class="font-['Syne'] text-[9px] text-gray-400 tracking-[0.1em] normal-case">End-to-End Visual Content Creator</span>
+      <span class="font-['Syne'] text-[9px] text-gray-400 tracking-[0.1em] uppercase">END-TO-END VISUAL CONTENT CREATOR</span>
     </a>
     <div class="hidden lg:flex items-center space-x-6">
       <a class="font-['Syne'] uppercase tracking-[0.2em] text-[9px] font-bold leading-tight text-black/60 hover:text-black transition-colors pb-1 border-b border-transparent" href="hospitality/" data-i18n="nav_hospitality">HOTELLERIE</a>
@@ -254,10 +251,7 @@
       <!-- Card 0 — Hospitality -->
       <div class="card-wrap" data-href="hospitality/">
         <div class="card" style="background:#0f1610">
-          <div class="card__carousel">
-            <img class="card__carousel-frame is-active" src="assets/commercial/project-1/Frames/frame-03.webp" alt="Bellamar Hotel — Hotelfotografie &amp; Videografie" fetchpriority="high" loading="eager"/>
-            <img class="card__carousel-frame" src="assets/commercial/project-2/Frames/frame-01.webp" alt="Marvell Club Hotel — Hotelfotografie" loading="lazy"/>
-          </div>
+          <img class="card__img" src="assets/commercial/project-1/Frames/frame-03.webp" alt="Bellamar Hotel — Hotelfotografie &amp; Videografie" fetchpriority="high" loading="eager"/>
           <div class="card__overlay"></div>
         </div>
       </div>
@@ -265,11 +259,7 @@
       <!-- Card 1 — Architecture -->
       <div class="card-wrap" data-href="architecture/">
         <div class="card" style="background:#120f0c">
-          <div class="card__carousel">
-            <img class="card__carousel-frame is-active" src="assets/photography/project-1/frames/frame-01.webp" alt="Monasterio de San Miguel — Architekturfotografie" loading="lazy"/>
-            <img class="card__carousel-frame" src="assets/photography/project-2/frames/frame-01.webp" alt="Japanisches Heiligtum — Architekturfotografie" loading="lazy"/>
-            <img class="card__carousel-frame" src="assets/photography/project-4/frames/frame-01.webp" alt="Iglesia de Yaguarón — Sakrale Architekturfotografie" loading="lazy"/>
-          </div>
+          <img class="card__img" src="assets/photography/project-1/frames/frame-01.webp" alt="Monasterio de San Miguel — Architekturfotografie" loading="lazy"/>
           <div class="card__overlay"></div>
         </div>
       </div>
@@ -277,9 +267,7 @@
       <!-- Card 2 — Real Estate -->
       <div class="card-wrap" data-href="real-estate/">
         <div class="card" style="background:#1a1510">
-          <div class="card__carousel">
-            <img class="card__carousel-frame is-active" src="assets/photography/project-2/frames/frame-01.webp" alt="Japanisches Heiligtum — Architekturfotografie &amp; Immobilien" loading="lazy"/>
-          </div>
+          <img class="card__img" src="assets/photography/project-2/frames/frame-01.webp" alt="Japanisches Heiligtum — Architekturfotografie &amp; Immobilien" loading="lazy"/>
           <div class="card__overlay"></div>
         </div>
       </div>
@@ -482,30 +470,6 @@ window.addEventListener('load', () => {
 });
 window.addEventListener('resize', () => goTo(vCurrent));
 
-// Carousel animation — runs only while card is active
-document.querySelectorAll('.card__carousel').forEach(carousel => {
-  const cardWrap = carousel.closest('.card-wrap');
-  const frames = Array.from(carousel.querySelectorAll('.card__carousel-frame'));
-  if (frames.length < 2) return;
-  let cur = 0, carouselTimer = null;
-  frames.forEach((f, i) => f.classList.toggle('is-active', i === 0));
-
-  function startCarousel() {
-    if (carouselTimer) return;
-    carouselTimer = setInterval(() => {
-      frames[cur].classList.remove('is-active');
-      cur = (cur + 1) % frames.length;
-      frames[cur].classList.add('is-active');
-    }, 2000);
-  }
-  function stopCarousel() {
-    clearInterval(carouselTimer); carouselTimer = null;
-    frames[cur].classList.remove('is-active'); cur = 0; frames[0].classList.add('is-active');
-  }
-  new MutationObserver(() => {
-    cardWrap.classList.contains('is-active') ? startCarousel() : stopCarousel();
-  }).observe(cardWrap, { attributes: true, attributeFilter: ['class'] });
-});
 </script>
 </body>
 </html>
