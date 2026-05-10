@@ -111,7 +111,7 @@
     display: flex;
     flex-shrink: 0;
     width: min(calc(100vw + 20px), 1640px);
-    height: min(calc(37.8vw - 5px), 609px);
+    height: min(calc(44.8vw), 600px);
     gap: 12px;
     transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   }
@@ -148,21 +148,22 @@
   /* ── MOBILE / TABLET ≤ 1024px ── */
   @media (max-width: 1024px) {
     #cur-arrow, #cur-open { display: none !important; }
-    body { cursor: auto; overflow-x: hidden; }
+    body { cursor: auto; overflow-y: auto; overflow-x: hidden; }
     .card { cursor: pointer; }
+    .stage { position: relative; min-height: 100svh; }
     .stage::before, .stage::after { display: none; }
     .slider-col {
-      align-self: center;
-      margin-top: calc(var(--header-h, 56px) / 2);
+      align-self: unset;
+      margin-top: 64px;
       height: auto;
     }
     .slider-track {
       flex-direction: column;
       width: min(88vw, 480px);
-      height: min(calc(87vw + 36px), 507px);
+      height: auto;
       flex-shrink: 0;
     }
-    .card-wrap { flex: 1; min-width: unset; width: 100%; min-height: 0; }
+    .card-wrap { flex: none; aspect-ratio: 3/2; min-width: unset; width: 100%; min-height: 0; }
   }
 
   /* ── Slide label ── */
@@ -254,8 +255,7 @@
       <div class="card-wrap" data-href="hospitality/">
         <div class="card" style="background:#0f1610">
           <div class="card__carousel">
-            <img class="card__carousel-frame is-active" src="assets/commercial/project-1/Frames/frame-01.webp" alt="Bellamar Hotel — Hotelfotografie &amp; Videografie" fetchpriority="high" loading="eager"/>
-            <img class="card__carousel-frame" src="assets/commercial/project-1/Frames/frame-03.webp" alt="Bellamar Hotel — Hotelfotografie" loading="lazy"/>
+            <img class="card__carousel-frame is-active" src="assets/commercial/project-1/Frames/frame-03.webp" alt="Bellamar Hotel — Hotelfotografie &amp; Videografie" fetchpriority="high" loading="eager"/>
             <img class="card__carousel-frame" src="assets/commercial/project-2/Frames/frame-01.webp" alt="Marvell Club Hotel — Hotelfotografie" loading="lazy"/>
           </div>
           <div class="card__overlay"></div>
@@ -278,7 +278,7 @@
       <div class="card-wrap" data-href="real-estate/">
         <div class="card" style="background:#1a1510">
           <div class="card__carousel">
-            <img class="card__carousel-frame is-active" src="assets/photography/project-3/frames/frame-01.webp" alt="Immobilienfotografie — Real Estate Photography Berlin" loading="lazy"/>
+            <img class="card__carousel-frame is-active" src="assets/photography/project-2/frames/frame-01.webp" alt="Japanisches Heiligtum — Architekturfotografie &amp; Immobilien" loading="lazy"/>
           </div>
           <div class="card__overlay"></div>
         </div>
