@@ -142,25 +142,43 @@
     pointer-events: none;
   }
 
+  /* ── Card label (mobile) ── */
+  .card__label {
+    display: none;
+    position: absolute; bottom: 14px; left: 0; right: 0;
+    text-align: center;
+    font-family: 'Syne', sans-serif; font-size: 8px; font-weight: 800;
+    letter-spacing: 0.28em; text-transform: uppercase;
+    color: rgba(255,255,255,0.9); z-index: 3;
+    opacity: 0; transition: opacity 0.5s; pointer-events: none;
+  }
+
   /* ── MOBILE / TABLET ≤ 1024px ── */
   @media (max-width: 1024px) {
     #cur-arrow, #cur-open { display: none !important; }
-    body { cursor: auto; overflow-y: auto; overflow-x: hidden; }
+    #slide-label { display: none; }
+    body { cursor: auto; overflow-x: hidden; }
     .card { cursor: pointer; }
-    .stage { position: relative; min-height: 100svh; }
     .stage::before, .stage::after { display: none; }
     .slider-col {
-      align-self: unset;
-      margin-top: 64px;
+      align-self: center;
+      margin-top: calc(var(--header-h, 64px) / 2);
       height: auto;
     }
     .slider-track {
       flex-direction: column;
       width: min(88vw, 480px);
-      height: auto;
+      height: min(calc(87vw + 36px), 507px);
       flex-shrink: 0;
+      gap: 12px;
     }
-    .card-wrap { flex: none; aspect-ratio: 3/2; min-width: unset; width: 100%; min-height: 0; }
+    .card-wrap {
+      flex: 1; min-width: unset; width: 100%; min-height: 0;
+      aspect-ratio: unset;
+    }
+    .card-wrap--16x9 { aspect-ratio: unset; }
+    .card__label     { display: block; }
+    .card.is-active .card__label { opacity: 1; }
   }
 
   /* ── Slide label ── */
@@ -216,8 +234,8 @@
       <span class="font-['Syne'] text-[9px] text-gray-400 tracking-[0.1em] uppercase">END-TO-END VISUAL CONTENT CREATOR</span>
     </a>
     <div class="hidden lg:flex items-center space-x-6">
-      <a class="font-['Syne'] uppercase tracking-[0.2em] text-[9px] font-bold leading-tight text-black/60 hover:text-black transition-colors pb-1 border-b border-transparent" href="hospitality/" data-i18n="nav_hospitality">HOTELLERIE</a>
       <a class="font-['Syne'] uppercase tracking-[0.2em] text-[9px] font-bold leading-tight text-black/60 hover:text-black transition-colors pb-1 border-b border-transparent" href="architecture/" data-i18n="nav_architecture">ARCHITEKTUR</a>
+      <a class="font-['Syne'] uppercase tracking-[0.2em] text-[9px] font-bold leading-tight text-black/60 hover:text-black transition-colors pb-1 border-b border-transparent" href="hospitality/" data-i18n="nav_hospitality">HOTELLERIE</a>
       <a class="font-['Syne'] uppercase tracking-[0.2em] text-[9px] font-bold leading-tight text-black/60 hover:text-black transition-colors pb-1 border-b border-transparent" href="real-estate/" data-i18n="nav_realestate">IMMOBILIEN</a>
       <a class="font-['Syne'] uppercase tracking-[0.2em] text-[9px] font-bold leading-tight text-black/60 hover:text-black transition-colors pb-1 border-b border-transparent" href="contact/" data-i18n="nav_contact">KONTAKT</a>
       <button id="langToggle" class="font-['Syne'] text-[9px] font-bold tracking-[0.2em] uppercase leading-tight text-black/40 hover:text-black transition-colors pb-1 border-b border-transparent">EN</button>
@@ -234,8 +252,8 @@
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
     </button>
     <div class="flex flex-col items-center space-y-6 pt-20">
-      <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="hospitality/" style="color:rgba(0,0,0,.4)" data-i18n="nav_hospitality">HOTELLERIE</a>
       <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="architecture/" style="color:rgba(0,0,0,.4)" data-i18n="nav_architecture">ARCHITEKTUR</a>
+      <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="hospitality/" style="color:rgba(0,0,0,.4)" data-i18n="nav_hospitality">HOTELLERIE</a>
       <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="real-estate/" style="color:rgba(0,0,0,.4)" data-i18n="nav_realestate">IMMOBILIEN</a>
       <a class="font-['Syne'] uppercase tracking-[0.2em] text-[11px] font-bold py-3 px-6" href="contact/" style="color:rgba(0,0,0,.4)" data-i18n="nav_contact">KONTAKT</a>
       <button id="langToggleOverlay" class="font-['Syne'] text-[9px] font-bold tracking-[0.2em] uppercase text-black/40 hover:text-black transition-colors py-3 px-6">EN</button>
@@ -248,27 +266,39 @@
   <div class="slider-col" id="sliderCol" role="region" aria-label="Portfolio">
     <div class="slider-track" id="track">
 
-      <!-- Card 0 — Hospitality -->
-      <div class="card-wrap" data-href="hospitality/">
-        <div class="card" style="background:#0f1610">
-          <img class="card__img" src="assets/commercial/project-1/Frames/frame-03.webp" alt="Bellamar Hotel — Hotelfotografie &amp; Videografie" fetchpriority="high" loading="eager"/>
-          <div class="card__overlay"></div>
-        </div>
-      </div>
-
-      <!-- Card 1 — Architecture -->
-      <div class="card-wrap" data-href="architecture/">
+      <!-- Card 0 — Monasterio de San Miguel (3:2) -->
+      <div class="card-wrap card-wrap--3x2" data-href="architecture/" data-ratio="1.5">
         <div class="card" style="background:#120f0c">
-          <img class="card__img" src="assets/photography/project-1/frames/frame-01.webp" alt="Monasterio de San Miguel — Architekturfotografie" loading="lazy"/>
+          <img class="card__img" src="assets/photography/project-1/frames/frame-01.webp" alt="Monasterio de San Miguel — Architekturfotografie" fetchpriority="high" loading="eager"/>
           <div class="card__overlay"></div>
+          <div class="card__label" data-i18n="card_label_0">MONASTERIO DE SAN MIGUEL</div>
         </div>
       </div>
 
-      <!-- Card 2 — Real Estate -->
-      <div class="card-wrap" data-href="real-estate/">
-        <div class="card" style="background:#1a1510">
-          <img class="card__img" src="assets/photography/project-2/frames/frame-01.webp" alt="Japanisches Heiligtum — Architekturfotografie &amp; Immobilien" loading="lazy"/>
+      <!-- Card 1 — Japanisches Heiligtum (3:2) -->
+      <div class="card-wrap card-wrap--3x2" data-href="architecture/japanese/" data-ratio="1.5">
+        <div class="card" style="background:#0f1207">
+          <img class="card__img" src="assets/photography/project-2/frames/frame-01.webp" alt="Japanisches Heiligtum — Architekturfotografie" loading="lazy"/>
           <div class="card__overlay"></div>
+          <div class="card__label" data-i18n="card_label_1">JAPANISCHES HEILIGTUM</div>
+        </div>
+      </div>
+
+      <!-- Card 2 — Bellamar Hotel (16:9) -->
+      <div class="card-wrap card-wrap--16x9" data-href="hospitality/" data-ratio="1.7778">
+        <div class="card" style="background:#0f1610">
+          <img class="card__img" src="assets/commercial/project-1/Frames/frame-03.webp" alt="Bellamar Hotel — Hotelfotografie &amp; Videografie" loading="lazy"/>
+          <div class="card__overlay"></div>
+          <div class="card__label" data-i18n="card_label_2">BELLAMAR HOTEL</div>
+        </div>
+      </div>
+
+      <!-- Card 3 — Real Estate (16:9, provisional Yaguarón) -->
+      <div class="card-wrap card-wrap--16x9" data-href="real-estate/" data-ratio="1.7778">
+        <div class="card" style="background:#1a1510">
+          <img class="card__img" src="assets/photography/project-4/frames/frame-01.webp" alt="Immobilienfotografie — Pablo Valiente" loading="lazy"/>
+          <div class="card__overlay"></div>
+          <div class="card__label" data-i18n="card_label_3">IMMOBILIEN</div>
         </div>
       </div>
 
@@ -276,7 +306,7 @@
   </div>
 </div>
 <div id="slide-label" style="position:fixed;bottom:32px;left:50%;transform:translateX(-50%);z-index:600;pointer-events:auto;">
-  <a id="slide-label-link" href="hospitality/" style="font-family:'Syne',sans-serif;font-weight:800;letter-spacing:0.3em;text-transform:uppercase;color:#0C0C0B;text-decoration:none;border-bottom:1px solid #0C0C0B;padding-bottom:3px;" data-i18n="card_label_0">HOTELLERIE →</a>
+  <a id="slide-label-link" href="architecture/" style="font-family:'Syne',sans-serif;font-weight:800;letter-spacing:0.3em;text-transform:uppercase;color:#0C0C0B;text-decoration:none;border-bottom:1px solid #0C0C0B;padding-bottom:3px;" data-i18n="card_label_0">MONASTERIO DE SAN MIGUEL →</a>
 </div>
 </main>
 
@@ -290,9 +320,10 @@ const i18n = {
     nav_realestate:  'IMMOBILIEN',
     nav_contact:     'KONTAKT',
     cur_open:        'ÖFFNEN',
-    card_label_0:    'HOTELLERIE',
-    card_label_1:    'ARCHITEKTUR',
-    card_label_2:    'IMMOBILIEN',
+    card_label_0:    'MONASTERIO DE SAN MIGUEL',
+    card_label_1:    'JAPANISCHES HEILIGTUM',
+    card_label_2:    'BELLAMAR HOTEL',
+    card_label_3:    'IMMOBILIEN',
   },
   en: {
     nav_hospitality: 'HOSPITALITY',
@@ -300,9 +331,10 @@ const i18n = {
     nav_realestate:  'REAL ESTATE',
     nav_contact:     'CONTACT',
     cur_open:        'OPEN',
-    card_label_0:    'HOSPITALITY',
-    card_label_1:    'ARCHITECTURE',
-    card_label_2:    'REAL ESTATE',
+    card_label_0:    'MONASTERIO DE SAN MIGUEL',
+    card_label_1:    'JAPANESE SANCTUARY',
+    card_label_2:    'BELLAMAR HOTEL',
+    card_label_3:    'REAL ESTATE',
   }
 };
 
@@ -381,12 +413,31 @@ function updateTrackShift(ri) {
   track.style.transform = tx ? `translateX(${tx}px)` : '';
 }
 
+function computeActiveFlex(ratio) {
+  const H = track.offsetHeight;
+  const W = track.offsetWidth;
+  const gaps = (realCards.length - 1) * 12;
+  const usable = W - gaps;
+  const targetW = Math.min(H * ratio, usable * 0.93);
+  const nInactive = realCards.length - 1;
+  const inactiveW = (usable - targetW) / nInactive;
+  return (targetW / inactiveW) * 1.02;
+}
+
 function updateActive(ri) {
   updateTrackShift(ri);
   realCards.forEach((c, idx) => {
     const active = idx === ri;
     c.classList.toggle('is-active', active);
     c.querySelector('.card')?.classList.toggle('is-active', active);
+    if (!isMobileSlider()) {
+      if (active) {
+        const ratio = parseFloat(c.dataset.ratio);
+        c.style.flex = isNaN(ratio) ? '' : computeActiveFlex(ratio);
+      } else {
+        c.style.flex = '';
+      }
+    }
   });
   const labelLink = document.getElementById('slide-label-link');
   if (labelLink) {
