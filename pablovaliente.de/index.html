@@ -119,10 +119,35 @@
   .card-wrap {
     flex: 1.02;
     min-width: 0;
+    position: relative;
     transition: flex 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     cursor: pointer;
   }
   .card-wrap.is-active { flex: 4; }
+
+  .card-ext-label {
+    position: absolute;
+    top: calc(100% + 16px);
+    left: 11px;
+    opacity: 0;
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  .card-wrap.is-active .card-ext-label { opacity: 1; }
+  .card-ext-label p, .card-ext-label span {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.6);
+    line-height: 1.25;
+    margin: 0;
+    display: block;
+  }
+  .card-ext-label .cel-loc { font-style: italic; }
+  .card-ext-label .cel-cat { margin-top: 3px; }
 
   .card {
     position: relative; width: 100%; height: 100%;
@@ -157,6 +182,7 @@
   @media (max-width: 1024px) {
     #cur-arrow, #cur-open { display: none !important; }
     #slide-label { display: none; }
+    .card-ext-label { display: none; }
     body { cursor: auto; overflow-x: hidden; }
     .card { cursor: pointer; }
     .stage::before, .stage::after { display: none; }
@@ -273,6 +299,11 @@
           <div class="card__overlay"></div>
           <div class="card__label" data-i18n="card_label_0">MONASTERIO DE SAN MIGUEL</div>
         </div>
+        <div class="card-ext-label">
+          <span data-i18n="card_label_0">MONASTERIO DE SAN MIGUEL</span>
+          <p class="cel-loc">VALENCIA</p>
+          <p class="cel-cat" data-i18n="card_cat_0">ARCHITEKTUR</p>
+        </div>
       </div>
 
       <!-- Card 1 — Japanisches Heiligtum (3:2) -->
@@ -281,6 +312,11 @@
           <img class="card__img" src="assets/photography/project-2/frames/frame-01.webp" alt="Japanisches Heiligtum — Architekturfotografie" loading="lazy"/>
           <div class="card__overlay"></div>
           <div class="card__label" data-i18n="card_label_1">JAPANISCHES HEILIGTUM</div>
+        </div>
+        <div class="card-ext-label">
+          <span data-i18n="card_label_1">JAPANISCHES HEILIGTUM</span>
+          <p class="cel-loc">KYOTO</p>
+          <p class="cel-cat" data-i18n="card_cat_1">ARCHITEKTUR</p>
         </div>
       </div>
 
@@ -291,6 +327,11 @@
           <div class="card__overlay"></div>
           <div class="card__label" data-i18n="card_label_2">BELLAMAR HOTEL</div>
         </div>
+        <div class="card-ext-label">
+          <span data-i18n="card_label_2">BELLAMAR HOTEL</span>
+          <p class="cel-loc">IBIZA</p>
+          <p class="cel-cat" data-i18n="card_cat_2">HOTELLERIE</p>
+        </div>
       </div>
 
       <!-- Card 3 — Real Estate (16:9, provisional Yaguarón) -->
@@ -300,15 +341,40 @@
           <div class="card__overlay"></div>
           <div class="card__label" data-i18n="card_label_3">IMMOBILIEN</div>
         </div>
+        <div class="card-ext-label">
+          <span data-i18n="card_label_3">IMMOBILIEN</span>
+          <p class="cel-loc">BERLIN</p>
+          <p class="cel-cat" data-i18n="card_cat_3">IMMOBILIEN</p>
+        </div>
       </div>
 
     </div>
   </div>
 </div>
-<div id="slide-label" style="position:fixed;bottom:32px;left:50%;transform:translateX(-50%);z-index:600;pointer-events:auto;">
-  <a id="slide-label-link" href="architecture/" style="font-family:'Syne',sans-serif;font-weight:800;letter-spacing:0.3em;text-transform:uppercase;color:#0C0C0B;text-decoration:none;border-bottom:1px solid #0C0C0B;padding-bottom:3px;" data-i18n="card_label_0">MONASTERIO DE SAN MIGUEL →</a>
-</div>
+
 </main>
+
+<footer class="fixed bottom-0 left-0 right-0 z-[600] bg-[#f9f9f9] pt-4 pb-3 px-4 md:px-6 lg:px-10">
+    <div class="flex flex-row justify-between items-center gap-8">
+        <div>
+            <p class="font-['Syne'] text-[10px] tracking-[0.2em] uppercase text-black/40">&copy; <span id="footerYear"></span> PABLO VALIENTE. ALL RIGHTS RESERVED.</p>
+        </div>
+        <div class="flex flex-col gap-0">
+            <a href="https://wa.me/491633461889" target="_blank" rel="noopener noreferrer" class="font-['Syne'] text-[10px] tracking-[0.15em] text-black/40 hover:text-black transition-colors">+49 163 346 1889</a>
+            <a href="mailto:contact@pablovaliente.de" class="font-['Syne'] text-[10px] tracking-[0.15em] text-black/40 hover:text-black transition-colors">contact@pablovaliente.de</a>
+        </div>
+        <div class="flex flex-col gap-0">
+            <p class="font-['Syne'] text-[10px] tracking-[0.2em] uppercase text-black/40">Architectural &amp; Lifestyle Photography</p>
+            <p class="font-['Syne'] text-[10px] tracking-[0.2em] uppercase text-black/40">Videography &amp; Aerial Filmmaking</p>
+            <p class="font-['Syne'] text-[10px] tracking-[0.2em] uppercase text-black/40">Post-Production &amp; Color Grading</p>
+        </div>
+        <div class="flex flex-row gap-4">
+            <a href="https://instagram.com/pvaliente_" target="_blank" rel="noopener noreferrer" class="font-['Syne'] text-[10px] tracking-[0.2em] uppercase text-black/40 hover:text-black transition-colors">INSTAGRAM</a>
+            <a href="https://www.behance.net/pvaliente" target="_blank" rel="noopener noreferrer" class="font-['Syne'] text-[10px] tracking-[0.2em] uppercase text-black/40 hover:text-black transition-colors">BEHANCE</a>
+            <a href="https://www.linkedin.com/in/valiente-pablo" target="_blank" rel="noopener noreferrer" class="font-['Syne'] text-[10px] tracking-[0.2em] uppercase text-black/40 hover:text-black transition-colors">LINKEDIN</a>
+        </div>
+    </div>
+</footer>
 
 <script>
 'use strict';
@@ -324,6 +390,8 @@ const i18n = {
     card_label_1:    'JAPANISCHES HEILIGTUM',
     card_label_2:    'BELLAMAR HOTEL',
     card_label_3:    'IMMOBILIEN',
+    card_loc_0: 'VALENCIA', card_loc_1: 'KYOTO', card_loc_2: 'IBIZA', card_loc_3: 'BERLIN',
+    card_cat_0: 'ARCHITEKTUR', card_cat_1: 'ARCHITEKTUR', card_cat_2: 'HOTELLERIE', card_cat_3: 'IMMOBILIEN',
   },
   en: {
     nav_hospitality: 'HOSPITALITY',
@@ -335,6 +403,8 @@ const i18n = {
     card_label_1:    'JAPANESE SANCTUARY',
     card_label_2:    'BELLAMAR HOTEL',
     card_label_3:    'REAL ESTATE',
+    card_loc_0: 'VALENCIA', card_loc_1: 'KYOTO', card_loc_2: 'IBIZA', card_loc_3: 'BERLIN',
+    card_cat_0: 'ARCHITECTURE', card_cat_1: 'ARCHITECTURE', card_cat_2: 'HOSPITALITY', card_cat_3: 'REAL ESTATE',
   }
 };
 
@@ -350,10 +420,6 @@ function applyLang(lang) {
   document.querySelectorAll('#langToggle, #langToggleMobile, #langToggleOverlay').forEach(btn => {
     btn.textContent = lang === 'de' ? 'EN' : 'DE';
   });
-  const labelLink = document.getElementById('slide-label-link');
-  if (labelLink) {
-    labelLink.textContent = i18n[lang]['card_label_' + vCurrent] + ' →';
-  }
 }
 
 document.querySelectorAll('#langToggle, #langToggleMobile, #langToggleOverlay').forEach(btn => {
@@ -368,6 +434,7 @@ function updateHeaderOffset() {
 }
 updateHeaderOffset();
 window.addEventListener('resize', updateHeaderOffset);
+
 
 const curArrow = document.getElementById('cur-arrow');
 const curOpen  = document.getElementById('cur-open');
@@ -439,11 +506,6 @@ function updateActive(ri) {
       }
     }
   });
-  const labelLink = document.getElementById('slide-label-link');
-  if (labelLink) {
-    labelLink.href = realCards[ri].dataset.href;
-    labelLink.textContent = i18n[currentLang]['card_label_' + ri] + ' →';
-  }
 }
 
 function navigate() {
@@ -518,6 +580,8 @@ col.addEventListener('touchend', e => {
 window.addEventListener('load', () => {
   applyLang(currentLang);
   goTo(0); resetTimer();
+  const fy = document.getElementById('footerYear');
+  if (fy) fy.textContent = new Date().getFullYear();
 });
 window.addEventListener('resize', () => goTo(vCurrent));
 
