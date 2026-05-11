@@ -53,6 +53,10 @@
             .group:hover img { transform: none !important; }
             a:hover, button:hover { color: inherit !important; border-color: inherit !important; }
         }
+        @media (min-width: 768px) and (max-width: 1023px) {
+            #photo-grid .grid-item:last-child:nth-child(odd),
+            #photography-grid .grid-item:last-child:nth-child(odd) { grid-column: span 2; }
+        }
     </style>
 <script type="application/ld+json">
 {
@@ -162,8 +166,8 @@
             </div>
         </section>
 
-        <section class="p-4 md:p-6 lg:p-12 shadow-sm mb-2 lg:mb-6 bg-[#f3f3f4]" id="photography-grid-container">
-            <div class="grid grid-cols-2 gap-3 lg:grid-cols-3 lg:gap-8" id="photography-grid" data-project="project-3"></div>
+        <section class="p-2 md:p-6 lg:p-12 shadow-sm mb-2 lg:mb-6 bg-[#f3f3f4]" id="photography-grid-container">
+            <div class="grid grid-cols-2 gap-1 md:gap-4 lg:grid-cols-3 lg:gap-8" id="photography-grid" data-project="project-3"></div>
         </section>
     </main>
 
@@ -171,7 +175,7 @@
         <div class="flex flex-row items-center space-x-6 md:space-x-12 mb-8">
             <a href="https://instagram.com/pvaliente_" target="_blank" rel="noopener noreferrer" class="font-['Syne'] text-[12px] tracking-widest uppercase text-neutral-500 hover:text-black transition-colors py-2 px-4 whitespace-nowrap">INSTAGRAM</a>
             <a href="https://www.behance.net/pvaliente" target="_blank" rel="noopener noreferrer" class="font-['Syne'] text-[12px] tracking-widest uppercase text-neutral-500 hover:text-black transition-colors py-2 px-4 whitespace-nowrap">BEHANCE</a>
-            <a href="https://www.linkedin.com/in/valiente-pablo" target="_blank" rel="noopener noreferrer" class="font-['Syne'] text-[12px] tracking-widest uppercase text-neutral-500 hover:text-black transition-colors py-2 px-4 whitespace-nowrap">LINKEDIN</a>
+            <a href="https://www.linkedin.com/in/valiente-pablo" target="_blank" rel="noopener noreferrer" class="font-['Syne'] text-[12px] tracking-widest uppercase text-neutral-500 hover:text-black transition-colors py-2 px-4 whitespace-nowrap hidden lg:inline-block">LINKEDIN</a><a href="https://wa.me/491633461889" target="_blank" rel="noopener noreferrer" class="font-['Syne'] text-[12px] tracking-widest uppercase text-neutral-500 hover:text-black transition-colors py-2 px-4 whitespace-nowrap lg:hidden">WHATSAPP</a>
         </div>
         <p class="font-['Syne'] text-[10px] tracking-widest uppercase text-neutral-600 text-center">
             &copy; <span id="footerYear"></span> PABLO VALIENTE. ALL RIGHTS RESERVED.
