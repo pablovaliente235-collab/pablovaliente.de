@@ -64,6 +64,12 @@ const i18n = {
     re_urban_desc_1:    'Vollständige visuelle Inszenierung für ein Premium-Urban-Living-Projekt. Der Fokus lag auf der Hervorhebung der Integration moderner architektonischer Linien mit warmen, einladenden Innenräumen.',
     re_urban_desc_2:    'Durch den Einsatz fortschrittlicher Lichttechniken und Color Grading fangen die Bilder die Essenz des zeitgemäßen Stadtlebens ein.',
     next_project_arrow: 'Nächstes Projekt',
+
+    /* ── Homepage card categories ── */
+    card_1_category: 'Architectural Photography',
+    card_2_category: 'Architectural Photography',
+    card_3_category: 'Hospitality Brand Production',
+    card_4_category: 'Real Estate Film & Photo Production',
   },
   en: {
     /* ── Navigation ── */
@@ -124,6 +130,12 @@ const i18n = {
     re_urban_desc_1:    'Complete visual staging for a premium urban living project. The focus was on highlighting the integration of modern architectural lines with warm, inviting interior spaces.',
     re_urban_desc_2:    'Using advanced lighting techniques and color grading, the imagery captures the essence of contemporary city living.',
     next_project_arrow: 'Next Project',
+
+    /* ── Homepage card categories ── */
+    card_1_category: 'Architectural Photography',
+    card_2_category: 'Architectural Photography',
+    card_3_category: 'Hospitality Brand Production',
+    card_4_category: 'Real Estate Film & Photo Production',
   }
 };
 
