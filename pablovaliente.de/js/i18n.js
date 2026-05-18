@@ -70,6 +70,9 @@ const i18n = {
     card_2_category: 'Architectural Photography',
     card_3_category: 'Hospitality Brand Production',
     card_4_category: 'Real Estate Film & Photo Production',
+
+    /* ── Hero subtitle ── */
+    hero_subtitle: 'Premium Visual Production für Architektur & Hospitality-Marken',
   },
   en: {
     /* ── Navigation ── */
@@ -136,6 +139,9 @@ const i18n = {
     card_2_category: 'Architectural Photography',
     card_3_category: 'Hospitality Brand Production',
     card_4_category: 'Real Estate Film & Photo Production',
+
+    /* ── Hero subtitle ── */
+    hero_subtitle: 'Premium Visual Production for Architecture & Hospitality Brands',
   }
 };
 
