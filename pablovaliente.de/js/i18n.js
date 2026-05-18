@@ -59,10 +59,10 @@ const i18n = {
     btn_retry:          'ERNEUT VERSUCHEN',
 
     /* ── Real Estate — Urban Living ── */
-    re_urban_meta_desc: 'Hochwertige Immobilienfotografie und Videoproduktion für luxuriöse Urban Living Räume in Berlin und Frankfurt. Pablo Valiente.',
-    re_urban_title:     'Luxus-Immobilienfotografie — Urban Living Berlin',
-    re_urban_desc_1:    'Vollständige visuelle Inszenierung für ein Premium-Urban-Living-Projekt. Der Fokus lag auf der Hervorhebung der Integration moderner architektonischer Linien mit warmen, einladenden Innenräumen.',
-    re_urban_desc_2:    'Durch den Einsatz fortschrittlicher Lichttechniken und Color Grading fangen die Bilder die Essenz des zeitgemäßen Stadtlebens ein.',
+    re_urban_meta_desc: 'Innenraumfotografie und Videoproduktion für Wohnimmobilien. Beispielprojekt Berlin — Pablo Valiente, Fotograf und Videograf.',
+    re_urban_title:     'Innenraumfotografie & Video — Wohnimmobilien Berlin',
+    re_urban_desc_1:    'Fotografie und Video für eine Berliner Mietwohnung. Gezeigt werden Wohn- und Schlafbereich, Küche und Details — aufgenommen mit natürlichem Licht und einer einzigen Kamera.',
+    re_urban_desc_2:    'Ein Beispielprojekt für die fotografische und filmische Dokumentation von Wohnräumen: klar, ehrlich und auf den Punkt.',
     next_project_arrow: 'Nächstes Projekt',
 
     /* ── Homepage card categories ── */
@@ -128,10 +128,10 @@ const i18n = {
     btn_retry:          'TRY AGAIN',
 
     /* ── Real Estate — Urban Living ── */
-    re_urban_meta_desc: 'High-end real estate photography and video for luxury urban living spaces in Berlin and Frankfurt. Pablo Valiente.',
-    re_urban_title:     'Luxury Real Estate Photography — Urban Living Berlin',
-    re_urban_desc_1:    'Complete visual staging for a premium urban living project. The focus was on highlighting the integration of modern architectural lines with warm, inviting interior spaces.',
-    re_urban_desc_2:    'Using advanced lighting techniques and color grading, the imagery captures the essence of contemporary city living.',
+    re_urban_meta_desc: 'Interior photography and video production for residential properties. Sample project Berlin — Pablo Valiente, photographer and videographer.',
+    re_urban_title:     'Interior Photography & Video — Residential Berlin',
+    re_urban_desc_1:    'Photography and video for a Berlin rental apartment. Covers living and sleeping areas, kitchen and details — shot in natural light with a single camera.',
+    re_urban_desc_2:    'A sample project for the photographic and film documentation of residential spaces: straightforward, honest and to the point.',
     next_project_arrow: 'Next Project',
 
     /* ── Homepage card categories ── */
