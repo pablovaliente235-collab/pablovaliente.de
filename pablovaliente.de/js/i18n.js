@@ -57,6 +57,13 @@ const i18n = {
     btn_sending:        'WIRD GESENDET...',
     btn_sent:           'GESENDET ✓',
     btn_retry:          'ERNEUT VERSUCHEN',
+
+    /* ── Real Estate — Urban Living ── */
+    re_urban_meta_desc: 'Hochwertige Immobilienfotografie und Videoproduktion für luxuriöse Urban Living Räume in Berlin und Frankfurt. Pablo Valiente.',
+    re_urban_title:     'Luxus-Immobilienfotografie — Urban Living Berlin',
+    re_urban_desc_1:    'Vollständige visuelle Inszenierung für ein Premium-Urban-Living-Projekt. Der Fokus lag auf der Hervorhebung der Integration moderner architektonischer Linien mit warmen, einladenden Innenräumen.',
+    re_urban_desc_2:    'Durch den Einsatz fortschrittlicher Lichttechniken und Color Grading fangen die Bilder die Essenz des zeitgemäßen Stadtlebens ein.',
+    next_project_arrow: 'Nächstes Projekt',
   },
   en: {
     /* ── Navigation ── */
@@ -110,6 +117,13 @@ const i18n = {
     btn_sending:        'SENDING...',
     btn_sent:           'SENT ✓',
     btn_retry:          'TRY AGAIN',
+
+    /* ── Real Estate — Urban Living ── */
+    re_urban_meta_desc: 'High-end real estate photography and video for luxury urban living spaces in Berlin and Frankfurt. Pablo Valiente.',
+    re_urban_title:     'Luxury Real Estate Photography — Urban Living Berlin',
+    re_urban_desc_1:    'Complete visual staging for a premium urban living project. The focus was on highlighting the integration of modern architectural lines with warm, inviting interior spaces.',
+    re_urban_desc_2:    'Using advanced lighting techniques and color grading, the imagery captures the essence of contemporary city living.',
+    next_project_arrow: 'Next Project',
   }
 };
 
