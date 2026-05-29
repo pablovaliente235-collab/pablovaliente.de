@@ -102,32 +102,12 @@
             <div class="flex space-x-4 md:space-x-8 lg:space-x-12 overflow-x-auto kinetic-scroll snap-x snap-mandatory scroll-smooth pb-4" id="slider" style="outline: none;">
                 <div class="min-w-[92vw] md:min-w-[95vw] lg:min-w-[77vw] snap-center relative self-center">
                     <div class="slide-wrap" style="aspect-ratio: 16/9;">
-                        <iframe src="https://player.vimeo.com/video/1192061405?autoplay=1&loop=1&muted=1&background=1&playsinline=1&autopause=0&controls=0&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen playsinline title="Urban Living Berlin"></iframe>
+                        <img class="video-poster" src="../assets/real-estate/project-1/immobilienfotograf-berlin-urban-living-01.webp" alt="Urban Living Berlin — Video" loading="eager" fetchpriority="high"/>
+                        <iframe src="" data-src="https://player.vimeo.com/video/1192061405?autoplay=1&loop=1&muted=1&background=1&playsinline=1&autopause=0&controls=0&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen playsinline title="Urban Living Berlin"></iframe>
+                        <button class="video-play-btn" aria-label="Video abspielen">
+                            <svg width="20" height="24" viewBox="0 0 20 24" fill="none"><path d="M2 2l16 10L2 22V2z" fill="currentColor"/></svg>
+                        </button>
                     </div>
-                </div>
-                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative">
-                    <figure class="group cursor-pointer"><div class="aspect-[3/2] overflow-hidden bg-neutral-200"><img class="w-full h-full object-cover duration-700" src="../assets/real-estate/project-1/immobilienfotograf-berlin-urban-living-01.webp" alt="Immobilienfotografie Berlin — Urban Living 01" loading="eager" fetchpriority="high"/></div></figure>
-                </div>
-                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative">
-                    <figure class="group cursor-pointer"><div class="aspect-[3/2] overflow-hidden bg-neutral-200"><img class="w-full h-full object-cover duration-700" src="../assets/real-estate/project-1/immobilienfotograf-berlin-urban-living-02.webp" alt="Immobilienfotografie Berlin — Urban Living 02" loading="lazy"/></div></figure>
-                </div>
-                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative">
-                    <figure class="group cursor-pointer"><div class="aspect-[3/2] overflow-hidden bg-neutral-200"><img class="w-full h-full object-cover duration-700" src="../assets/real-estate/project-1/immobilienfotograf-berlin-urban-living-03.webp" alt="Immobilienfotografie Berlin — Urban Living 03" loading="lazy"/></div></figure>
-                </div>
-                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative">
-                    <figure class="group cursor-pointer"><div class="aspect-[3/2] overflow-hidden bg-neutral-200"><img class="w-full h-full object-cover duration-700" src="../assets/real-estate/project-1/immobilienfotograf-berlin-urban-living-04.webp" alt="Immobilienfotografie Berlin — Urban Living 04" loading="lazy"/></div></figure>
-                </div>
-                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative">
-                    <figure class="group cursor-pointer"><div class="aspect-[3/2] overflow-hidden bg-neutral-200"><img class="w-full h-full object-cover duration-700" src="../assets/real-estate/project-1/immobilienfotograf-berlin-urban-living-05.webp" alt="Immobilienfotografie Berlin — Urban Living 05" loading="lazy"/></div></figure>
-                </div>
-                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative">
-                    <figure class="group cursor-pointer"><div class="aspect-[3/2] overflow-hidden bg-neutral-200"><img class="w-full h-full object-cover duration-700" src="../assets/real-estate/project-1/immobilienfotograf-berlin-urban-living-06.webp" alt="Immobilienfotografie Berlin — Urban Living 06" loading="lazy"/></div></figure>
-                </div>
-                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative">
-                    <figure class="group cursor-pointer"><div class="aspect-[3/2] overflow-hidden bg-neutral-200"><img class="w-full h-full object-cover duration-700" src="../assets/real-estate/project-1/immobilienfotograf-berlin-urban-living-07.webp" alt="Immobilienfotografie Berlin — Urban Living 07" loading="lazy"/></div></figure>
-                </div>
-                <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center relative">
-                    <figure class="group cursor-pointer"><div class="aspect-[3/2] overflow-hidden bg-neutral-200"><img class="w-full h-full object-cover duration-700" src="../assets/real-estate/project-1/immobilienfotograf-berlin-urban-living-08.webp" alt="Immobilienfotografie Berlin — Urban Living 08" loading="lazy"/></div></figure>
                 </div>
             </div>
             <div class="flex flex-row justify-between items-center border-t border-black/5 pt-4 mt-1">
@@ -232,6 +212,7 @@
 
         async function loadFrames() {
             const grid = document.getElementById('photo-grid');
+            const slider = document.getElementById('slider');
             const base = '../assets/real-estate/project-1';
             let i = 1;
             while (true) {
@@ -243,10 +224,27 @@
                 div.className = 'group aspect-[3/2] overflow-hidden bg-neutral-100';
                 div.innerHTML = `<img class="w-full h-full object-cover hover:scale-105 transition-all duration-700 ease-in-out" src="${src}" alt="Immobilienfotografie Berlin — Urban Living ${n}" loading="lazy"/>`;
                 grid.appendChild(div);
+                const slide = document.createElement('div');
+                slide.className = 'min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center flex-shrink-0';
+                slide.innerHTML = `<div class="slide-wrap"><img src="${src}" alt="Immobilienfotografie Berlin — Urban Living ${n}" loading="lazy"/></div>`;
+                slider.appendChild(slide);
                 i++;
             }
         }
         loadFrames();
+
+        // Lazy-load video on play button click
+        document.querySelectorAll('.slide-wrap').forEach(function(wrap) {
+            var btn = wrap.querySelector('.video-play-btn');
+            var iframe = wrap.querySelector('iframe[data-src]');
+            if (!btn || !iframe) return;
+            btn.addEventListener('click', function() {
+                iframe.src = iframe.dataset.src;
+                btn.classList.add('is-hidden');
+                var poster = wrap.querySelector('.video-poster');
+                if (poster) poster.classList.add('is-hidden');
+            });
+        });
 
         i18n.de.slide_sub_realestate = 'Immobilienfotografie';
         i18n.en.slide_sub_realestate = 'Real Estate Photography';

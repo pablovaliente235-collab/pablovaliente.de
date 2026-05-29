@@ -101,12 +101,17 @@
                 <!-- Vimeo embed slide -->
                 <div class="min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center flex-shrink-0">
                     <div class="slide-wrap">
+                        <img class="video-poster" src="../../assets/commercial/marvell-club-hotel-ibiza/Frames/frame-01.webp" alt="Marvell Club Hotel — Video" loading="eager" fetchpriority="high"/>
                         <iframe
-                            src="https://player.vimeo.com/video/1196108041?autoplay=1&loop=1&muted=1&background=1&autopause=0&controls=0&title=0&byline=0&portrait=0&dnt=1"
+                            src=""
+                            data-src="https://player.vimeo.com/video/1196108041?autoplay=1&loop=1&muted=1&background=1&autopause=0&controls=0&title=0&byline=0&portrait=0&dnt=1"
                             allow="autoplay; fullscreen; picture-in-picture"
                             allowfullscreen
                             title="Marvell Club Hotel — Video">
                         </iframe>
+                        <button class="video-play-btn" aria-label="Video abspielen">
+                            <svg width="20" height="24" viewBox="0 0 20 24" fill="none"><path d="M2 2l16 10L2 22V2z" fill="currentColor"/></svg>
+                        </button>
                     </div>
                 </div>
                 <!-- Photo slide -->
@@ -214,6 +219,7 @@
 
         async function loadFrames() {
             const grid = document.getElementById('photo-grid');
+            const slider = document.getElementById('slider');
             const base = grid.dataset.basepath;
             let i = 1;
             while (true) {
@@ -225,10 +231,29 @@
                 div.className = 'group aspect-[3/2] overflow-hidden bg-neutral-100';
                 div.innerHTML = `<img class="w-full h-full object-cover hover:scale-105 transition-all duration-700 ease-in-out" src="${src}" alt="Marvell Club Hotel ${n}" loading="lazy"/>`;
                 grid.appendChild(div);
+                if (i > 1) {
+                    const slide = document.createElement('div');
+                    slide.className = 'min-w-[92vw] md:min-w-[80vw] lg:min-w-[65vw] snap-center flex-shrink-0';
+                    slide.innerHTML = `<div class="slide-wrap"><img src="${src}" alt="Marvell Club Hotel ${n}" loading="lazy"/></div>`;
+                    slider.appendChild(slide);
+                }
                 i++;
             }
         }
         loadFrames();
+
+        // Lazy-load video on play button click
+        document.querySelectorAll('.slide-wrap').forEach(function(wrap) {
+            var btn = wrap.querySelector('.video-play-btn');
+            var iframe = wrap.querySelector('iframe[data-src]');
+            if (!btn || !iframe) return;
+            btn.addEventListener('click', function() {
+                iframe.src = iframe.dataset.src;
+                btn.classList.add('is-hidden');
+                var poster = wrap.querySelector('.video-poster');
+                if (poster) poster.classList.add('is-hidden');
+            });
+        });
 
         i18n.de.seo_h1 = 'Videoproduktion — Marvell Club Hotel Ibiza';
         i18n.en.seo_h1 = 'Video Production — Marvell Club Hotel Ibiza';
