@@ -1,0 +1,199 @@
+/* ═══════════════════════════════════════════════
+
+/* ── Mobile overlay: always white text regardless of page state ── */
+#mobile-overlay, #mobile-overlay a, #mobile-overlay button {
+  color: #fff !important;
+}
+
+   global.css — Shared styles for pablovaliente.de
+   ═══════════════════════════════════════════════ */
+
+/* ── Grain overlay ── */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 9990;
+  pointer-events: none;
+  opacity: .025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 120px;
+  animation: gr .35s steps(1) infinite;
+}
+@keyframes gr {
+  0%  { transform: translate(0,0);    }
+  25% { transform: translate(-3%,2%); }
+  50% { transform: translate(2%,-3%); }
+  75% { transform: translate(-2%,3%); }
+}
+
+/* ── Menu ── */
+.mobile-menu-open { overflow: hidden; }
+
+/* Mobile: full-screen overlay */
+@media (max-width: 1023px) {
+  #mobile-overlay {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  #menu-backdrop { display: none !important; }
+}
+
+/* Desktop: right sidebar */
+@media (min-width: 1024px) {
+  #mobile-overlay {
+    position: fixed !important;
+    top: 0 !important; right: 0 !important; bottom: 0 !important; left: auto !important;
+    width: 570px !important;
+    height: 100dvh !important;
+    overflow-y: auto !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    padding: 80px 48px 48px !important;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  #mobile-overlay.flex {
+    transform: translateX(0) !important;
+  }
+  /* frame-portada background */
+  #menu-bg {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    right: 570px;
+    z-index: 698;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    opacity: 0;
+    filter: blur(28px);
+    transform: scale(1.06);
+    transition: opacity 0.4s ease, filter 1.1s ease, transform 1.1s ease;
+    pointer-events: none;
+  }
+  #menu-bg.visible {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1);
+  }
+  /* Click-to-close area, transparent */
+  #menu-backdrop {
+    position: fixed;
+    inset: 0;
+    background: transparent;
+    z-index: 699;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  #menu-backdrop.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  #mobile-overlay .overlay-link {
+    font-size: 35px !important;
+    white-space: nowrap;
+  }
+}
+
+/* ── Scrollable sub-nav (mobile) ── */
+@media (max-width: 1023px) {
+  .nav-scroll {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .nav-scroll::-webkit-scrollbar { display: none; }
+  .nav-scroll a { flex: 0 0 auto; }
+  #slider-description-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+  }
+}
+@media (max-width: 767px) {
+  #slider ~ div span {
+    font-size: 8px !important;
+    letter-spacing: 0.1em !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: calc(100vw - 100px);
+    display: inline !important;
+  }
+  #slider ~ div span + span::before { content: " "; white-space: pre; }
+  #prevBtn, #nextBtn { width: 32px !important; height: 32px !important; }
+}
+
+/* ── Touch: disable hover effects ── */
+@media (hover: none) and (pointer: coarse) {
+  .group:hover img { transform: none !important; }
+  a:hover, button:hover { color: inherit !important; border-color: inherit !important; }
+}
+
+/* ── Section divider ── */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(0,0,0,0.06);
+}
+
+/* ── Kinetic scroll (horizontal sliders) ── */
+.kinetic-scroll::-webkit-scrollbar { display: none; }
+.kinetic-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ── Video slide wrapper ── */
+.slide-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #0f0f0f;
+  cursor: pointer;
+}
+.slide-wrap iframe,
+.slide-wrap img {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 100%; height: 100%;
+  transform: translate(-50%, -50%);
+  border: 0;
+  object-fit: cover;
+}
+
+/* ── Video lazy-load: poster + play button ── */
+.video-poster { transition: opacity 0.4s ease; }
+.video-poster.is-hidden { opacity: 0; pointer-events: none; }
+.video-play-btn {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.65);
+  background: rgba(0,0,0,0.22);
+  color: rgba(255,255,255,0.9);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  padding: 0;
+}
+.video-play-btn:hover {
+  border-color: rgba(255,255,255,0.95);
+  background: rgba(0,0,0,0.38);
+  transform: translate(-50%, -50%) scale(1.08);
+}
+.video-play-btn svg { margin-left: 3px; }
+.video-play-btn.is-hidden { display: none; }

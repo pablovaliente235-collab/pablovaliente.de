@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+    <link rel="icon" href="favicon.ico" sizes="any"/>
+    <link rel="icon" href="favicon-192.png" type="image/png" sizes="192x192"/>
+    <link rel="icon" href="favicon-512.png" type="image/png" sizes="512x512"/>
+    <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pablo Valiente — Architecture & Hospitality Photographer Berlin</title>
+<meta name="description" content="Photographer, videographer and EASA A1/A3 drone pilot based in Berlin & Frankfurt. Architecture, real estate and hospitality photography across Germany and Spain."/>
+<link rel="canonical" href="https://pablovaliente.de/"/>
+<link rel="alternate" hreflang="de" href="https://pablovaliente.de/"/>
+<link rel="alternate" hreflang="en" href="https://pablovaliente.de/"/>
+<link rel="alternate" hreflang="x-default" href="https://pablovaliente.de/"/>
+<script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/global.css">
+<script>
+  tailwind.config = {
+    theme: { extend: { colors: { primary: '#A8895A' } } }
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Manrope:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Manrope:wght@300;400;500;600&display=swap"></noscript>
+<link rel="stylesheet" href="https://use.typekit.net/hgb1zjr.css"/>
+
+<style>
+  :root {
+    --bg:     #f9f9f9;
+    --black:  #0C0C0B;
+    --white:  #f9f9f9;
+    --ease:   cubic-bezier(0.16, 1, 0.3, 1);
+    --radius: 8px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :focus-visible { outline: 2px solid #A8895A; outline-offset: 3px; }
+  html, body { width: 100%; height: 100%; }
+  body { font-family: 'Syne', sans-serif; background: var(--bg); color: #0C0C0B; -webkit-font-smoothing: antialiased; overflow: hidden; }
+
+  /* ── Grain ── */
+  .grain {
+    position: fixed; inset: 0; z-index: 9990; pointer-events: none; opacity: .025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 120px; animation: gr .35s steps(1) infinite;
+  }
+  @keyframes gr {
+    0%  { transform: translate(0,0);    } 25% { transform: translate(-3%,2%);  }
+    50% { transform: translate(2%,-3%); } 75% { transform: translate(-2%,3%);  }
+  }
+
+  /* ── Carousel ── */
+
+  .stage {
+    position: fixed;
+    top: 50%; transform: translateY(-50%);
+    left: 0; right: 0;
+    z-index: 500;
+    pointer-events: none;
+  }
+  .carousel-clip {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .slider-col {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    pointer-events: auto;
+  }
+  .slider-col::-webkit-scrollbar { display: none; }
+  .slider-track {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+    padding: 0 2.5rem;
+    width: 200vw;
+    opacity: 0;
+    animation: fadeInUp .9s var(--ease) .3s forwards;
+  }
+  .card-wrap {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    position: relative;
+
+  }
+  .ctl-line {
+    display: block;
+    margin-top: 0.4rem;
+  }
+  .ctl-cat, .ctl-name {
+    font-family: "neue-haas-grotesk-display", sans-serif;
+    font-size: 8px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: #0C0C0B;
+  }
+  .card {
+    width: 100%;
+    aspect-ratio: 3/2;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+    background: #1a1510;
+  }
+
+  .card__img-hover {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; pointer-events: none; z-index: 1;
+    opacity: 0;
+  }
+  .card-wrap:hover .card__img-hover { opacity: 1; }
+  .card__img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; pointer-events: none;
+  }
+
+  /* ── Mobile ── */
+
+  @media (max-width: 1023px) {
+    /* Keep fixed stage + horizontal scroll — just resize cards */
+    .slider-track {
+      grid-template-columns: repeat(6, 75vw);
+      gap: 12px;
+      padding: 0 1.25rem;
+      width: auto;
+    }
+    .works-label { left: 1.25rem; font-size: 24px; }
+    .ctl-cat { font-size: 8px; }
+    .ctl-name { font-size: 8px; }
+    .mobile-menu-open { overflow: hidden; }
+    #mobile-overlay { position: fixed !important; inset: 0 !important; width: 100vw !important; height: 100dvh !important; overflow: hidden !important; }
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    a:hover, button:hover { color: inherit !important; }
+  }
+  .works-label {
+    position: absolute;
+    top: -50px;
+    left: 2.5rem;
+    font-family: "neue-haas-grotesk-display", sans-serif;
+    font-size: 30px; font-weight: 500;
+    color: #0C0C0B;
+    z-index: 10;
+    pointer-events: none;
+    line-height: 1;
+  }
+  .card-overlay-text {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.6rem;
+    opacity: 0;
+    background: rgba(0,0,0,0.52);
+    pointer-events: none;
+  }
+  .card-wrap:hover .card-overlay-text { opacity: 1; }
+  .cov-row { display: flex; flex-direction: column; gap: 2px; max-width: 70%; }
+  .cov-label {
+    font-family: "neue-haas-grotesk-display", sans-serif;
+    font-size: 8px; font-weight: 900;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+  .cov-value.cov-desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .cov-value {
+    font-family: "neue-haas-grotesk-display", sans-serif;
+    font-size: 11px; font-weight: 300;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.7;
+    word-spacing: 0.08em;
+  }
+
+@media (min-width: 1024px) {
+  #mobile-overlay .overlay-link { font-size: 35px !important; white-space: nowrap !important; }
+  #mobile-overlay.flex { transform: translateX(0) !important; }
+  #menu-backdrop {
+    position: fixed !important; top: 0 !important; left: 0 !important; bottom: 0 !important;
+    right: 570px !important;
+    background: transparent !important; z-index: 699 !important;
+    opacity: 0 !important; pointer-events: none !important;
+    transition: opacity 0.35s ease !important;
+  }
+  #menu-backdrop.visible { opacity: 1 !important; pointer-events: auto !important; }
+  }
+
+    </style>
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Pablo Valiente",
+    "url": "https://pablovaliente.de",
+    "jobTitle": "Architecture & Hospitality Photographer, Videographer and Drone Pilot",
+    "description": "End-to-end visual content creator specialised in architecture, real estate and hospitality photography and film. Based in Berlin and Frankfurt, Germany. Available in Spain.",
+    "email": "contact@pablovaliente.de",
+    "image": "https://pablovaliente.de/assets/projects/monasterio-san-miguel/frames/frame-01.webp",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Berlin",
+      "addressRegion": "Berlin",
+      "addressCountry": "DE"
+    },
+    "alumniOf": {
+      "@type": "EducationalOrganization",
+      "name": "EASD Valencia",
+      "description": "Photography and Audiovisual Creation"
+    },
+    "hasCredential": [
+      {
+        "@type": "EducationalOccupationalCredential",
+        "name": "DaVinci Resolve Certified Editor & Colorist",
+        "credentialCategory": "Professional Certification",
+        "recognizedBy": { "@type": "Organization", "name": "Blackmagic Design" }
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        "name": "EASA A1/A3 Drone Pilot License",
+        "credentialCategory": "Professional License",
+        "recognizedBy": { "@type": "Organization", "name": "European Union Aviation Safety Agency (EASA)" }
+      }
+    ],
+    "knowsAbout": [
+      "Architectural Photography",
+      "Real Estate Photography",
+      "Hospitality Photography",
+      "Commercial Videography",
+      "Aerial Drone Filming",
+      "DaVinci Resolve Color Grading",
+      "Post-Production"
+    ],
+    "sameAs": [
+      "https://instagram.com/pablovaliente.de",
+      "https://www.linkedin.com/in/valiente-pablo",
+      "https://www.behance.net/pvaliente"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Pablo Valiente — Visual Content Creator",
+    "url": "https://pablovaliente.de",
+    "email": "contact@pablovaliente.de",
+    "image": "https://pablovaliente.de/assets/projects/monasterio-san-miguel/frames/frame-01.webp",
+    "description": "End-to-end visual content creation for architecture, real estate and hospitality. Photography, videography, aerial filming and color grading.",
+    "priceRange": "€€€",
+    "areaServed": [
+      { "@type": "City", "name": "Berlin", "sameAs": "https://www.wikidata.org/wiki/Q64" },
+      { "@type": "City", "name": "Frankfurt", "sameAs": "https://www.wikidata.org/wiki/Q1794" },
+      { "@type": "Country", "name": "Germany", "sameAs": "https://www.wikidata.org/wiki/Q183" },
+      { "@type": "Country", "name": "Spain", "sameAs": "https://www.wikidata.org/wiki/Q29" }
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Berlin",
+      "addressRegion": "Berlin",
+      "addressCountry": "DE"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Visual Content Services",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Architectural Photography" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Real Estate Photography & Videography" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Hotel & Hospitality Photography" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Commercial Film Production" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Aerial Drone Filming (EASA A1/A3)" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Color Grading — DaVinci Resolve" } }
+      ]
+    },
+    "sameAs": [
+      "https://instagram.com/pablovaliente.de",
+      "https://www.linkedin.com/in/valiente-pablo",
+      "https://www.behance.net/pvaliente"
+    ]
+  }
+]
+</script>
+
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://pablovaliente.de/"/>
+    <meta property="og:title" content="Pablo Valiente — Architecture & Hospitality Photographer | Berlin"/>
+    <meta property="og:description" content="End-to-end visual content creator specialised in architecture, real estate and hospitality. Based in Berlin & Frankfurt. Available in Germany and Spain."/>
+    <meta property="og:image" content="https://pablovaliente.de/assets/projects/monasterio-san-miguel/frames/frame-01.webp"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="800"/>
+    <meta property="og:site_name" content="Pablo Valiente"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Pablo Valiente — Architecture & Hospitality Photographer | Berlin"/>
+    <meta name="twitter:description" content="End-to-end visual content creator specialised in architecture, real estate and hospitality. Based in Berlin & Frankfurt. Available in Germany and Spain."/>
+    <meta name="twitter:image" content="https://pablovaliente.de/assets/projects/monasterio-san-miguel/frames/frame-01.webp"/>
+    <meta name="keywords" content="Fotograf Berlin, Videograf Berlin, Architekturfotograf Berlin, Immobilienfotograf Berlin, Hotelfotograf Berlin, Drohnenpilot Berlin, Videoproduktion Berlin, Filmmaker Berlin, real estate photographer Berlin, architecture photographer Berlin"/>
+    <meta name="geo.region" content="DE-BE"/>
+    <meta name="geo.placename" content="Berlin"/>
+    <meta name="geo.position" content="52.520008;13.404954"/>
+    <meta name="ICBM" content="52.520008, 13.404954"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wer ist Pablo Valiente?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pablo Valiente ist ein professioneller Fotograf, Videograf und EASA A1/A3-zertifizierter Drohnenpilot mit Sitz in Berlin. Er ist spezialisiert auf Architekturfotografie, Immobilienfotografie, Hotel- und Lifestyle-Fotografie sowie kommerzielle Videoproduktion in Deutschland und Spanien."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Welche Fotografie- und Videoleistungen bietet Pablo Valiente in Berlin an?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pablo Valiente bietet Architekturfotografie, Immobilienfotografie (Real Estate Photography), Hotelfotografie, Lifestyle-Fotografie und kommerzielle Videoproduktion in Berlin an. Er ist außerdem Blackmagic Design-zertifizierter Colorist und EASA-zertifizierter Drohnenpilot."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ist Pablo Valiente als Drohnenpilot in Berlin verfügbar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Pablo Valiente ist EASA A1/A3-zertifizierter Drohnenpilot und bietet professionelle Drohnenaufnahmen für Architektur-, Immobilien- und Hotelprojekte in Berlin und ganz Deutschland an."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "In welchen Städten ist Pablo Valiente als Fotograf tätig?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pablo Valiente ist hauptsächlich in Berlin tätig, arbeitet aber auch in Frankfurt, Madrid, Ibiza und anderen Standorten in Deutschland und Spanien."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie kann ich Pablo Valiente als Fotografen buchen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sie können Pablo Valiente über die Kontaktseite pablovaliente.de/contact/ erreichen, per E-Mail an contact@pablovaliente.de oder per WhatsApp unter +49 163 346 1889."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body class="antialiased">
+
+<div class="grain" aria-hidden="true"></div>
+
+
+<header class="fixed top-0 w-full z-[600]" id="unified-header" style="background:transparent;">
+    <nav class="w-full flex items-center py-4 justify-between px-4 md:px-6 lg:px-10" style="position:relative;">
+        <a href="/" class="hover:opacity-70 transition-opacity" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:13px; font-weight:500; color:#0C0C0B;">Pablo Valiente</a>
+        <button id="langToggleMobile" class="lg:hidden" style="position:absolute; left:50%; transform:translateX(-50%); font-family:'neue-haas-grotesk-display',sans-serif; font-size:11px; font-weight:500; color:rgba(0,0,0,0.45); text-transform:uppercase; letter-spacing:0.1em;">EN</button>
+        <div class="flex items-center gap-4">
+            <button id="mobile-menu-btn" aria-label="Menü öffnen" aria-expanded="false" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.1em; color:#0C0C0B;">MENU</button>
+            <button id="langToggle" class="hidden lg:block" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:11px; font-weight:500; color:rgba(0,0,0,0.45); text-transform:uppercase; letter-spacing:0.1em;">EN</button>
+        </div>
+    </nav>
+    <div id="menu-bg"></div>
+    <div id="menu-backdrop"></div>
+    <div class="fixed inset-0 bg-[#0c0c0b] z-[700] hidden flex-col" id="mobile-overlay">
+        <div style="position:absolute; top:0; left:0; right:0; display:flex; align-items:center; justify-content:flex-end; gap:16px; padding:16px 40px;">
+                <button id="close-menu-btn-text" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.1em; color:#fff; background:none; border:none; padding:0; cursor:pointer; text-transform:uppercase;">CLOSE</button>
+                <button id="close-menu-btn" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:22px; font-weight:300; color:#fff; background:none; border:none; padding:0; cursor:pointer; line-height:1;">×</button>
+            </div>
+        <div class="flex flex-col items-start space-y-1 w-full px-10">
+            <a href="hospitality/" class="overlay-link" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:25px; font-weight:500; color:#fff; letter-spacing:0.02em; text-decoration:none;">Bellamar Hotel</a>
+            <a href="hospitality/marvell/" class="overlay-link" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:25px; font-weight:500; color:#fff; letter-spacing:0.02em; text-decoration:none;">Marvell Club</a>
+            <a href="real-estate/" class="overlay-link" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:25px; font-weight:500; color:#fff; letter-spacing:0.02em; text-decoration:none;">Urban Living</a>
+            <a href="architecture/" class="overlay-link" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:25px; font-weight:500; color:#fff; letter-spacing:0.02em; text-decoration:none; white-space:nowrap;">Monasterio de San Miguel</a>
+            <a href="architecture/japanese/" class="overlay-link" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:25px; font-weight:500; color:#fff; letter-spacing:0.02em; text-decoration:none;">Japanisches Heiligtum</a>
+            <a href="architecture/iglesia-yaguaron/" class="overlay-link" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:25px; font-weight:500; color:#fff; letter-spacing:0.02em; text-decoration:none;">Iglesia de Yaguarón</a>
+            <a href="contact/" data-i18n="menu_contact" class="overlay-link" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:25px; font-weight:500; color:#fff; letter-spacing:0.02em; text-decoration:none;">Kontakt</a>
+            <a href="about/" data-i18n="menu_about" class="overlay-link" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:25px; font-weight:500; color:#fff; letter-spacing:0.02em; text-decoration:none;">Über mich</a>
+            <a href="impressum/" data-i18n="menu_impressum" class="overlay-link" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:25px; font-weight:500; color:#fff; letter-spacing:0.02em; text-decoration:none;">Impressum</a>
+            <button id="langToggleOverlay" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:11px; font-weight:500; color:#fff; letter-spacing:0.1em; text-decoration:none; text-transform:uppercase; margin-top:20px; background:none; border:none; padding:0; cursor:pointer;">EN</button>
+            <p class="overlay-year" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:11px; font-weight:400; color:rgba(255,255,255,0.8); margin-top:8px;">&copy; <span class="footer-year"></span> Pablo Valiente. All rights reserved.</p>
+        </div>
+    </div>
+</header>
+
+<main>
+<div class="stage">
+  <span class="works-label">Works</span>
+  <div class="carousel-clip">
+  <div class="slider-col" id="sliderCol">
+  <div class="slider-track" id="track">
+
+      <div class="card-wrap" data-href="architecture/" data-bg="assets/projects/monasterio-san-miguel/frames/frame-fondo.webp">
+        <div class="card" style="background:#120f0c">
+          <img class="card__img" src="assets/projects/monasterio-san-miguel/frames/frame-portada.webp" alt="Monasterio de San Miguel" fetchpriority="high" loading="eager"/>
+        </div>
+        <span class="ctl-line"><span class="ctl-cat" data-i18n="card_0_category">Architectural Photography</span><span class="ctl-cat">&nbsp;&nbsp;/&nbsp;&nbsp;</span><span class="ctl-name" data-i18n="card_label_0">Monasterio de San Miguel</span></span>
+      </div>
+
+      <div class="card-wrap" data-href="architecture/iglesia-yaguaron/" data-bg="assets/projects/iglesia-yaguaron/frames/frame-fondo.webp">
+        <div class="card" style="background:#0d0d0b">
+          <img class="card__img" src="assets/projects/iglesia-yaguaron/frames/frame-portada.webp" alt="Iglesia de Yaguarón" loading="lazy"/>
+        </div>
+        <span class="ctl-line"><span class="ctl-cat" data-i18n="card_2_category">Architectural Photography</span><span class="ctl-cat">&nbsp;&nbsp;/&nbsp;&nbsp;</span><span class="ctl-name" data-i18n="card_label_2">Iglesia de Yaguarón</span></span>
+      </div>
+
+      <div class="card-wrap" data-href="architecture/japanese/" data-bg="assets/projects/japanisches-heiligtum/frames/frame-fondo.webp">
+        <div class="card" style="background:#0f1207">
+          <img class="card__img" src="assets/projects/japanisches-heiligtum/frames/frame-portada.webp" alt="Japanisches Heiligtum" loading="lazy"/>
+        </div>
+        <span class="ctl-line"><span class="ctl-cat" data-i18n="card_1_category">Architectural Photography</span><span class="ctl-cat">&nbsp;&nbsp;/&nbsp;&nbsp;</span><span class="ctl-name" data-i18n="card_label_1">Japanisches Heiligtum</span></span>
+      </div>
+
+      <div class="card-wrap" data-href="hospitality/" data-bg="assets/projects/bellamar-hotel-ibiza/frames/frame-fondo.webp">
+        <div class="card" style="background:#0f1610">
+          <img class="card__img" src="assets/projects/bellamar-hotel-ibiza/frames/frame-portada.webp" alt="Bellamar Hotel Ibiza" loading="lazy"/>
+        </div>
+        <span class="ctl-line"><span class="ctl-cat" data-i18n="card_3_category">Hospitality Brand Production</span><span class="ctl-cat">&nbsp;&nbsp;/&nbsp;&nbsp;</span><span class="ctl-name" data-i18n="card_label_3">Bellamar Hotel</span></span>
+      </div>
+
+      <div class="card-wrap" data-href="hospitality/marvell/" data-bg="assets/projects/marvell-club-hotel-ibiza/frames/frame-fondo.webp">
+        <div class="card" style="background:#0a0f14">
+          <img class="card__img" src="assets/projects/marvell-club-hotel-ibiza/frames/frame-portada.webp" alt="Marvell Club Ibiza" loading="lazy"/>
+        </div>
+        <span class="ctl-line"><span class="ctl-cat" data-i18n="card_4_category">Hospitality Brand Production</span><span class="ctl-cat">&nbsp;&nbsp;/&nbsp;&nbsp;</span><span class="ctl-name" data-i18n="card_label_4">Marvell Club</span></span>
+      </div>
+
+      <div class="card-wrap" data-href="real-estate/" data-bg="assets/projects/urban-living-berlin/frame-fondo.webp">
+        <div class="card" style="background:#1a1510">
+          <img class="card__img" src="assets/projects/urban-living-berlin/frame-portada.webp" alt="Urban Living Berlin" loading="lazy"/>
+        </div>
+        <span class="ctl-line"><span class="ctl-cat" data-i18n="card_5_category">Real Estate Film &amp; Photo</span><span class="ctl-cat">&nbsp;&nbsp;/&nbsp;&nbsp;</span><span class="ctl-name" data-i18n="card_label_5">Urban Living</span></span>
+      </div>
+
+    </div>
+  </div>
+  </div>
+  </div>
+</main>
+
+<footer class="fixed bottom-0 left-0 right-0 z-[600]" id="site-footer" style="background:transparent;">
+    <div class="flex flex-row items-center justify-between pb-2 pt-2 px-4 md:px-6 lg:hidden" style="margin-bottom:-5px;">
+        <a href="https://instagram.com/pablovaliente.de" target="_blank" rel="noopener noreferrer" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:11px; font-weight:500; color:rgba(0,0,0,0.6); text-transform:uppercase; letter-spacing:0.08em;">Instagram</a>
+        <a href="https://www.linkedin.com/in/valiente-pablo" target="_blank" rel="noopener noreferrer" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:11px; font-weight:500; color:rgba(0,0,0,0.6); text-transform:uppercase; letter-spacing:0.08em;">Linkedin</a>
+        <a href="mailto:pablovaliente235@gmail.com" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:11px; font-weight:500; color:rgba(0,0,0,0.6); text-transform:uppercase; letter-spacing:0.08em;">Mail</a>
+        <a href="https://wa.me/491633461889" target="_blank" rel="noopener noreferrer" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:11px; font-weight:500; color:rgba(0,0,0,0.6); text-transform:uppercase; letter-spacing:0.08em;">Whatsapp</a>
+    </div>
+    <div class="hidden lg:flex flex-row justify-between items-center gap-8 pt-3 pb-3 px-10">
+        <p style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:12px; font-weight:500; color:rgba(0,0,0,0.6);">&copy; <span id="footerYear"></span> Pablo Valiente. All rights reserved.</p>
+        <a href="impressum/" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:13px; font-weight:500; color:rgba(0,0,0,0.6);">Impressum</a>
+        <div class="flex flex-col gap-0">
+            <p style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:12px; font-weight:500; color:rgba(0,0,0,0.6);">Videography &amp; Aerial Filmmaking</p>
+            <p style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:12px; font-weight:500; color:rgba(0,0,0,0.6); margin-top:-3px;">Architectural &amp; Lifestyle Photography</p>
+            <p style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:12px; font-weight:500; color:rgba(0,0,0,0.6); margin-top:-3px;">Post-Production &amp; Color Grading</p>
+        </div>
+        <div class="flex flex-row gap-4">
+            <a href="https://instagram.com/pablovaliente.de" target="_blank" rel="noopener noreferrer" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:13px; font-weight:500; color:rgba(0,0,0,0.6);">Instagram</a>
+            <a href="https://www.linkedin.com/in/valiente-pablo" target="_blank" rel="noopener noreferrer" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:13px; font-weight:500; color:rgba(0,0,0,0.6);">Linkedin</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+'use strict';
+
+const i18n = {
+  de: {
+    card_label_0:    'Monasterio de San Miguel',
+    card_label_1:    'Japanisches Heiligtum',
+    card_label_2:    'Iglesia de Yaguarón',
+    card_label_3:    'Bellamar Hotel',
+    card_label_4:    'Marvell Club',
+    card_label_5:    'Urban Living',
+    card_0_category: 'Architectural Photography',
+    card_1_category: 'Architectural Photography',
+    card_2_category: 'Architectural Photography',
+    card_3_category: 'Hospitality Brand Production',
+    card_4_category: 'Hospitality Brand Production',
+    card_5_category: 'Real Estate Film & Photo',
+  },
+  en: {
+    card_label_0:    'Monasterio de San Miguel',
+    card_label_1:    'Japanese Sanctuary',
+    card_label_2:    'Iglesia de Yaguarón',
+    card_label_3:    'Bellamar Hotel',
+    card_label_4:    'Marvell Club',
+    card_label_5:    'Urban Living',
+    card_0_category: 'Architectural Photography',
+    card_1_category: 'Architectural Photography',
+    card_2_category: 'Architectural Photography',
+    card_3_category: 'Hospitality Brand Production',
+    card_4_category: 'Hospitality Brand Production',
+    card_5_category: 'Real Estate Film & Photo',
+  }
+};
+
+let currentLang = localStorage.getItem('pv_lang') || (navigator.language.startsWith('en') ? 'en' : 'de');
+
+function applyLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('pv_lang', lang);
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (i18n[lang][key] !== undefined) el.textContent = i18n[lang][key];
+  });
+  document.querySelectorAll('#langToggle, #langToggleMobile, #langToggleOverlay').forEach(btn => {
+    btn.textContent = lang === 'de' ? 'EN' : 'DE';
+  });
+}
+
+document.querySelectorAll('#langToggle, #langToggleMobile, #langToggleOverlay').forEach(btn => {
+  btn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); applyLang(currentLang === 'de' ? 'en' : 'de'); });
+});
+
+function updateHeaderOffset() {
+  const header = document.getElementById('unified-header');
+  if (header) {
+    document.documentElement.style.setProperty('--header-h', header.getBoundingClientRect().height + 'px');
+  }
+}
+updateHeaderOffset();
+window.addEventListener('resize', updateHeaderOffset);
+
+
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const closeMenuBtn  = document.getElementById('close-menu-btn');
+const mobileOverlay = document.getElementById('mobile-overlay');
+var menuOpenCount=0;
+        function openMenu()  { mobileOverlay.classList.remove('hidden'); mobileOverlay.classList.add('flex'); mobileMenuBtn.setAttribute('aria-expanded','true');  document.body.classList.add('mobile-menu-open'); var sf=document.getElementById('site-footer');if(sf&&window.innerWidth>=1024)sf.style.display='none'; if(window.innerWidth>=1024){var bd=document.getElementById('menu-backdrop');if(bd)bd.classList.add('visible');var mbg=document.getElementById('menu-bg');if(mbg){var p='assets/projects/';var pool=[p+'japanisches-heiligtum/frames/frame-fondo.webp',p+'monasterio-san-miguel/frames/frame-portada.webp',p+'monasterio-san-miguel/frames/frame-fondo.webp',p+'iglesia-yaguaron/frames/frame-portada.webp',p+'iglesia-yaguaron/frames/frame-fondo.webp',p+'bellamar-hotel-ibiza/frames/frame-portada.webp',p+'bellamar-hotel-ibiza/frames/frame-fondo.webp'];pool.sort(function(){return Math.random()-0.5;});var imgs=[p+'japanisches-heiligtum/frames/frame-portada.webp'].concat(pool);var img=menuOpenCount===0?imgs[0]:imgs[Math.floor(Math.random()*imgs.length)];mbg.style.backgroundImage="url('"+img+"')";mbg.classList.add('visible');}mobileMenuBtn.textContent='CLOSE ×';menuOpenCount++;} }
+function closeMenu() { mobileOverlay.classList.add('hidden');    mobileOverlay.classList.remove('flex'); mobileMenuBtn.setAttribute('aria-expanded','false'); document.body.classList.remove('mobile-menu-open'); var sf=document.getElementById('site-footer');if(sf)sf.style.display=''; if(window.innerWidth>=1024){var bd=document.getElementById('menu-backdrop');if(bd)bd.classList.remove('visible');var mbg=document.getElementById('menu-bg');if(mbg)mbg.classList.remove('visible');} if(window.innerWidth>=1024)mobileMenuBtn.textContent='MENU'; }
+mobileMenuBtn.addEventListener('click', openMenu);
+closeMenuBtn.addEventListener('click',  closeMenu);
+mobileOverlay.querySelectorAll('a:not(#langToggleOverlay), button:not(#langToggleOverlay):not(#close-menu-btn)').forEach(a => a.addEventListener('click', closeMenu));
+
+const track = document.getElementById('track');
+const col   = document.getElementById('sliderCol');
+const cards = Array.from(track.querySelectorAll('.card-wrap'));
+
+cards.forEach(c => {
+  c.addEventListener('click', () => { window.location.href = c.dataset.href; });
+  const bg = c.dataset.bg;
+  if (bg) {
+    const img = document.createElement('img');
+    img.src = bg;
+    img.className = 'card__img-hover';
+    img.alt = '';
+    img.loading = 'lazy';
+    c.querySelector('.card').insertBefore(img, c.querySelector('.card__overlay'));
+  }
+});
+
+function cardWidth() {
+  return cards[0] ? cards[0].offsetWidth + 20 : 0;
+}
+
+document.addEventListener('keydown', e => {
+  if (!col) return;
+  const cw = cardWidth();
+  if (e.key === 'ArrowRight') { e.preventDefault(); col.scrollLeft += cw; }
+  if (e.key === 'ArrowLeft')  { e.preventDefault(); col.scrollLeft -= cw; }
+});
+
+  const projectData = {
+    'architecture/':              { title: 'Monasterio de San Miguel de los Reyes', desc: 'Architectural photography of the Monasterio de San Miguel de los Reyes — a 16th-century Renaissance monastery in Valencia, now home to the Valencian Library. The series documents the exterior facades, arcade corridors and formal gardens through careful attention to light and architectural geometry.', camera: 'Sony A7 IV', software: 'Lightroom · Photoshop' },
+    'architecture/iglesia-yaguaron/': { title: 'Iglesia de Yaguarón', desc: 'Eine der bedeutendsten Barockkirchen Lateinamerikas. Farben, Holzschnitzereien und die Stille eines einzigartigen Sakralbaus in Paraguay.', camera: 'Sony A7 IV', software: 'Lightroom · Photoshop' },
+    'architecture/japanese/':     { title: 'Japanisches Heiligtum', desc: 'Stille Symmetrie und traditionelle Holzarchitektur. Dokumentation eines japanischen Schreins — Licht, Schatten und die Sprache der Form.', camera: 'Sony A7 IV', software: 'Lightroom · Photoshop' },
+    'hospitality/':               { title: 'Bellamar Hotel Beach & Spa', desc: 'Comprehensive audiovisual production for brand identity and booking platforms. It features a cinematic hero film with Es Vedrá aerials, alongside exterior drone photography of the facade and detailed interior shots of the suites and en-suite bathrooms.', camera: 'Sony FX3 / DJI Mini 4 Pro', software: 'DaVinci Resolve Studio · Adobe Photoshop' },
+    'hospitality/marvell/':       { title: 'Marvell Club', desc: 'Branded video production for Marvell Club & Apartments. A cinematic brand film showcasing the hotel\'s architectural character, amenities, and surrounding landscape through carefully composed aerial and ground-level cinematography.', camera: 'Sony A7 IV / DJI Mini 4 Pro', software: 'DaVinci Resolve Studio' },
+    'real-estate/':               { title: 'Urban Living Berlin', desc: 'A visual exploration of contemporary residential spaces focusing on architectural geometry and natural light. It features a minimalist hero video utilizing precise static framing, paired with straightforward real estate interior photography that clearly showcases the layout and structural design.', camera: 'Sony A7 IV', software: 'DaVinci Resolve Studio · Adobe Lightroom' },
+  };
+
+  cards.forEach(c => {
+    const d = projectData[c.dataset.href];
+    if (!d) return;
+    const ot = document.createElement('div');
+    ot.className = 'card-overlay-text';
+    ot.innerHTML =
+      '<div class="cov-row"><span class="cov-label">Work</span><span class="cov-value">' + d.title + '</span></div>' +
+      '<div class="cov-row"><span class="cov-label">Description</span><span class="cov-value cov-desc">' + d.desc + '</span></div>' +
+      '<div class="cov-row"><span class="cov-label">Camera</span><span class="cov-value">' + d.camera + '</span></div>' +
+      '<div class="cov-row"><span class="cov-label">Software</span><span class="cov-value">' + d.software + '</span></div>';
+    c.querySelector('.card').appendChild(ot);
+  });
+
+function positionMobileLangToggle() {
+  var t = document.getElementById('langToggleMobile');
+  var logo = document.querySelector('nav > a');
+  var menu = document.getElementById('mobile-menu-btn');
+  if (!t || !logo || !menu) return;
+  var nav = t.closest('nav');
+  if (!nav) return;
+  nav.style.position = 'relative';
+  t.style.position = 'absolute';
+  var navRect = nav.getBoundingClientRect();
+  var logoRect = logo.getBoundingClientRect();
+  var menuRect = menu.getBoundingClientRect();
+  var logoPadRight = parseFloat(getComputedStyle(logo).paddingRight) || 0;
+  var menuPadLeft  = parseFloat(getComputedStyle(menu).paddingLeft)  || 0;
+  var mid = ((logoRect.right - logoPadRight) + (menuRect.left + menuPadLeft)) / 2;
+  t.style.left = (mid - navRect.left) + 'px';
+  t.style.transform = 'translateX(-50%)';
+}
+window.addEventListener('resize', positionMobileLangToggle);
+
+window.addEventListener('load', () => {
+  applyLang(currentLang);
+  positionMobileLangToggle();
+  const fy = document.getElementById('footerYear');
+  if (fy) fy.textContent = new Date().getFullYear();
+  if (col) {
+    if (window.innerWidth < 1024) {
+      var cards = document.querySelectorAll('.card-wrap');
+      var targetCard = cards[2];
+      if (targetCard) {
+        col.scrollLeft = targetCard.offsetLeft + targetCard.offsetWidth / 2 - window.innerWidth / 2;
+      }
+    } else {
+      col.scrollLeft = (col.scrollWidth - col.clientWidth) / 2;
+    }
+  }
+});
+
+</script>
+</body>
+</html>

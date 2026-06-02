@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="../favicon.ico" sizes="any"/>
+    <link rel="icon" href="../favicon-192.png" type="image/png" sizes="192x192"/>
+    <link rel="icon" href="../favicon-512.png" type="image/png" sizes="512x512"/>
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Hire a Photographer in Berlin | Contact Pablo Valiente</title>
+    <meta name="description" content="Book Pablo Valiente — architecture, real estate and hospitality photographer in Berlin. DaVinci Resolve colorist, EASA A1/A3 drone pilot. Germany & Spain."/>
+    <link rel="canonical" href="https://pablovaliente.de/contact/"/>
+    <link rel="alternate" hreflang="de" href="https://pablovaliente.de/contact/"/>
+    <link rel="alternate" hreflang="en" href="https://pablovaliente.de/contact/"/>
+    <link rel="alternate" hreflang="x-default" href="https://pablovaliente.de/contact/"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://pablovaliente.de/contact/"/>
+    <meta property="og:title" content="Hire a Photographer in Berlin | Pablo Valiente"/>
+    <meta property="og:description" content="Contact Pablo Valiente — architecture, real estate and hospitality photographer in Berlin. Certified colorist and EASA drone pilot. Available in Germany and Spain."/>
+    <meta property="og:image" content="https://pablovaliente.de/assets/projects/monasterio-san-miguel/frames/frame-01.webp"/>
+    <meta property="og:site_name" content="Pablo Valiente"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="keywords" content="Fotograf buchen Berlin, hire photographer Berlin, Drohnenpilot buchen Berlin, Videograf buchen Berlin"/>
+    <meta name="geo.region" content="DE-BE"/>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"ContactPage","name":"Contact Pablo Valiente","url":"https://pablovaliente.de/contact/","mainEntity":{"@type":"Person","name":"Pablo Valiente","email":"contact@pablovaliente.de","url":"https://pablovaliente.de","jobTitle":"Architecture & Hospitality Photographer, Videographer, EASA Drone Pilot","address":{"@type":"PostalAddress","addressLocality":"Berlin","addressRegion":"Berlin","addressCountry":"DE"}}}</script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { primary: '#A8895A' } } } }</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Manrope:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Manrope:wght@300;400;500;600&display=swap"></noscript>
+    <link rel="stylesheet" href="https://use.typekit.net/hgb1zjr.css"/>
+    <link rel="stylesheet" href="../css/global.css">
+
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){ emailjs.init({ publicKey: "YggEpE1djhQMkvTjR" }); })();
+    </script>
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: #f9f9f9; color: #0C0C0B; overflow: hidden; }
+
+        .ruler-left { position: fixed; left: 0; top: 0; bottom: 0; width: 5px; z-index: 200; pointer-events: none; background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 119px, rgba(0,0,0,0.12) 119px, rgba(0,0,0,0.12) 120px); }
+        .ruler-top { position: fixed; top: 0; left: 0; right: 0; height: 5px; z-index: 200; pointer-events: none; background-image: repeating-linear-gradient(to right, transparent 0, transparent 119px, rgba(0,0,0,0.12) 119px, rgba(0,0,0,0.12) 120px); }
+
+        #site-footer { opacity: 1; pointer-events: auto; }
+
+        /* ── Layout ── */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 38% 62%;
+            height: 100svh;
+        }
+        .contact-left {
+            height: 100svh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: calc(50svh - 160px) 2.5rem 4rem 4rem;
+            overflow-y: auto;
+            scrollbar-width: none;
+        }
+        .contact-left::-webkit-scrollbar { display: none; }
+        .contact-right {
+            height: 100svh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: calc(50svh - 160px) 3rem 4rem 4rem;
+            overflow-y: auto;
+            scrollbar-width: none;
+        }
+        .contact-right::-webkit-scrollbar { display: none; }
+
+        /* ── Typography ── */
+        .hero-specs { display: flex; flex-direction: column; gap: 1.5rem; }
+        .spec-row { display: flex; flex-direction: column; }
+        .spec-label {
+            font-family: "neue-haas-grotesk-display", sans-serif;
+            font-size: 8px; font-weight: 900;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            color: rgba(0,0,0,0.4);
+            margin-bottom: 0.25rem;
+        }
+        .spec-value {
+            font-family: "neue-haas-grotesk-display", sans-serif;
+            font-size: 11px; font-weight: 300;
+            color: rgba(0,0,0,0.7); line-height: 1.7;
+            word-spacing: 0.08em;
+        }
+        .spec-value a { color: rgba(0,0,0,0.7); text-decoration: none; }
+        .contact-intro {
+            font-family: "neue-haas-grotesk-display", sans-serif;
+            font-size: clamp(1.4rem, 2vw, 2rem);
+            font-weight: 300; line-height: 1.1;
+            letter-spacing: -0.01em; color: #0C0C0B;
+            margin-bottom: 0.75rem;
+        }
+
+        /* ── Form ── */
+        .form-field {
+            width: 100%; background: transparent; border: none;
+            border-bottom: 1px solid rgba(0,0,0,0.12);
+            padding: 14px 0;
+            font-family: 'Manrope', sans-serif; font-size: 13px; font-weight: 400;
+            color: #0C0C0B; outline: none; transition: border-color 0.3s ease;
+            -webkit-appearance: none; border-radius: 0;
+        }
+        .form-field::placeholder {
+            font-family: "neue-haas-grotesk-display", sans-serif;
+            font-size: 9px; font-weight: 500;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            color: rgba(0,0,0,0.25);
+        }
+        .form-field:focus { border-bottom-color: #0C0C0B; }
+        textarea.form-field { resize: none; min-height: 80px; }
+
+        .btn-submit {
+            display: inline-block;
+            font-family: "neue-haas-grotesk-display", sans-serif;
+            font-size: 10px; font-weight: 500;
+            letter-spacing: 0.15em; text-transform: uppercase;
+            color: #f9f9f9; background: #0C0C0B;
+            border: none; padding: 16px 32px;
+            cursor: pointer; transition: background 0.3s ease;
+        }
+        .btn-submit:hover { background: #333; }
+        .btn-submit:disabled { background: #aaa; cursor: not-allowed; }
+        .btn-submit.success { background: #0C0C0B; }
+        .btn-submit.error-state { background: #ba1a1a; }
+
+        #status-msg {
+            font-family: "neue-haas-grotesk-display", sans-serif;
+            font-size: 10px; font-weight: 500;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            display: none;
+        }
+        #status-msg.show { display: inline-block; }
+        #status-msg.success { color: #0C0C0B; }
+        #status-msg.error-msg { color: #ba1a1a; }
+
+        /* ── Mobile ── */
+        @media (max-width: 1023px) {
+            body { overflow-y: auto; }
+            .contact-grid { grid-template-columns: 1fr; height: auto; min-height: 100svh; }
+            .contact-left { height: auto; overflow-y: visible; justify-content: flex-start; padding: calc(60px + 1.5rem) 1.25rem 2rem; }
+            .contact-right { height: auto; overflow-y: visible; justify-content: flex-start; padding: 2rem 1.25rem 5rem; }
+            .contact-intro { font-size: clamp(1.4rem, 8vw, 2rem); }
+            .form-name-row { grid-template-columns: 1fr !important; }
+        }
+        @media (max-width: 1023px) {
+            .mobile-menu-open { overflow: hidden; }
+            #mobile-overlay { position: fixed !important; inset: 0 !important; width: 100vw !important; height: 100dvh !important; overflow: hidden !important; }
+        }
+        @media (hover: none) and (pointer: coarse) {
+            a:hover, button:hover { color: inherit !important; border-color: inherit !important; }
+        }
+        @media (min-width: 1024px) {
+          #mobile-overlay .overlay-link { font-size: 35px !important; white-space: nowrap !important; }
+          #mobile-overlay.flex { transform: translateX(0) !important; }
+          #menu-backdrop {
+            position: fixed !important; top: 0 !important; left: 0 !important; bottom: 0 !important;
+            right: 570px !important;
+            background: transparent !important; z-index: 699 !important;
+            opacity: 0 !important; pointer-events: none !important;
+            transition: opacity 0.35s ease !important;
+          }
+          #menu-backdrop.visible { opacity: 1 !important; pointer-events: auto !important; }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="grain" aria-hidden="true"></div>
+    <div class="ruler-left" aria-hidden="true"></div>
+    <div class="ruler-top" aria-hidden="true"></div>
+
+    <!-- HEADER -->
+    <header class="fixed top-0 w-full z-[600]" id="unified-header" style="background:transparent;">
+        <nav class="w-full flex items-center py-4 justify-between px-4 md:px-6 lg:px-10" style="position:relative;">
+            <a href="../" class="hover:opacity-70 transition-opacity" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:13px; font-weight:500; color:#0C0C0B;">Pablo Valiente</a>
+            <button id="langToggleMobile" class="lg:hidden" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:11px; font-weight:500; color:rgba(0,0,0,0.45); text-transform:uppercase; letter-spacing:0.1em; position:absolute; left:50%; transform:translateX(-50%);">EN</button>
+            <div class="flex items-center gap-4">
+                <button id="mobile-menu-btn" aria-label="Menü öffnen" aria-expanded="false" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.1em; color:#0C0C0B;">MENU</button>
+                <button id="langToggle" class="hidden lg:block" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:11px; font-weight:500; color:rgba(0,0,0,0.45); text-transform:uppercase; letter-spacing:0.1em;">EN</button>
+            </div>
+        </nav>
+        <div id="menu-bg"></div>
+    <div id="menu-backdrop"></div>
+    <div class="fixed inset-0 bg-[#0c0c0b] z-[700] hidden flex-col" id="mobile-overlay">
+        <div style="position:absolute; top:0; left:0; right:0; display:flex; align-items:center; justify-content:flex-end; gap:16px; padding:16px 40px;">
+                <button id="close-menu-btn-text" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.1em; color:#fff; background:none; border:none; padding:0; cursor:pointer; text-transform:uppercase;">CLOSE</button>
+                <button id="close-menu-btn" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:22px; font-weight:300; color:#fff; background:none; border:none; padding:0; cursor:pointer; line-height:1;">×</button>
+            </div>
+            <div class="flex flex-col items-start space-y-1 w-full px-10">
+                <a href="../hospitality/" class="overlay-link" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:25px; font-weight:500; color:#fff; letter-spacing:0.02em; text-decoration:none;">Bellamar Hotel</a>
+                <a href="../hospitality/marvell/" class="overlay-link" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:25px; font-weight:500; color:#fff; letter-spacing:0.02em; text-decoration:none;">Marvell Club</a>
+                <a href="../real-estate/" class="overlay-link" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:25px; font-weight:500; color:#fff; letter-spacing:0.02em; text-decoration:none;">Urban Living</a>
+                <a href="../architecture/" class="overlay-link" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:25px; font-weight:500; color:#fff; letter-spacing:0.02em; text-decoration:none; white-space:nowrap;">Monasterio de San Miguel</a>
+                <a href="../architecture/japanese/" class="overlay-link" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:25px; font-weight:500; color:#fff; letter-spacing:0.02em; text-decoration:none;">Japanisches Heiligtum</a>
+                <a href="../architecture/iglesia-yaguaron/" class="overlay-link" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:25px; font-weight:500; color:#fff; letter-spacing:0.02em; text-decoration:none;">Iglesia de Yaguarón</a>
+                <a href="../contact/" data-i18n="menu_contact" class="overlay-link" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:25px; font-weight:500; color:#fff; letter-spacing:0.02em; text-decoration:none;">Kontakt</a>
+                <a href="../about/" data-i18n="menu_about" class="overlay-link" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:25px; font-weight:500; color:#fff; letter-spacing:0.02em; text-decoration:none;">Über mich</a>
+                <a href="../impressum/" data-i18n="menu_impressum" class="overlay-link" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:25px; font-weight:500; color:#fff; letter-spacing:0.02em; text-decoration:none;">Impressum</a>
+                <button id="langToggleOverlay" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:11px; font-weight:500; color:#fff; letter-spacing:0.1em; text-decoration:none; text-transform:uppercase; margin-top:20px; background:none; border:none; padding:0; cursor:pointer;">EN</button>
+                <p style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:11px; font-weight:400; color:rgba(255,255,255,0.8); margin-top:8px;">&copy; <span class="footer-year"></span> Pablo Valiente. All rights reserved.</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main>
+        <div class="contact-grid">
+
+            <!-- Left: intro + info -->
+            <div class="contact-left">
+                <div class="hero-specs">
+                    <div class="spec-row">
+                        <span class="spec-label">Contact</span>
+                        <span class="contact-intro" data-i18n="heading">Let's work together.</span>
+                        <span class="spec-value" style="margin-top:0.75rem;" data-i18n="intro_1">Based in Berlin. Available for remote post-production, editing, and color grading worldwide.</span>
+                        <span class="spec-value" style="margin-top:0.5rem;" data-i18n="intro_2">Let's discuss how we can bring a high-end cinematic standard to your upcoming project, campaign, or digital content.</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label" data-i18n="label_email">E-Mail</span>
+                        <span class="spec-value"><a href="mailto:contact@pablovaliente.de">contact@pablovaliente.de</a></span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label" data-i18n="label_services">Leistungen</span>
+                        <span class="spec-value" data-i18n="services_text">Architektur- &amp; Lifestyle-Fotografie<br>Videografie &amp; Aerial Filmmaking<br>Post-Produktion &amp; Color Grading</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label" data-i18n="label_location">Standort</span>
+                        <span class="spec-value">Berlin · Frankfurt<br>Madrid · Ibiza</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: form -->
+            <div class="contact-right">
+                <form id="contact-form" novalidate>
+                    <div class="form-name-row" style="display:grid; grid-template-columns:1fr 1fr; gap:0 2rem;">
+                        <div>
+                            <input name="first_name" id="first-name" type="text" required autocomplete="given-name" class="form-field" data-placeholder-de="Vorname" data-placeholder-en="First name" placeholder="Vorname"/>
+                        </div>
+                        <div>
+                            <input name="last_name" id="last-name" type="text" required autocomplete="family-name" class="form-field" data-placeholder-de="Nachname" data-placeholder-en="Last name" placeholder="Nachname"/>
+                        </div>
+                    </div>
+                    <div style="margin-top:1.5rem;">
+                        <input name="email" id="email" type="email" required autocomplete="email" class="form-field" data-placeholder-de="E-Mail-Adresse" data-placeholder-en="Email address" placeholder="E-Mail-Adresse"/>
+                    </div>
+                    <div style="margin-top:1.5rem;">
+                        <input name="subject" id="subject" type="text" required class="form-field" data-placeholder-de="Betreff / Anfrage" data-placeholder-en="Subject / Inquiry" placeholder="Betreff / Anfrage"/>
+                    </div>
+                    <div style="margin-top:1.5rem;">
+                        <textarea name="message" id="message" required rows="4" class="form-field" data-placeholder-de="Ihre Nachricht" data-placeholder-en="Your message" placeholder="Ihre Nachricht"></textarea>
+                    </div>
+                    <div style="margin-top:2rem; display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap;">
+                        <button type="submit" id="submit-btn" class="btn-submit" data-i18n="btn_send">ANFRAGE SENDEN</button>
+                        <span id="status-msg"></span>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="fixed bottom-0 left-0 right-0 z-[50]" id="site-footer" style="background:transparent;">
+        <div class="flex flex-row items-center justify-between pb-2 pt-2 px-4 md:px-6 lg:hidden" style="margin-bottom:-5px;">
+            <a href="https://instagram.com/pablovaliente.de" target="_blank" rel="noopener noreferrer" class="transition-colors hover:opacity-100" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:11px; font-weight:500; color:rgba(0,0,0,0.6); text-transform:uppercase; letter-spacing:0.08em;">Instagram</a>
+            <a href="https://www.linkedin.com/in/valiente-pablo" target="_blank" rel="noopener noreferrer" class="transition-colors hover:opacity-100" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:11px; font-weight:500; color:rgba(0,0,0,0.6); text-transform:uppercase; letter-spacing:0.08em;">Linkedin</a>
+            <a href="mailto:pablovaliente235@gmail.com" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:11px; font-weight:500; color:rgba(0,0,0,0.6); text-transform:uppercase; letter-spacing:0.08em;">Mail</a>
+            <a href="https://wa.me/491633461889" target="_blank" rel="noopener noreferrer" class="transition-colors hover:opacity-100" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:11px; font-weight:500; color:rgba(0,0,0,0.6); text-transform:uppercase; letter-spacing:0.08em;">Whatsapp</a>
+        </div>
+        <div class="hidden lg:flex flex-row justify-between items-center gap-8 pt-3 pb-3 px-10">
+            <p style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:12px; font-weight:500; color:rgba(0,0,0,0.6);">&copy; <span id="footerYear"></span> Pablo Valiente. All rights reserved.</p>
+            <a href="../impressum/" class="transition-colors hover:opacity-100" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:13px; font-weight:500; color:rgba(0,0,0,0.6);">Impressum</a>
+            <div class="flex flex-col gap-0">
+                <p style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:12px; font-weight:500; color:rgba(0,0,0,0.6);">Videography &amp; Aerial Filmmaking</p>
+                <p style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:12px; font-weight:500; color:rgba(0,0,0,0.6); margin-top:-3px;">Architectural &amp; Lifestyle Photography</p>
+                <p style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:12px; font-weight:500; color:rgba(0,0,0,0.6); margin-top:-3px;">Post-Production &amp; Color Grading</p>
+            </div>
+            <div class="flex flex-row gap-4">
+                <a href="https://instagram.com/pablovaliente.de" target="_blank" rel="noopener noreferrer" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:13px; font-weight:500; color:rgba(0,0,0,0.6);">Instagram</a>
+                <a href="https://www.linkedin.com/in/valiente-pablo" target="_blank" rel="noopener noreferrer" style="font-family:'neue-haas-grotesk-display',sans-serif; font-size:13px; font-weight:500; color:rgba(0,0,0,0.6);">Linkedin</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/i18n.js"></script>
+    <script>
+        document.querySelectorAll('#footerYear, .footer-year').forEach(function(el) { el.textContent = new Date().getFullYear(); });
+
+        var mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        var closeMenuBtn  = document.getElementById('close-menu-btn');
+        var mobileOverlay = document.getElementById('mobile-overlay');
+var menuOpenCount=0;
+        function openMenu()  { mobileOverlay.classList.remove('hidden'); mobileOverlay.classList.add('flex'); mobileMenuBtn.setAttribute('aria-expanded','true');  document.body.classList.add('mobile-menu-open'); var sf=document.getElementById('site-footer');if(sf&&window.innerWidth>=1024)sf.style.display='none'; if(window.innerWidth>=1024){var bd=document.getElementById('menu-backdrop');if(bd)bd.classList.add('visible');var mbg=document.getElementById('menu-bg');if(mbg){var p='../assets/projects/';var pool=[p+'japanisches-heiligtum/frames/frame-fondo.webp',p+'monasterio-san-miguel/frames/frame-portada.webp',p+'monasterio-san-miguel/frames/frame-fondo.webp',p+'iglesia-yaguaron/frames/frame-portada.webp',p+'iglesia-yaguaron/frames/frame-fondo.webp',p+'bellamar-hotel-ibiza/frames/frame-portada.webp',p+'bellamar-hotel-ibiza/frames/frame-fondo.webp'];pool.sort(function(){return Math.random()-0.5;});var imgs=[p+'japanisches-heiligtum/frames/frame-portada.webp'].concat(pool);var img=menuOpenCount===0?imgs[0]:imgs[Math.floor(Math.random()*imgs.length)];mbg.style.backgroundImage="url('"+img+"')";mbg.classList.add('visible');}mobileMenuBtn.textContent='CLOSE ×';menuOpenCount++;} }
+        function closeMenu() { mobileOverlay.classList.add('hidden');    mobileOverlay.classList.remove('flex'); mobileMenuBtn.setAttribute('aria-expanded','false'); document.body.classList.remove('mobile-menu-open'); var sf=document.getElementById('site-footer');if(sf)sf.style.display=''; if(window.innerWidth>=1024){var bd=document.getElementById('menu-backdrop');if(bd)bd.classList.remove('visible');var mbg=document.getElementById('menu-bg');if(mbg)mbg.classList.remove('visible');} if(window.innerWidth>=1024)mobileMenuBtn.textContent='MENU'; }
+        mobileMenuBtn.addEventListener('click', openMenu);
+        closeMenuBtn.addEventListener('click', closeMenu); var cmbt=document.getElementById('close-menu-btn-text'); if(cmbt) cmbt.addEventListener('click', closeMenu);
+        document.getElementById('menu-backdrop').addEventListener('click', closeMenu);
+        mobileOverlay.querySelectorAll('a:not(#langToggleOverlay), button:not(#langToggleOverlay):not(#close-menu-btn):not(#close-menu-btn-text)').forEach(function(a) { a.addEventListener('click', closeMenu); });
+        var lo=document.getElementById('langToggleOverlay'); if(lo) lo.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();applyLang(currentLang==='de'?'en':'de');});
+        if (typeof initLang === 'function') initLang();
+
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var t = i18n[currentLang];
+            var submitBtn = document.getElementById('submit-btn');
+            var statusMsg = document.getElementById('status-msg');
+            submitBtn.textContent = t.btn_sending;
+            submitBtn.disabled = true;
+            statusMsg.className = '';
+            statusMsg.style.display = 'none';
+            emailjs.sendForm('service_2tx7dek', 'template_q9akzca', this)
+                .then(function() {
+                    submitBtn.textContent = t.btn_sent;
+                    submitBtn.classList.add('success');
+                    statusMsg.textContent = t.msg_sent;
+                    statusMsg.className = 'show success';
+                    setTimeout(function() {
+                        submitBtn.textContent = t.btn_send;
+                        submitBtn.classList.remove('success');
+                        submitBtn.disabled = false;
+                        statusMsg.className = '';
+                        statusMsg.style.display = 'none';
+                        document.getElementById('contact-form').reset();
+                    }, 4000);
+                })
+                .catch(function(error) {
+                    console.error('EmailJS error:', error);
+                    submitBtn.textContent = t.btn_retry;
+                    submitBtn.classList.add('error-state');
+                    statusMsg.textContent = t.msg_error;
+                    statusMsg.className = 'show error-msg';
+                    setTimeout(function() {
+                        submitBtn.textContent = t.btn_send;
+                        submitBtn.classList.remove('error-state');
+                        submitBtn.disabled = false;
+                    }, 4000);
+                });
+        });
+    </script>
+</body>
+</html>
