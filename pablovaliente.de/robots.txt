@@ -1,8 +1,0 @@
-User-agent: *
-Allow: /
-
-# Block access to raw assets to save crawl budget
-Disallow: /assets/
-
-# Sitemap
-Sitemap: https://pablovaliente.de/sitemap.xml
