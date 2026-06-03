@@ -156,19 +156,6 @@
         #video-modal-close { font-size: 20px; line-height: 1; }
         #video-modal-fullscreen svg { width: 20px; height: 20px; fill: #fff; }
         #video-modal iframe { width: 100vw; height: calc(100vw * 9 / 16); max-height: calc(100svh - 68px); flex-shrink: 0; }
-    
-@media (min-width: 1024px) {
-          #mobile-overlay .overlay-link { font-size: 35px !important; white-space: nowrap !important; }
-          #mobile-overlay.flex { transform: translateX(0) !important; }
-          #menu-backdrop {
-            position: fixed !important; top: 0 !important; left: 0 !important; bottom: 0 !important;
-            right: 570px !important;
-            background: transparent !important; z-index: 699 !important;
-            opacity: 0 !important; pointer-events: none !important;
-            transition: opacity 0.35s ease !important;
-          }
-          #menu-backdrop.visible { opacity: 1 !important; pointer-events: auto !important; }
-        }
 
     </style>
 </head>
@@ -216,7 +203,7 @@
                 <div class="hero-content-wrap" id="hero-content">
                     <div class="hero-specs">
                         <div class="spec-row"><span class="spec-label" data-i18n="label_work">Work</span><span class="spec-value" id="spec-work">Marvell Club</span></div>
-                        <div class="spec-row"><span class="spec-label" data-i18n="label_description">Description</span><span class="spec-value" id="spec-desc">Branded video production for Marvell Club &amp; Apartments. A cinematic brand film showcasing the hotel's architectural character, amenities, and surrounding landscape through carefully composed aerial and ground-level cinematography.</span></div>
+                        <div class="spec-row"><span class="spec-label" data-i18n="label_description">Description</span><span class="spec-value" id="spec-desc" data-i18n="marvell_desc"></span></div>
                         <div class="spec-row"><span class="spec-label" data-i18n="label_camera">Camera</span><span class="spec-value" id="spec-equipo">Sony A7 IV / DJI Mini 4 Pro</span></div>
                         <div class="spec-row"><span class="spec-label" data-i18n="label_software">Software</span><span class="spec-value">DaVinci Resolve Studio</span></div>
                         <div class="spec-row"><span class="spec-label" data-i18n="label_location">Location</span><span class="spec-value" id="spec-year">Ibiza, Spain</span></div>
@@ -376,7 +363,7 @@
             var playPauseBtn=document.getElementById('vp-play-pause');
             var prog=document.getElementById('vp-prog');
             var fsBtn=document.getElementById('vp-fs-btn');
-            if(fsBtn){fsBtn.addEventListener('click',function(e){e.stopPropagation();if(document.fullscreenElement||document.webkitFullscreenElement){if(document.exitFullscreen)document.exitFullscreen();else if(document.webkitExitFullscreen)document.webkitExitFullscreen();}else{var el=document.querySelector('#slide-0');if(el){if(el.requestFullscreen)el.requestFullscreen();else if(el.webkitRequestFullscreen)el.webkitRequestFullscreen();}}}});}
+            if(fsBtn){fsBtn.addEventListener('click',function(e){e.stopPropagation();if(document.fullscreenElement||document.webkitFullscreenElement){if(document.exitFullscreen)document.exitFullscreen();else if(document.webkitExitFullscreen)document.webkitExitFullscreen();}else{var el=document.querySelector('#slide-0');if(el){if(el.requestFullscreen)el.requestFullscreen();else if(el.webkitRequestFullscreen)el.webkitRequestFullscreen();}}});}
             var clickOverlay=document.getElementById('vp-click-overlay');
             if(playPauseBtn)playPauseBtn.addEventListener('click',function(){
                 if(!vimeoPlayer)return;
@@ -477,7 +464,6 @@
         function openMenu(){mobileOverlay.classList.remove('hidden');mobileOverlay.classList.add('flex');mobileMenuBtn.setAttribute('aria-expanded','true');document.body.classList.add('mobile-menu-open');var sf=document.getElementById('site-footer');if(sf&&window.innerWidth>=1024)sf.style.display='none';if(window.innerWidth>=1024){var bd=document.getElementById('menu-backdrop');if(bd)bd.classList.add('visible');var mbg=document.getElementById('menu-bg');if(mbg){var p='../../assets/projects/';var pool=[p+'japanisches-heiligtum/frames/frame-fondo.webp',p+'monasterio-san-miguel/frames/frame-portada.webp',p+'monasterio-san-miguel/frames/frame-fondo.webp',p+'iglesia-yaguaron/frames/frame-portada.webp',p+'iglesia-yaguaron/frames/frame-fondo.webp',p+'bellamar-hotel-ibiza/frames/frame-portada.webp',p+'bellamar-hotel-ibiza/frames/frame-fondo.webp'];pool.sort(function(){return Math.random()-0.5;});var imgs=[p+'japanisches-heiligtum/frames/frame-portada.webp'].concat(pool);var img=menuOpenCount===0?imgs[0]:imgs[Math.floor(Math.random()*imgs.length)];mbg.style.backgroundImage="url('"+img+"')";mbg.classList.add('visible');}if(window.innerWidth>=1024)mobileMenuBtn.textContent='CLOSE ×';menuOpenCount++;}}
         function closeMenu(){mobileOverlay.classList.add('hidden');mobileOverlay.classList.remove('flex');mobileMenuBtn.setAttribute('aria-expanded','false');document.body.classList.remove('mobile-menu-open'); var sf=document.getElementById('site-footer');if(sf)sf.style.display='';if(window.innerWidth>=1024){var bd=document.getElementById('menu-backdrop');if(bd)bd.classList.remove('visible');var mbg=document.getElementById('menu-bg');if(mbg)mbg.classList.remove('visible');}if(window.innerWidth>=1024)mobileMenuBtn.textContent='MENU';}
         mobileMenuBtn.addEventListener('click',openMenu);closeMenuBtn.addEventListener('click',closeMenu); var cmbt=document.getElementById('close-menu-btn-text'); if(cmbt) cmbt.addEventListener('click', closeMenu);document.getElementById('menu-backdrop').addEventListener('click',closeMenu);mobileOverlay.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMenu);});
-        document.getElementById('langToggleOverlay').addEventListener('click', function(e) { e.preventDefault(); e.stopPropagation(); applyLang(currentLang === 'de' ? 'en' : 'de'); });
         (function(){var hoverDiv=document.getElementById('section-bg-hover'),overlay=document.querySelector('#end-section .section-overlay'),endSection=document.getElementById('end-section'),leaveTimer=null;document.querySelectorAll('.end-proj-card[data-bg]').forEach(function(card){(new Image()).src=card.dataset.bg;});document.querySelectorAll('.end-proj-card[data-bg]').forEach(function(card){card.addEventListener('mouseenter',function(){clearTimeout(leaveTimer);hoverDiv.style.backgroundImage='url('+card.dataset.bg+')';hoverDiv.style.opacity='1';overlay.style.opacity='1';endSection.classList.add('is-hovering');document.body.classList.add('is-dark-section');});card.addEventListener('mouseleave',function(){leaveTimer=setTimeout(function(){hoverDiv.style.opacity='0';overlay.style.opacity='0';endSection.classList.remove('is-hovering');},50);});});})();
         loadVideo();
 

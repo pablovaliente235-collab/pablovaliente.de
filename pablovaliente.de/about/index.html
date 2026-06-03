@@ -173,17 +173,17 @@
                     <div class="hero-content-wrap">
                         <div class="hero-specs">
                             <div class="spec-row">
-                                <span class="spec-label">Über mich</span>
-                                <span class="spec-value spec-value--wide">Ich biete visuelle End-to-End-Lösungen für die Immobilien- und Hotelleriebranche. Ich habe einen Abschluss in Fotografie und audiovisueller Kreation der EASD Valencia und bin offiziell von Blackmagic Design als Editor und Colorist (DaVinci Resolve 20) zertifiziert. Als in Deutschland registrierter Freiberufler und lizenzierter EASA A1/A3 Drohnenpilot garantiere ich eine reibungslose Produktion und höchste technische Qualität – von der Vorproduktion bis zum finalen Color Grading.</span>
+                                <span class="spec-label" data-i18n="label_about">Über mich</span>
+                                <span class="spec-value spec-value--wide" data-i18n="about_text">Ich biete visuelle End-to-End-Lösungen für die Immobilien- und Hotelleriebranche. Ich habe einen Abschluss in Fotografie und audiovisueller Kreation der EASD Valencia und bin offiziell von Blackmagic Design als Editor und Colorist (DaVinci Resolve 20) zertifiziert. Als in Deutschland registrierter Freiberufler und lizenzierter EASA A1/A3 Drohnenpilot garantiere ich eine reibungslose Produktion und höchste technische Qualität – von der Vorproduktion bis zum finalen Color Grading.</span>
                             </div>
                             <div class="spec-row">
-                                <span class="spec-label">Standort</span>
+                                <span class="spec-label" data-i18n="label_location">Standort</span>
                                 <span class="spec-value">Berlin · Frankfurt<br>Madrid · Ibiza</span>
                             </div>
                         </div>
                     </div>
                     <div class="hero-bottom">
-                        <a href="../contact/" class="about-cta">Projekt anfragen →</a>
+                        <a href="../contact/" class="about-cta" data-i18n="about_cta">Projekt anfragen →</a>
                     </div>
                 </div>
             </div>
@@ -231,7 +231,6 @@ var menuOpenCount=0;
         closeMenuBtn.addEventListener('click', closeMenu); var cmbt=document.getElementById('close-menu-btn-text'); if(cmbt) cmbt.addEventListener('click', closeMenu);
         document.getElementById('menu-backdrop').addEventListener('click', closeMenu);
         mobileOverlay.querySelectorAll('a:not(#langToggleOverlay), button:not(#langToggleOverlay):not(#close-menu-btn):not(#close-menu-btn-text)').forEach(function(a) { a.addEventListener('click', closeMenu); });
-        var lo=document.getElementById('langToggleOverlay'); if(lo) lo.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();applyLang(currentLang==='de'?'en':'de');});
         if (typeof initLang === 'function') initLang();
     </script>
 </body>

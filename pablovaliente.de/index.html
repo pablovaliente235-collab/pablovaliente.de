@@ -189,19 +189,6 @@
     word-spacing: 0.08em;
   }
 
-@media (min-width: 1024px) {
-  #mobile-overlay .overlay-link { font-size: 35px !important; white-space: nowrap !important; }
-  #mobile-overlay.flex { transform: translateX(0) !important; }
-  #menu-backdrop {
-    position: fixed !important; top: 0 !important; left: 0 !important; bottom: 0 !important;
-    right: 570px !important;
-    background: transparent !important; z-index: 699 !important;
-    opacity: 0 !important; pointer-events: none !important;
-    transition: opacity 0.35s ease !important;
-  }
-  #menu-backdrop.visible { opacity: 1 !important; pointer-events: auto !important; }
-  }
-
     </style>
 <script type="application/ld+json">
 [
@@ -493,6 +480,19 @@ const i18n = {
     card_3_category: 'Hospitality Brand Production',
     card_4_category: 'Hospitality Brand Production',
     card_5_category: 'Real Estate Film & Photo',
+    menu_contact:    'Kontakt',
+    menu_about:      'Über mich',
+    menu_impressum:  'Impressum',
+    label_work:        'Arbeit',
+    label_description: 'Beschreibung',
+    label_camera:      'Kamera',
+    label_software:    'Software',
+    desc_0: 'Architekturfotografie des Monasterio de San Miguel de los Reyes — ein Renaissancekloster aus dem 16. Jahrhundert in Valencia, heute Sitz der Valencianischen Bibliothek. Die Serie dokumentiert Außenfassaden, Kreuzgangarkaden und formale Gärten mit besonderer Beachtung von Licht und architektonischer Geometrie.',
+    desc_1: 'Stille Symmetrie und traditionelle Holzarchitektur. Dokumentation eines japanischen Schreins — Licht, Schatten und die Sprache der Form.',
+    desc_2: 'Eine der bedeutendsten Barockkirchen Lateinamerikas. Farben, Holzschnitzereien und die Stille eines einzigartigen Sakralbaus in Paraguay.',
+    desc_3: 'Umfassende audiovisuelle Produktion für Markenidentität und Buchungsplattformen. Ein kinematografischer Hero-Film mit Drohnenaufnahmen über Es Vedrá, ergänzt durch Außenaufnahmen der Fassade und detaillierte Innenaufnahmen der Suiten.',
+    desc_4: 'Branded-Videoproduktion für Marvell Club & Apartments. Ein kinematografischer Markenfilm, der den architektonischen Charakter, die Ausstattung und die umgebende Landschaft des Hotels durch sorgfältig komponierte Luftaufnahmen und bodennahe Kinematografie präsentiert.',
+    desc_5: 'Eine visuelle Erkundung zeitgenössischer Wohnräume mit Fokus auf architektonische Geometrie und natürliches Licht. Minimalistisches Hero-Video mit präziser statischer Kadrierung sowie geradlinige Immobilienfotografie, die Layout und Raumstruktur klar zeigt.',
   },
   en: {
     card_label_0:    'Monasterio de San Miguel',
@@ -507,6 +507,19 @@ const i18n = {
     card_3_category: 'Hospitality Brand Production',
     card_4_category: 'Hospitality Brand Production',
     card_5_category: 'Real Estate Film & Photo',
+    menu_contact:    'Contact',
+    menu_about:      'About',
+    menu_impressum:  'Impressum',
+    label_work:        'Work',
+    label_description: 'Description',
+    label_camera:      'Camera',
+    label_software:    'Software',
+    desc_0: 'Architectural photography of the Monasterio de San Miguel de los Reyes — a 16th-century Renaissance monastery in Valencia, now home to the Valencian Library. The series documents the exterior facades, arcade corridors and formal gardens through careful attention to light and architectural geometry.',
+    desc_1: 'Silent symmetry and traditional wooden architecture. Documentation of a Japanese shrine — light, shadow and the language of form.',
+    desc_2: 'One of the most significant Baroque churches in Latin America. Colours, wood carvings and the silence of a unique sacred building in Paraguay.',
+    desc_3: 'Comprehensive audiovisual production for brand identity and booking platforms. It features a cinematic hero film with Es Vedrá aerials, alongside exterior drone photography of the facade and detailed interior shots of the suites and en-suite bathrooms.',
+    desc_4: "Branded video production for Marvell Club & Apartments. A cinematic brand film showcasing the hotel's architectural character, amenities, and surrounding landscape through carefully composed aerial and ground-level cinematography.",
+    desc_5: 'A visual exploration of contemporary residential spaces focusing on architectural geometry and natural light. It features a minimalist hero video with precise static framing, paired with straightforward real estate interior photography that clearly showcases the layout and structural design.',
   }
 };
 
@@ -577,12 +590,12 @@ document.addEventListener('keydown', e => {
 });
 
   const projectData = {
-    'architecture/':              { title: 'Monasterio de San Miguel de los Reyes', desc: 'Architectural photography of the Monasterio de San Miguel de los Reyes — a 16th-century Renaissance monastery in Valencia, now home to the Valencian Library. The series documents the exterior facades, arcade corridors and formal gardens through careful attention to light and architectural geometry.', camera: 'Sony A7 IV', software: 'Lightroom · Photoshop' },
-    'architecture/iglesia-yaguaron/': { title: 'Iglesia de Yaguarón', desc: 'Eine der bedeutendsten Barockkirchen Lateinamerikas. Farben, Holzschnitzereien und die Stille eines einzigartigen Sakralbaus in Paraguay.', camera: 'Sony A7 IV', software: 'Lightroom · Photoshop' },
-    'architecture/japanese/':     { title: 'Japanisches Heiligtum', desc: 'Stille Symmetrie und traditionelle Holzarchitektur. Dokumentation eines japanischen Schreins — Licht, Schatten und die Sprache der Form.', camera: 'Sony A7 IV', software: 'Lightroom · Photoshop' },
-    'hospitality/':               { title: 'Bellamar Hotel Beach & Spa', desc: 'Comprehensive audiovisual production for brand identity and booking platforms. It features a cinematic hero film with Es Vedrá aerials, alongside exterior drone photography of the facade and detailed interior shots of the suites and en-suite bathrooms.', camera: 'Sony FX3 / DJI Mini 4 Pro', software: 'DaVinci Resolve Studio · Adobe Photoshop' },
-    'hospitality/marvell/':       { title: 'Marvell Club', desc: 'Branded video production for Marvell Club & Apartments. A cinematic brand film showcasing the hotel\'s architectural character, amenities, and surrounding landscape through carefully composed aerial and ground-level cinematography.', camera: 'Sony A7 IV / DJI Mini 4 Pro', software: 'DaVinci Resolve Studio' },
-    'real-estate/':               { title: 'Urban Living Berlin', desc: 'A visual exploration of contemporary residential spaces focusing on architectural geometry and natural light. It features a minimalist hero video utilizing precise static framing, paired with straightforward real estate interior photography that clearly showcases the layout and structural design.', camera: 'Sony A7 IV', software: 'DaVinci Resolve Studio · Adobe Lightroom' },
+    'architecture/':              { titleKey: 'card_label_0', descKey: 'desc_0', camera: 'Sony A7 IV', software: 'Lightroom · Photoshop' },
+    'architecture/iglesia-yaguaron/': { titleKey: 'card_label_2', descKey: 'desc_2', camera: 'Sony A7 IV', software: 'Lightroom · Photoshop' },
+    'architecture/japanese/':     { titleKey: 'card_label_1', descKey: 'desc_1', camera: 'Sony A7 IV', software: 'Lightroom · Photoshop' },
+    'hospitality/':               { titleKey: 'card_label_3', descKey: 'desc_3', camera: 'Sony FX3 / DJI Mini 4 Pro', software: 'DaVinci Resolve Studio · Adobe Photoshop' },
+    'hospitality/marvell/':       { titleKey: 'card_label_4', descKey: 'desc_4', camera: 'Sony A7 IV / DJI Mini 4 Pro', software: 'DaVinci Resolve Studio' },
+    'real-estate/':               { titleKey: 'card_label_5', descKey: 'desc_5', camera: 'Sony A7 IV', software: 'DaVinci Resolve Studio · Adobe Lightroom' },
   };
 
   cards.forEach(c => {
@@ -591,10 +604,10 @@ document.addEventListener('keydown', e => {
     const ot = document.createElement('div');
     ot.className = 'card-overlay-text';
     ot.innerHTML =
-      '<div class="cov-row"><span class="cov-label">Work</span><span class="cov-value">' + d.title + '</span></div>' +
-      '<div class="cov-row"><span class="cov-label">Description</span><span class="cov-value cov-desc">' + d.desc + '</span></div>' +
-      '<div class="cov-row"><span class="cov-label">Camera</span><span class="cov-value">' + d.camera + '</span></div>' +
-      '<div class="cov-row"><span class="cov-label">Software</span><span class="cov-value">' + d.software + '</span></div>';
+      '<div class="cov-row"><span class="cov-label" data-i18n="label_work">Work</span><span class="cov-value" data-i18n="' + d.titleKey + '"></span></div>' +
+      '<div class="cov-row"><span class="cov-label" data-i18n="label_description">Description</span><span class="cov-value cov-desc" data-i18n="' + d.descKey + '"></span></div>' +
+      '<div class="cov-row"><span class="cov-label" data-i18n="label_camera">Camera</span><span class="cov-value">' + d.camera + '</span></div>' +
+      '<div class="cov-row"><span class="cov-label" data-i18n="label_software">Software</span><span class="cov-value">' + d.software + '</span></div>';
     c.querySelector('.card').appendChild(ot);
   });
 

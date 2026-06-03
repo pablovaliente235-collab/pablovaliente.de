@@ -144,19 +144,6 @@
         @media (hover: none) and (pointer: coarse) {
             a:hover, button:hover { color: inherit !important; border-color: inherit !important; }
         }
-    
-@media (min-width: 1024px) {
-          #mobile-overlay .overlay-link { font-size: 35px !important; white-space: nowrap !important; }
-          #mobile-overlay.flex { transform: translateX(0) !important; }
-          #menu-backdrop {
-            position: fixed !important; top: 0 !important; left: 0 !important; bottom: 0 !important;
-            right: 570px !important;
-            background: transparent !important; z-index: 699 !important;
-            opacity: 0 !important; pointer-events: none !important;
-            transition: opacity 0.35s ease !important;
-          }
-          #menu-backdrop.visible { opacity: 1 !important; pointer-events: auto !important; }
-        }
 
     </style>
 </head>
@@ -215,7 +202,7 @@
                         </div>
                         <div class="spec-row">
                             <span class="spec-label" data-i18n="label_description">Description</span>
-                            <span class="spec-value spec-value--desc">Stille Symmetrie und traditionelle Holzarchitektur. Dokumentation eines japanischen Schreins — Licht, Schatten und die Sprache der Form.</span>
+                            <span class="spec-value spec-value--desc" data-i18n="japanese_desc" id="spec-desc"></span>
                         </div>
                         <div class="spec-row">
                             <span class="spec-label" data-i18n="label_camera">Camera</span>
@@ -615,7 +602,6 @@
         closeMenuBtn.addEventListener('click', closeMenu); var cmbt=document.getElementById('close-menu-btn-text'); if(cmbt) cmbt.addEventListener('click', closeMenu);
         document.getElementById('menu-backdrop').addEventListener('click', closeMenu);
         mobileOverlay.querySelectorAll('a:not(#langToggleOverlay)').forEach(function(a) { a.addEventListener('click', closeMenu); });
-        document.getElementById('langToggleOverlay').addEventListener('click', function(e) { e.preventDefault(); e.stopPropagation(); applyLang(currentLang === 'de' ? 'en' : 'de'); });
 
         (function() {
             var hoverDiv = document.getElementById('section-bg-hover');

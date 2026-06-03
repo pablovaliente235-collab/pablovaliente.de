@@ -44,9 +44,11 @@ const i18n = {
     heading:            'Lass uns\nzusammenarbeiten.',
     label_about:        'ÜBER MICH',
     about_text:         'Ich biete visuelle End-to-End-Lösungen für die Immobilien- und Hotelleriebranche. Ich habe einen Abschluss in Fotografie und audiovisueller Kreation der EASD Valencia und bin offiziell von Blackmagic Design als Editor und Colorist (DaVinci Resolve 20) zertifiziert. Als in Deutschland registrierter Freiberufler und lizenzierter EASA A1/A3 Drohnenpilot garantiere ich eine reibungslose Produktion und höchste technische Qualität – von der Vorproduktion bis zum finalen Color Grading.',
+    about_cta:          'Projekt anfragen →',
+    intro_1:            'Ansässig in Berlin. Verfügbar für Remote-Post-Produktion, Schnitt und Color Grading weltweit.',
+    intro_2:            'Lassen Sie uns besprechen, wie wir Ihrem nächsten Projekt, Ihrer Kampagne oder Ihrem digitalen Content einen hochwertigen kinematografischen Standard verleihen können.',
     label_services:     'LEISTUNGEN',
     services_text:      'Photography  |  Cinematography  |  Aerial Visuals  |  Post-Production & Color Grading',
-    label_location:     'STANDORT',
     label_germany:      'Deutschland',
     label_spain:        'Spanien',
     label_worldwide:    'Weltweit für spezifische Projekte verfügbar',
@@ -77,6 +79,11 @@ const i18n = {
     /* ── Video modal ── */
     modal_close:      'Schließen',
     modal_fullscreen: 'Vollbild',
+
+    /* ── 404 ── */
+    err_label: 'Seite nicht gefunden',
+    err_msg:   'Die gesuchte Seite existiert nicht oder wurde verschoben.',
+    err_back:  'Zurück zur Startseite',
 
     /* ── Hamburger menu ── */
     menu_contact:   'Kontakt',
@@ -148,9 +155,11 @@ const i18n = {
     heading:            "Let's work\ntogether.",
     label_about:        'ABOUT ME',
     about_text:         'I provide end-to-end visual solutions for the real estate and hospitality sectors. Graduated in Photography and Audiovisual Creation from EASD Valencia, and officially certified as an Editor and Colorist by Blackmagic Design (DaVinci Resolve 20). As a registered freelancer in Germany and an EASA A1/A3 licensed drone pilot, I guarantee seamless production and premium technical quality—from pre-production to the final color grade.',
+    about_cta:          'Request a project →',
+    intro_1:            'Based in Berlin. Available for remote post-production, editing, and color grading worldwide.',
+    intro_2:            "Let's discuss how we can bring a high-end cinematic standard to your upcoming project, campaign, or digital content.",
     label_services:     'SERVICES',
     services_text:      'Photography  |  Cinematography  |  Aerial Visuals  |  Post-Production & Color Grading',
-    label_location:     'LOCATION',
     label_germany:      'Germany',
     label_spain:        'Spain',
     label_worldwide:    'Available worldwide for specific projects',
@@ -182,6 +191,16 @@ const i18n = {
     modal_close:      'Close',
     modal_fullscreen: 'Full screen',
 
+    /* ── 404 ── */
+    err_label: 'Seite nicht gefunden',
+    err_msg:   'Die gesuchte Seite existiert nicht oder wurde verschoben.',
+    err_back:  'Zurück zur Startseite',
+
+    /* ── 404 ── */
+    err_label: 'Page not found',
+    err_msg:   'The page you are looking for does not exist or has been moved.',
+    err_back:  'Back to homepage',
+
     /* ── Hamburger menu ── */
     menu_contact:   'Contact',
     menu_about:     'About',
@@ -208,7 +227,7 @@ const i18n = {
     bellamar_work_label: 'Bellamar Hotel Beach & Spa',
 
     /* ── Marvell Club ── */
-    marvell_desc:      'Branded video production for Marvell Club & Apartments. A cinematic brand film showcasing the hotel's architectural character, amenities, and surrounding landscape through carefully composed aerial and ground-level cinematography.',
+    marvell_desc:      'Branded video production for Marvell Club & Apartments. A cinematic brand film showcasing the hotel\'s architectural character, amenities, and surrounding landscape through carefully composed aerial and ground-level cinematography.',
 
     /* ── Urban Living Berlin ── */
     urban_desc:        'A visual exploration of contemporary residential spaces focusing on architectural geometry and natural light. It features a minimalist hero video with precise static framing, paired with straightforward real estate interior photography that clearly showcases the layout and structural design.',
@@ -279,7 +298,7 @@ function positionMobileLangToggle() {
 /* ── Init (call once DOM is ready) ── */
 function initLang() {
   applyLang(currentLang);
-  document.querySelectorAll('#langToggle, #langToggleMobile').forEach(btn => {
+  document.querySelectorAll('#langToggle, #langToggleMobile, #langToggleOverlay').forEach(btn => {
     btn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); applyLang(currentLang === 'de' ? 'en' : 'de'); });
   });
   positionMobileLangToggle();
