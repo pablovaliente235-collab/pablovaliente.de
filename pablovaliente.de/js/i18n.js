@@ -155,7 +155,7 @@ const i18n = {
     label_get_in_touch: 'GET IN TOUCH',
     heading:            "Let's work\ntogether.",
     label_about:        'ABOUT ME',
-    about_text:         'I provide end-to-end visual solutions for the real estate and hospitality sectors. Graduated in Photography and Audiovisual Creation from EASD Valencia, and officially certified as an Editor and Colorist by Blackmagic Design (DaVinci Resolve 20). As a registered freelancer in Germany and an EASA A1/A3 licensed drone pilot, I guarantee seamless production and premium technical quality—from pre-production to the final color grade.',
+    about_text:         'I provide end-to-end visual solutions for the real estate and hospitality sectors. I hold a degree in Photography and Audiovisual Creation from EASD Valencia, and I am officially certified as an Editor and Colorist by Blackmagic Design (DaVinci Resolve 20). As a registered freelancer in Germany and an EASA A1/A3 licensed drone pilot, I guarantee seamless productions and premium technical quality—from pre-production planning to the final color grade.',
     about_cta:          'Request a project →',
     intro_1:            "Let's create something exceptional. Whether you are looking to showcase premium real estate, elevate a hospitality brand, or need specialized architectural visual content, I am here to bring your vision to life. As a professional photographer, videographer, and certified DaVinci Resolve colorist based in Berlin, I am available for projects locally and worldwide.",
     intro_2:            'Feel free to reach out for bookings or project inquiries in English, German, or Spanish.',
