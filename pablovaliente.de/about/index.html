@@ -122,6 +122,53 @@
         @media (hover: none) and (pointer: coarse) {
             a:hover, button:hover { color: inherit !important; border-color: inherit !important; }
         }
+
+        /* ── Right column fade viewer ── */
+        .hero-right {
+            position: relative;
+            overflow: hidden;
+        }
+        @media (min-width: 1024px) {
+            .hero-right {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding-right: 3rem;
+                padding-top: 90px;
+            }
+        }
+        .fade-frame {
+            width: 100%;
+            aspect-ratio: 3 / 2;
+            position: relative;
+            overflow: hidden;
+        }
+        .fade-frame img.fade-img {
+            position: absolute;
+            inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1.2s ease;
+        }
+        .fade-frame img.fade-img.is-active {
+            opacity: 1;
+        }
+        @media (max-width: 1023px) {
+            .hero-right {
+                order: -1;
+                height: 56vw;
+                min-height: 220px;
+                max-height: 420px;
+                overflow: hidden;
+                padding: 0;
+            }
+            .fade-frame {
+                width: 100%;
+                height: 100%;
+                aspect-ratio: unset;
+            }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -188,8 +235,12 @@
                 </div>
             </div>
 
-            <!-- Right column: intentionally empty -->
-            <div></div>
+            <!-- Right column: fade viewer -->
+            <div class="hero-right" id="hero-right">
+                <div class="fade-frame" id="fade-frame">
+                    <!-- Images built by JS -->
+                </div>
+            </div>
 
         </section>
     </main>
@@ -232,6 +283,49 @@ var menuOpenCount=0;
         document.getElementById('menu-backdrop').addEventListener('click', closeMenu);
         mobileOverlay.querySelectorAll('a:not(#langToggleOverlay), button:not(#langToggleOverlay):not(#close-menu-btn):not(#close-menu-btn-text)').forEach(function(a) { a.addEventListener('click', closeMenu); });
         if (typeof initLang === 'function') initLang();
+
+        /* ── About fade viewer ── */
+        (function() {
+            var PHOTO_SRCS = [
+                '../assets/projects/bellamar-hotel-ibiza/frames/frame-fondo.webp',
+                '../assets/projects/japanisches-heiligtum/frames/frame-fondo.webp',
+                '../assets/projects/marvell-club-hotel-ibiza/frames/frame-portada.webp',
+                '../assets/projects/monasterio-san-miguel/frames/frame-portada.webp',
+                '../assets/projects/japanisches-heiligtum/frames/frame-05.webp',
+                '../assets/projects/bellamar-hotel-ibiza/frames/frame-15.webp',
+                '../assets/projects/iglesia-yaguaron/frames/frame-fondo.webp'
+            ];
+            var AUTO_INTERVAL = 5000;
+            var current = 0;
+            var imgs = [];
+
+            function build() {
+                var frame = document.getElementById('fade-frame');
+                if (!frame) return;
+                PHOTO_SRCS.forEach(function(src, i) {
+                    var img = document.createElement('img');
+                    img.className = 'fade-img' + (i === 0 ? ' is-active' : '');
+                    img.src = src;
+                    img.alt = 'Pablo Valiente — Portfolio';
+                    img.setAttribute('loading', i === 0 ? 'eager' : 'lazy');
+                    img.setAttribute('decoding', 'async');
+                    if (i === 0) img.setAttribute('fetchpriority', 'high');
+                    frame.appendChild(img);
+                    imgs.push(img);
+                });
+                setInterval(function() {
+                    imgs[current].classList.remove('is-active');
+                    current = (current + 1) % imgs.length;
+                    imgs[current].classList.add('is-active');
+                }, AUTO_INTERVAL);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', build);
+            } else {
+                build();
+            }
+        })();
     </script>
 </body>
 </html>
