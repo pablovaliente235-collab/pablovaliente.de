@@ -214,7 +214,7 @@
                         </div>
                         <div class="spec-row">
                             <span class="spec-label" data-i18n="label_location">Location</span>
-                            <span class="spec-value">Frankfurt am Main, Germany</span>
+                            <span class="spec-value">Kyoto, Japan</span>
                         </div>
                     </div>
                 </div>
@@ -315,12 +315,12 @@
         document.querySelectorAll('#footerYear, .footer-year').forEach(function(el) { el.textContent = new Date().getFullYear(); });
 
         var SLIDE_META = [
-            { overline: 'Architekturfotografie · Schrein', title: 'Japanisches Heiligtum', location: 'Japan', desc: 'Stille Symmetrie und traditionelle Holzarchitektur. Ein japanischer Schrein im Wechselspiel von Licht und Schatten.', rol: 'Architekturfotografie', equipo: 'Canon EOS R5 · 24mm', year: '2024' },
-            { overline: 'Architekturfotografie · Torii', title: 'Japanisches Heiligtum', location: 'Japan', desc: 'Das Torii-Tor als Schwelle zwischen Alltag und Heiligem. Form und Farbe in konzentrierter Komposition.', rol: 'Architekturfotografie', equipo: 'Canon EOS R5 · 35mm', year: '2024' },
-            { overline: 'Architekturfotografie · Detail', title: 'Japanisches Heiligtum', location: 'Japan', desc: 'Holzdetails und Handwerk. Die Sprache der Form in traditioneller japanischer Baukunst.', rol: 'Detailfotografie', equipo: 'Canon EOS R5 · 85mm', year: '2024' },
-            { overline: 'Architekturfotografie · Licht', title: 'Japanisches Heiligtum', location: 'Japan', desc: 'Gefiltertes Licht durch Bäume. Atmosphäre und Stille als kompositorische Elemente.', rol: 'Lichtfotografie', equipo: 'Canon EOS R5 · 50mm', year: '2024' },
-            { overline: 'Architekturfotografie · Ambiente', title: 'Japanisches Heiligtum', location: 'Japan', desc: 'Das Heiligtum im Dialog mit seiner Umgebung. Natur und Architektur in stiller Balance.', rol: 'Ambiente & Raum', equipo: 'Canon EOS R5 · 24mm', year: '2024' },
-            { overline: 'Architekturfotografie · Tradition', title: 'Japanisches Heiligtum', location: 'Japan', desc: 'Tradition und Zeitlosigkeit. Die innere Logik der Form in einem einzigen Bild.', rol: 'Traditionelle Architektur', equipo: 'Canon EOS R5 · 35mm', year: '2024' },
+            { overline: 'Architekturfotografie · Schrein', title: 'Japanisches Heiligtum', location: 'Kyoto, Japan', desc: 'Stille Symmetrie und traditionelle Holzarchitektur. Ein japanischer Schrein im Wechselspiel von Licht und Schatten.', rol: 'Architekturfotografie', equipo: 'Canon EOS R5 · 24mm', year: '2024' },
+            { overline: 'Architekturfotografie · Torii', title: 'Japanisches Heiligtum', location: 'Kyoto, Japan', desc: 'Das Torii-Tor als Schwelle zwischen Alltag und Heiligem. Form und Farbe in konzentrierter Komposition.', rol: 'Architekturfotografie', equipo: 'Canon EOS R5 · 35mm', year: '2024' },
+            { overline: 'Architekturfotografie · Detail', title: 'Japanisches Heiligtum', location: 'Kyoto, Japan', desc: 'Holzdetails und Handwerk. Die Sprache der Form in traditioneller japanischer Baukunst.', rol: 'Detailfotografie', equipo: 'Canon EOS R5 · 85mm', year: '2024' },
+            { overline: 'Architekturfotografie · Licht', title: 'Japanisches Heiligtum', location: 'Kyoto, Japan', desc: 'Gefiltertes Licht durch Bäume. Atmosphäre und Stille als kompositorische Elemente.', rol: 'Lichtfotografie', equipo: 'Canon EOS R5 · 50mm', year: '2024' },
+            { overline: 'Architekturfotografie · Ambiente', title: 'Japanisches Heiligtum', location: 'Kyoto, Japan', desc: 'Das Heiligtum im Dialog mit seiner Umgebung. Natur und Architektur in stiller Balance.', rol: 'Ambiente & Raum', equipo: 'Canon EOS R5 · 24mm', year: '2024' },
+            { overline: 'Architekturfotografie · Tradition', title: 'Japanisches Heiligtum', location: 'Kyoto, Japan', desc: 'Tradition und Zeitlosigkeit. Die innere Logik der Form in einem einzigen Bild.', rol: 'Traditionelle Architektur', equipo: 'Canon EOS R5 · 35mm', year: '2024' },
         ];
 
         var PHOTO_SRCS = [];
@@ -596,7 +596,7 @@
         var closeMenuBtn  = document.getElementById('close-menu-btn');
         var mobileOverlay = document.getElementById('mobile-overlay');
         var menuOpenCount=0;
-        function openMenu()  { mobileOverlay.classList.remove('hidden'); mobileOverlay.classList.add('flex'); mobileMenuBtn.setAttribute('aria-expanded','true');  document.body.classList.add('mobile-menu-open'); var sf=document.getElementById('site-footer');if(sf&&window.innerWidth>=1024)sf.style.display='none'; if(window.innerWidth>=1024){var bd=document.getElementById('menu-backdrop');if(bd)bd.classList.add('visible');var mbg=document.getElementById('menu-bg');if(mbg){var p='../../assets/projects/';var pool=[p+'japanisches-heiligtum/frames/frame-fondo.webp',p+'monasterio-san-miguel/frames/frame-portada.webp',p+'monasterio-san-miguel/frames/frame-fondo.webp',p+'iglesia-yaguaron/frames/frame-portada.webp',p+'iglesia-yaguaron/frames/frame-fondo.webp',p+'bellamar-hotel-ibiza/frames/frame-portada.webp',p+'bellamar-hotel-ibiza/frames/frame-fondo.webp'];pool.sort(function(){return Math.random()-0.5;});var imgs=[p+'japanisches-heiligtum/frames/frame-portada.webp'].concat(pool);var img=menuOpenCount===0?imgs[0]:imgs[Math.floor(Math.random()*imgs.length)];mbg.style.backgroundImage="url('"+img+"')";mbg.classList.add('visible');}mobileMenuBtn.textContent='CLOSE ×';menuOpenCount++;} }
+        function openMenu()  { mobileOverlay.classList.remove('hidden'); mobileOverlay.classList.add('flex'); mobileMenuBtn.setAttribute('aria-expanded','true');  document.body.classList.add('mobile-menu-open'); var sf=document.getElementById('site-footer');if(sf&&window.innerWidth>=1024)sf.style.display='none'; if(window.innerWidth>=1024){var bd=document.getElementById('menu-backdrop');if(bd)bd.classList.add('visible');var mbg=document.getElementById('menu-bg');if(mbg){var p='../../assets/projects/';var MENU_IMGS=[p+'japanisches-heiligtum/frames/frame-fondo.webp',p+'bellamar-hotel-ibiza/frames/frame-fondo.webp',p+'iglesia-yaguaron/frames/frame-fondo.webp',p+'monasterio-san-miguel/frames/frame-portada.webp',p+'bellamar-hotel-ibiza/frames/frame-portada.webp',p+'japanisches-heiligtum/frames/frame-portada.webp'];var img=MENU_IMGS[menuOpenCount%MENU_IMGS.length];mbg.style.backgroundImage="url('"+img+"')";mbg.classList.add('visible');}mobileMenuBtn.textContent='CLOSE ×';menuOpenCount++;} }
         function closeMenu() { mobileOverlay.classList.add('hidden');    mobileOverlay.classList.remove('flex'); mobileMenuBtn.setAttribute('aria-expanded','false'); document.body.classList.remove('mobile-menu-open'); var sf=document.getElementById('site-footer');if(sf)sf.style.display=''; if(window.innerWidth>=1024){var bd=document.getElementById('menu-backdrop');if(bd)bd.classList.remove('visible');var mbg=document.getElementById('menu-bg');if(mbg)mbg.classList.remove('visible');} if(window.innerWidth>=1024)mobileMenuBtn.textContent='MENU'; }
         mobileMenuBtn.addEventListener('click', openMenu);
         closeMenuBtn.addEventListener('click', closeMenu); var cmbt=document.getElementById('close-menu-btn-text'); if(cmbt) cmbt.addEventListener('click', closeMenu);
